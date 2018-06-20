@@ -7,4 +7,8 @@ mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
 
 azertyuiopmlkjhgfdqwxcvbn
 
+<<<<<<< HEAD
 tamaman
+=======
+(master|MERGING)
+>>>>>>> 9f03494f1153bde009f63ab7f571dc0190873d3e
