@@ -17,20 +17,22 @@ export class LoginComponent implements OnInit {
   }
 
 
-
+  //@TODO
   login(session){
+    /*
+    Test à supprimer
+    */
   	let session2 = new Session(1,session.login,session.password);
-
+    var connected = false;
   	for(var i =0,c=SESSIONITEMS.length;i<c;i++){
   		if(SESSIONITEMS[i].login===session2.login&&SESSIONITEMS[i].password===session2.password){
   			console.log("connected");
-  			//TODO
+        connected = true;
   			this.router.navigate(['/client']);
   		}
   	}
-  }
-
-  returnToPublic(){
-  	this.router.navigate(['/public']);
+    if(!connected){
+      alert("You failed to authenticate yourself... looooser :P");
+    }
   }
 }

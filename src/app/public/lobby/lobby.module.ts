@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { routing } from './lobby.routing';
+import { LobbyRoutingModule } from './lobby-routing.module';
 import { LobbyComponent } from './lobby.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    routing
+    LobbyRoutingModule
   ],
   declarations: [LobbyComponent]
 })

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { routing } from './presenting.routing';
+import { PresentingRoutingModule } from './presenting-routing.module';
 import { PresentingComponent } from './presenting.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    routing
+    PresentingRoutingModule
   ],
   declarations: [PresentingComponent]
 })

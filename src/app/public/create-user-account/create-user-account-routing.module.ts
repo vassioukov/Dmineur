@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateUserAccountComponent } from './create-user-account.component';
 
-const childRoutes: Routes = [
+const routes: Routes = [
     {
         path: '',
         component: CreateUserAccountComponent
     }
 ];
 
-export const routing = RouterModule.forChild(childRoutes);
+@NgModule({
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule]
+})
+export class CreateUserAccountRouting {}
