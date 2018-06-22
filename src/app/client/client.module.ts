@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 
-import { AdminRoutingModule } from './admin-routing.module';
+import { ClientRoutingModule } from './client-routing.module';
 
 import { LayoutModule } from '../shared/layout.module';
 import { SharedModule } from '../shared/shared.module';
 
-import { AdminComponent } from './admin.component';
+import { ClientComponent } from './client.component';
 
 @NgModule({
   imports: [
     LayoutModule,
     SharedModule,
-    AdminRoutingModule,
+    ClientRoutingModule
   ],
-  declarations: [AdminComponent]
+  declarations: [ClientComponent]
 })
-export class AdminModule { }
+export class ClientModule { }
