@@ -1,6 +1,6 @@
 @import '../../theme/conf';
 .pages-sider {
-    width: 250px;
+    width: 290px;
     height: 100%;
     background: $sidebar-bg;
     overflow-x: hidden;
@@ -32,6 +32,10 @@
     } */
 }
 
+.menu-hamburger {
+    display: none;
+}
+
 @media (max-width:1440px) {
     .pages-sider {
         width: 210px;
@@ -39,10 +43,18 @@
     .side-collapsed {
         width: 0;
     }
+
+    .menu-hamburger {
+        display: none;
+    }
 }
 
 @media (max-width:970px) {
     .pages-sider {
-        width: 0;
+        /*width: 0;*/
+    }
+
+    .menu-hamburger {
+        display: block;
     }
 }

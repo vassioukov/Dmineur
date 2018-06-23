@@ -35,9 +35,63 @@ export let MENU_ITEM = [
     /*
     Routes client
     */
+    {
+        path: 'viewAccount',
+        title: 'Consulter comptes',
+        icon: 'eye',
+        profile:'client'
+    },
+    {
+        path: 'doTransfer',
+        title: 'Virements bancaires',
+        icon: 'exchange',
+        profile:'client'
+    },
+    {
+        path: 'askCheck',
+        title: 'Commander chéquier',
+        icon: 'shopping-cart',
+        profile:'client'
+    },
+    {
+        path: 'addAccount',
+        title: 'Ajouter compte',
+        icon: 'plus-circle',
+        profile:'client'
+    },
+    {
+        path: 'editAccount',
+        title: 'Modifier infos persos',
+        icon: 'pencil-square-o',
+        profile:'client'
+    },
     /*
     Routes agent
     */
+    {
+        path: 'lobby',
+        title: 'Accueil',
+        icon: 'home',
+        profile:'agent'
+    },
+    {
+        path: 'managementClients',
+        title: 'Gestion des clients',
+        icon: 'users',
+        profile:'agent'
+    },
+    {
+        path: 'bankAccountValidation',
+        title: 'Validation des comptes bancaires',
+        icon: 'credit-card-alt',
+        profile:'agent'
+    },
+    {
+        path: 'checkValidation',
+        title: 'Validation des chéquiers',
+        icon: 'envelope-open-o',
+        profile:'agent'
+    },
     /*
     Routes admin
     */
@@ -49,14 +103,14 @@ export let MENU_ITEM = [
     },
     {
         path: 'assignmentRequest',
-        title: 'Dashboard',
-        icon: 'tachometer',
+        title: 'Demande d\'affectation',
+        icon: 'calendar-plus-o',
         profile:'admin'
     },
     {
         path: 'managementAgents',
         title: 'Gestion des conseillers',
-        icon: 'users',
+        icon: 'folder-open',
         profile:'admin'
     },
     {
