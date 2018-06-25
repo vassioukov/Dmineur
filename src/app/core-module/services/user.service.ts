@@ -1,22 +1,17 @@
-import { Injectable, EventEmitter, OnInit, Output } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { SESSIONITEMS } from '../../shared/models/fake-session/sessions';
 import { Session } from '../../shared/models/fake-session/session';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
 	providedIn : 'root'
 })
 export class UserService {
-  	@Output() public somethingChanged: EventEmitter<any> = new EventEmitter();
+  	@Output() public somethingChanged: EventEmitter<Session> = new EventEmitter();
 	public allUsers : Array<Session> = SESSIONITEMS;
 	//Default user = Guest
-	public userConnected : BehaviorSubject<Session> = new BehaviorSubject(new Session(-1,'guest','guest','guest'));
-
-	//Return the user connected
-	public get newUserConnected(): Observable<Session>{
-		return this.userConnected.asObservable();
-	}
+	public userConnected : Session = new Session(-1,'guest','guest','guest');
 
 	public getUserConnected(){
 		return this.userConnected;
@@ -27,7 +22,11 @@ export class UserService {
 		Ajouter webservice
 	*/
 	public setUserConnected(data: Session){
-		this.userConnected.next(new Session(data._id,data.email,data.password,data.profile));
+		this.userConnected._id = data._id;
+		this.userConnected.email = data.email;
+		this.userConnected.password = data.password;
+		this.userConnected.profile = data.profile;
+		this.somethingChanged.emit(this.userConnected);
 	}
 
 	constructor(private router: Router) {

@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { collapse } from '../../animation/collapse-animate';
 import { GlobalService } from '../../services/global.service';
 import { UserService } from '../../../core-module/services/user.service';
@@ -19,12 +19,11 @@ export class MenuComponent implements OnInit {
   userConnectedSubscribed : Subscription
 
   constructor(private _globalService: GlobalService, private userService: UserService) { 
+    this.userLogged = this.userService.getUserConnected();
   }
 
-  ngOnInit(){
-    this.userConnectedSubscribed = this.userService.newUserConnected.subscribe((data) => {
-      this.userLogged = data;
-    })
+  public onChange(session: Session){
+    this.userLogged = session;
   }
 
   private isToggleOn(item) {
