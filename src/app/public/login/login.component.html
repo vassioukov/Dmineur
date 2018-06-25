@@ -1,4 +1,4 @@
-<form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
   <div class="card card-block login-card">
     <h3 class="form-label">Bienvenue</h3>
     <div class="form-group">
@@ -14,7 +14,7 @@
         </span>
         <input name="password" ngModel  class="form-control with-primary-addon" placeholder="Mot de passe" type="password" required>
       </div>
-
+      <input type="checkbox" name="rememberMe" ngModel id="rmbMe" /> <label for="rmbMe"> Se souvenir de moi</label>
       <button class="btn btn-lg btn-primary" type="submit" [disabled]="!loginForm.form.valid">Connexion</button>
       <br><br>
     </div>

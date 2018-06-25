@@ -24,6 +24,8 @@
       <span class="fa fa-envelope fa-fw"></span>
       <span class="badge" *ngIf="tip.email"></span>
     </div>
+    <div class="msg-entrance email" *ngIf="userService.isConnected">
+      <i class="fa fa-sign-out" aria-hidden="true" (click)="userService.logout()" title="Déconnexion"></i>
+    </div>
   </div>
-
 </div>

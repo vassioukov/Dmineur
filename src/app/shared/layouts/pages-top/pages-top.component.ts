@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
+import { UserService } from '../../../core-module/services/user.service'; 
 
 @Component({
   selector: 'pages-top',
@@ -7,13 +8,13 @@ import { GlobalService } from '../../services/global.service';
   styleUrls: ['./pages-top.component.scss'],
 })
 export class PagesTopComponent {
-  avatarImgSrc: string = 'assets/images/avatar.png';
-  userName: string = 'Folisise Chosielie';
+  avatarImgSrc: string = 'assets/images/logo/logo_94px.png';
+  userName: String = this.userService.userConnected.email;
   userPost: string = 'Musician, Player';
   sidebarToggle: boolean = true;
   tip = { ring: true, email: true };
 
-  constructor(private _globalService: GlobalService) { 
+  constructor(private _globalService: GlobalService, private userService: UserService) { 
   
   }
 

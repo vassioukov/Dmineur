@@ -10,7 +10,8 @@ export class UserService {
   	@Output() public somethingChanged: EventEmitter<Session> = new EventEmitter();
 	public allUsers : Array<Session> = SESSIONITEMS;
 	//Default user = Guest
-	public userConnected : Session = new Session(-1,'guest','guest','guest');
+	public userConnected : Session = new Session(-2,'guest','guest','guest');
+	public isConnected: boolean = false;
 
 	public getUserConnected(){
 		return this.userConnected;
@@ -25,6 +26,7 @@ export class UserService {
 		this.userConnected.email = data.email;
 		this.userConnected.password = data.password;
 		this.userConnected.profile = data.profile;
+		this.isConnected = true;
 		this.somethingChanged.emit(this.userConnected);
 	}
 
@@ -33,7 +35,7 @@ export class UserService {
 
 	ngOnCHang
 
-	login(session):void{
+	login(session):boolean{
 		console.log("user.service.ts login");
 		console.log(session);
 		var users = this.getAllUsers();
@@ -60,6 +62,8 @@ export class UserService {
 		        }
 	  		}
 	  	}
+	  	//_id===-2 is a guest user
+	  	return this.userConnected._id !==-2;
 	  }
 	
 
@@ -67,7 +71,10 @@ export class UserService {
 	* Log out the user then tell all the subscribers about the new status
 	*/
 	logout() : void {
-
+	  	localStorage.removeItem('Dmineur');
+	  	sessionStorage.removeItem('Dmineur');
+		this.userConnected  = new Session(-2,'guest','guest','guest');
+	  	this.router.navigate(['/public']);
 	}
 
 	//Return every users
