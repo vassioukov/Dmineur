@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit } from '@angular/core';
 import { collapse } from '../../animation/collapse-animate';
 import { GlobalService } from '../../services/global.service';
 import { UsersService } from '../../services/users.service';
@@ -14,6 +14,7 @@ import { BehaviorSubject, Observable, of, Subscription} from 'rxjs';
 })
 export class MenuComponent implements OnInit {
   @Input() menuInfo: any;
+  
   userLogged: Session;
 
   test: Subscription
@@ -28,11 +29,13 @@ export class MenuComponent implements OnInit {
       this.userLogged = data;
     console.log("after menu");
     console.log(this.userLogged);
+    console.log(this.usersService.getUserConnected());
 
     console.log("-------------");
-    console.log(this.usersService.getUserConnected());
     })
-    
+    this.usersService.somethingChanged.subscribe((data: any) => {
+        console.log("Data from status component", data);
+    })
   }
 
   public getUserConnected(): void {

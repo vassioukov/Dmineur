@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter, OnInit } from '@angular/core';
+import { Injectable, EventEmitter, OnInit, Output } from '@angular/core';
 import { SESSIONITEMS } from '../models/fake-session/sessions';
 import { Session } from '../models/fake-session/session';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 	providedIn : 'root'
 })
 export class UsersService {
+  	@Output() public somethingChanged: EventEmitter<any> = new EventEmitter();
 	public allUsers : Array<Session> = SESSIONITEMS;
 	//Default user = Guest
 	public userConnected : BehaviorSubject<Session> = new BehaviorSubject(new Session(-1,'guest','guest','guest'));
@@ -48,7 +49,7 @@ export class UsersService {
 	      */
 	  		if(users[i].email===session.email&&users[i].password===session.password){
 	  			this.setUserConnected({_id:users[i]._id,email:users[i].email,password:users[i].password,profile:users[i].profile})
-
+/*
 		        switch(this.userConnected.value.profile){
 		          case 'client':
 		            this.router.navigate(['/client']);
@@ -62,7 +63,7 @@ export class UsersService {
 		          default:
 		            alert("Something went wrong in login.component.ts");
 		            break;
-		        }
+		        }*/
 	  		}
 	  	}
 	  }

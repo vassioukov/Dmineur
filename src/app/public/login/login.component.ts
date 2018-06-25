@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {Session} from '../../shared/models/fake-session/session';
 
@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
 
   login(session){
     console.log(session);
+    this.usersService.somethingChanged.emit({
+        data: "Dummy Data For Post Component"
+    })
     this.usersService.login(session);
   }
 
