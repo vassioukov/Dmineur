@@ -11,7 +11,7 @@ import { BehaviorSubject, Observable, of, Subscription} from 'rxjs';
   styleUrls: ['./menu.component.scss'],
   animations: [collapse]
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
   @Input() menuInfo: any;
   
   userLogged: Session;
