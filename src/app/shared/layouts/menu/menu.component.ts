@@ -17,7 +17,6 @@ export class MenuComponent {
 
   constructor(private _globalService: GlobalService, private userService: UserService) { 
     this.userLogged = this.userService.getUserConnected();
-    console.log(this.userLogged);
   }
 
   public onChange(session: Session){
