@@ -9,6 +9,7 @@ import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsersService } from './shared/services/users.service';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PageNotFoundModule,
     AppRoutingModule
   ],
+  providers: [UsersService],
   declarations: [
     AppComponent,
   ],

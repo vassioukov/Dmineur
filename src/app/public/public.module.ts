@@ -19,4 +19,6 @@ import { PublicComponent } from './public.component';
   providers: [
   ]
 })
-export class PublicModule { }
+export class PublicModule {
+  
+}

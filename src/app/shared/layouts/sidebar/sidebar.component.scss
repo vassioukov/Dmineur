@@ -31,11 +31,6 @@
         transform: scale(0, 0);
     } */
 }
-
-.menu-hamburger {
-    display: none;
-}
-
 @media (max-width:1440px) {
     .pages-sider {
         width: 210px;
@@ -43,18 +38,10 @@
     .side-collapsed {
         width: 0;
     }
-
-    .menu-hamburger {
-        display: none;
-    }
 }
 
 @media (max-width:970px) {
     .pages-sider {
         /*width: 0;*/
-    }
-
-    .menu-hamburger {
-        display: block;
     }
 }

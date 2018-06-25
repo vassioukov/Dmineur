@@ -20,8 +20,22 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.menuInfo = this._menuService.putSidebarJson();
     this._sidebarToggle();
+
+    //If page has width less than 970px, sidebar is hidden (can be re-open)
+    let element: HTMLElement = document.getElementById("toggleSidebar") as HTMLElement;
+    if(window.innerWidth < 970){
+      if(this.sidebarToggle){
+        element.click();
+      }
+    } else {
+      if(!this.sidebarToggle){
+        element.click();
+      }
+    }
     this._menuService.selectItem(this.menuInfo); /* ----->初始化判断路由isActive状态  未完成  待优化 */
     this._isSelectItem(this.menuInfo);
+
+
   }
 
   public _sidebarToggle() {
@@ -38,6 +52,22 @@ export class SidebarComponent implements OnInit {
     }, error => {
       console.log('Error: ' + error);
     });
+
+  }
+
+  //On resize, sidebar can be hide or display
+  onResize(event){
+    let element: HTMLElement = document.getElementById("toggleSidebar") as HTMLElement;
+
+    if(event.target.innerWidth < 970){
+      if(this.sidebarToggle){
+        element.click();
+      }
+    } else {
+      if(!this.sidebarToggle){
+        element.click();
+      }
+    }
 
   }
 
