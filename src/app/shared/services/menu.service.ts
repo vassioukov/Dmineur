@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { MENU_ITEM } from '../models/menu';
 import { Router } from '@angular/router';
 import { GlobalService } from './global.service';
+import { UserService } from '../../core-module/services/user.service';
 
 @Injectable()
 export class menuService {
 
-  constructor(public _globalService: GlobalService, private _router: Router) {
+  constructor(public _globalService: GlobalService, private _router: Router, private userService: UserService) {
     this.getNodePath(MENU_ITEM);
   }
 
@@ -62,7 +63,22 @@ export class menuService {
       } else {
         this.path_item = [index.path];
         index.routerLink = this.creatRouterLink(index.path);
-        index.routerLink.unshift('/', 'public');
+        let pathTo;
+        switch(this.userService.getUserConnected().profile){
+          case 'guest':
+            pathTo = 'public';
+            break;
+          case 'client':
+            pathTo = 'client';
+            break;
+          case 'agent':
+            pathTo = 'agent';
+            break;
+          case 'admin':
+            pathTo = 'admin';
+            break;
+        }
+        index.routerLink.unshift('/', pathTo);
       }
     })
   }
