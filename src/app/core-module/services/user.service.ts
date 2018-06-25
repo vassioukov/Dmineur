@@ -74,6 +74,7 @@ export class UserService {
 	  	localStorage.removeItem('Dmineur');
 	  	sessionStorage.removeItem('Dmineur');
 		this.userConnected  = new Session(-2,'guest','guest','guest');
+		this.isConnected = false;
 	  	this.router.navigate(['/public']);
 	}
 
