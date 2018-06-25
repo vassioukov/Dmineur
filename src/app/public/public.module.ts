@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { PublicComponent } from './public.component';
 
+
 @NgModule({
   imports: [
     LayoutModule,
@@ -16,8 +17,7 @@ import { PublicComponent } from './public.component';
   declarations: [
   	PublicComponent
   ],
-  providers: [
-  ]
+  providers: [  ]
 })
 export class PublicModule {
   

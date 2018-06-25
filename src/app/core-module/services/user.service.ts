@@ -1,13 +1,13 @@
 import { Injectable, EventEmitter, OnInit, Output } from '@angular/core';
-import { SESSIONITEMS } from '../models/fake-session/sessions';
-import { Session } from '../models/fake-session/session';
+import { SESSIONITEMS } from '../../shared/models/fake-session/sessions';
+import { Session } from '../../shared/models/fake-session/session';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
 	providedIn : 'root'
 })
-export class UsersService {
+export class UserService {
   	@Output() public somethingChanged: EventEmitter<any> = new EventEmitter();
 	public allUsers : Array<Session> = SESSIONITEMS;
 	//Default user = Guest
@@ -22,16 +22,12 @@ export class UsersService {
 		return this.userConnected;
 	}
 
-	//Set the user's session
+	/*
+		Set the user's session
+		Ajouter webservice
+	*/
 	public setUserConnected(data: Session){
-		console.log(this.userConnected.value);
 		this.userConnected.next(new Session(data._id,data.email,data.password,data.profile));
-		console.log(this.userConnected.value);
-		/*
-		this.userConnected._id = userLogged._id;
-		this.userConnected.email = userLogged.email;
-		this.userConnected.password = userLogged.password;
-		this.userConnected.profile = userLogged.profile;*/
 	}
 
 	constructor(private router: Router) {

@@ -9,7 +9,7 @@ import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UsersService } from './shared/services/users.service';
+import { CoreModule } from './core-module/core.module';
 
 @NgModule({
   imports: [
@@ -21,9 +21,10 @@ import { UsersService } from './shared/services/users.service';
     AgentModule,
     AdminModule,
     PageNotFoundModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CoreModule.forRoot()
   ],
-  providers: [UsersService],
+  providers: [],
   declarations: [
     AppComponent,
   ],
