@@ -1,7 +1,6 @@
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { SESSIONITEMS } from '../../shared/models/fake-session/sessions';
 import { Session } from '../../shared/models/fake-session/session';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -16,7 +15,7 @@ export class UserService {
 	public getUserConnected(){
 		return this.userConnected;
 	}
-
+	
 	/*
 		Set the user's session
 		Ajouter webservice
@@ -44,8 +43,8 @@ export class UserService {
 	      */
 	  		if(users[i].email===session.email&&users[i].password===session.password){
 	  			this.setUserConnected({_id:users[i]._id,email:users[i].email,password:users[i].password,profile:users[i].profile})
-/*
-		        switch(this.userConnected.value.profile){
+
+		        switch(this.userConnected.profile){
 		          case 'client':
 		            this.router.navigate(['/client']);
 		            break;
@@ -58,7 +57,7 @@ export class UserService {
 		          default:
 		            alert("Something went wrong in login.component.ts");
 		            break;
-		        }*/
+		        }
 	  		}
 	  	}
 	  }

@@ -3,7 +3,6 @@ import { collapse } from '../../animation/collapse-animate';
 import { GlobalService } from '../../services/global.service';
 import { UserService } from '../../../core-module/services/user.service';
 import { Session } from '../../models/fake-session/session';
-import { BehaviorSubject, Observable, of, Subscription} from 'rxjs';
 
 @Component({
   selector: 'du-menu',
@@ -13,10 +12,8 @@ import { BehaviorSubject, Observable, of, Subscription} from 'rxjs';
 })
 export class MenuComponent {
   @Input() menuInfo: any;
-  
+  //Feeded by userConnected from UserService
   userLogged: Session;
-
-  userConnectedSubscribed : Subscription
 
   constructor(private _globalService: GlobalService, private userService: UserService) { 
     this.userLogged = this.userService.getUserConnected();

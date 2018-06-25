@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
-import {Session} from '../../shared/models/fake-session/session';
-
+import { Component } from '@angular/core';
+import { Session } from '../../shared/models/fake-session/session';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { UserService } from '../../core-module/services/user.service';
 
 @Component({
@@ -11,7 +8,7 @@ import { UserService } from '../../core-module/services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   userLogged: Session;
 
 
@@ -20,9 +17,5 @@ export class LoginComponent implements OnInit {
 
   login(session){
     this.userService.login(session);
-  }
-
-
-  ngOnInit() {
   }
 }
