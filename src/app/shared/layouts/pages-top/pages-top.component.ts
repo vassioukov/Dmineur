@@ -18,6 +18,11 @@ export class PagesTopComponent {
   
   }
 
+  //Return true if connected, false if not
+  public isConnected():boolean{
+    return this.userService.isConnected;
+  }
+
   public _sidebarToggle() {
     /* this._globalService.sidebarToggle$.subscribe(sidebarToggle => {
       this.sidebarToggle = sidebarToggle;
