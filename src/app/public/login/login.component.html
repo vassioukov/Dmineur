@@ -1,0 +1,22 @@
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+  <div class="card card-block login-card">
+    <h3 class="form-label">Bienvenue</h3>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon addon-left" id="username">
+          <i class="fa fa-user fa-fw"></i>
+        </span>
+        <input name="email" ngModel class="form-control with-primary-addon" placeholder="Identifiant" type="text" required>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon addon-left" id="password">
+          <i class="fa fa-lock fa-fw"></i>
+        </span>
+        <input name="password" ngModel  class="form-control with-primary-addon" placeholder="Mot de passe" type="password" required>
+      </div>
+      <input type="checkbox" name="rememberMe" ngModel id="rmbMe" /> <label for="rmbMe"> Se souvenir de moi</label>
+      <button class="btn btn-lg btn-primary" type="submit" [disabled]="!loginForm.form.valid">Connexion</button>
+      <br><br>
+    </div>
+  </div>
+</form>
