@@ -19,7 +19,7 @@ export class AppComponent {
   		this.redirect();
   	} else {
         //Avoid incorrect routing
-      this.router.navigate(['/public']);
+      //this.router.navigate(['/public']);
     }
   }
 
