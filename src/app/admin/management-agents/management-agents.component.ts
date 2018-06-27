@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { fakeAgent } from '../../shared/models/fake-session/fakeAgent';
+import { FAKEAGENTITEMS } from '../../shared/models/fake-session/fakeAgents';
 
 @Component({
   selector: 'app-management-agents',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagementAgentsComponent implements OnInit {
 
+	agentList:fakeAgent[] = FAKEAGENTITEMS;
+
+
   constructor() { }
 
   ngOnInit() {
+
+  	console.log(this.agentList);
   }
 
 }
