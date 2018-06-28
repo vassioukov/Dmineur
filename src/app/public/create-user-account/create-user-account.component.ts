@@ -13,6 +13,7 @@ export class CreateUserAccountComponent implements OnInit {
 	ngOnInit() {
 	}
 	creationCompteClient(dataClient) {
-		console.log(dataClient.value);
+
+		localStorage.setItem("recupclient", JSON.stringify(dataClient.value));
 	}
 }
