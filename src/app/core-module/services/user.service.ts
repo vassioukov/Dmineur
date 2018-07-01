@@ -2,6 +2,11 @@ import { Injectable, EventEmitter, Output } from '@angular/core';
 import { SESSIONITEMS } from '../../shared/models/fake-session/sessions';
 import { Session } from '../../shared/models/fake-session/session';
 import { Router } from '@angular/router';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+
+const port = ":8101";
+const projectPath = "/Dmineur_Back_End_v2"
+const demineurApiUrl = "http://localhost"+port+projectPath;
 
 @Injectable({
 	providedIn : 'root'
@@ -30,19 +35,53 @@ export class UserService {
 		this.somethingChanged.emit(this.userConnected);
 	}
 
-	constructor(private router: Router) {
+	constructor(private router: Router, private http: HttpClient) {
 	}
 
-	ngOnCHang
+	testWS(){
+		return this.http.get(demineurApiUrl+"/utilisateurs/10");
+	}
+
+	contactWS(path, param=null){
+		console.log(demineurApiUrl+path+param);
+		return this.http.get(demineurApiUrl+path+param);	
+	}
 
 	login(session):boolean{
-		console.log("user.service.ts login");
-		console.log(session);
+      	/*
+      		Web service : A faire
+      	*/
+      	/*
+      	this.contactWS("/utilisateurs","/1").subscribe( res => {
+	      console.log("res");
+	      console.log(res);
+	    }, err => {
+	      console.log("err");
+	      console.log(err);
+	    });
+	    */
+
+	    const body = new HttpParams()
+	    	.set("email",session.email)
+	    	.set("password",session.password);
+
+
+      	var test = this.http.post(demineurApiUrl+'/login', body.toString(), {
+      		headers: new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+      	});
+
+      	test.subscribe( res => {
+	      console.log("res");
+	      console.log(res);
+	    }, err => {
+	      console.log("err");
+	      console.log(err);
+	    });
+      	console.log(test);
+
+
 		var users = this.getAllUsers();
 		for(var i =0,c=users.length;i<c;i++){
-	      /*
-	      Web service : A faire
-	      */
 	  		if(users[i].email===session.email&&users[i].password===session.password){
 	  			this.setUserConnected({_id:users[i]._id,email:users[i].email,password:users[i].password,profile:users[i].profile})
 
@@ -62,7 +101,7 @@ export class UserService {
 		        }
 	  		}
 	  	}
-	  	//_id===-2 is a guest user
+	  	//_id==-2 is a guest user
 	  	return this.userConnected._id !==-2;
 	  }
 	

@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core-module/core.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 /*
@@ -27,6 +28,7 @@ registerLocaleData(localeEn, 'en-US', localeEnExtra);
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     PublicModule,
