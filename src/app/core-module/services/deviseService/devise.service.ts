@@ -25,11 +25,11 @@ export class DeviseService {
 		return this.http.get(apiUrl+allCurrenciesPath).pipe(
 			map((res:HttpResponse<String>) => {
 				//Get all the keys
-			    let currenciesKeys = Object.keys(res.results);
+			    let currenciesKeys = Object.keys(res["results"]);
 			    let currencies = [];
 			    for(let key in currenciesKeys){
 			    	//Fill an array of each object
-			    	currencies.push(res.results[currenciesKeys[key]]);
+			    	currencies.push(res["results"][currenciesKeys[key]]);
 			    }
 			    //Return an array of objects
 			    return currencies;
@@ -42,15 +42,15 @@ export class DeviseService {
 	convert(datas){
 		//Replace XXX by source id and YYY by target id
 		return this.http.get(apiUrl+convertPath.replace("XXX",datas.source).replace("YYY",datas.target)).pipe(
-			map((res:HttpResponse<String>) => 
+			map((res:HttpResponse<String>) => {
 				//res is like res.XXX_YYY where XXX and YYY are currency id
 				//Object.keys(res)[0] get all the keys of res and use the first one (index 0)
 				//rounded to 3 decimals after point
-				Math.round(datas.sourceAmount*res[Object.keys(res)[0]]*1000)/1000 );
-			),
-			catchError((error:any) => 
-				Observable.throw(error.json().error || 'Error');
-			)
+				return Math.round(datas.sourceAmount*res[Object.keys(res)[0]]*1000)/1000;
+			}),
+			catchError((error:any) => {
+				return Observable.throw(error.json().error || 'Error');
+			})
 		);
 	}
 

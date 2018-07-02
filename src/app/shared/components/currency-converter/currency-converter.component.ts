@@ -12,7 +12,12 @@ export class CurrencyConverterComponent implements OnInit {
 	currencies;		//Contains every currencies object
 	currenciesKeys; //Contains every currencies id 
 
-	currency = {};
+	currency = {
+		sourceAmount:null,
+		targetAmount:null,
+		sourceCurrency:null,
+		targetCurrency:null
+	};
 
 	constructor(private deviseService:DeviseService) { }
 

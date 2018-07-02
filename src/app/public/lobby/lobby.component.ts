@@ -6,5 +6,5 @@ import { DeviseService } from '../../core-module/services/deviseService/devise.s
   templateUrl: './lobby.component.html',
   styleUrls: ['./lobby.component.css'],
 })
-export class LobbyComponent implements OnInit 
+export class LobbyComponent {
 }
