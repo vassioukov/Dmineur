@@ -18,18 +18,15 @@ export class LoginComponent {
 
   //Utiliser alert
   login(loginForm){
-  	console.log(loginForm.remeberMe);
   	if(!this.userService.login(loginForm.value)){
   		loginForm.reset();
   	} else {
-      console.log(JSON.stringify(this.userService.userConnected));
   		if(loginForm.value.rememberMe){
-			localStorage.setItem('Dmineur', JSON.stringify(this.userService.userConnected));
+			  localStorage.setItem('Dmineur', JSON.stringify(this.userService.userConnected));
   		} else {
   			//Remeber me isn't checked, session won't be save when user'll close the browser
-			sessionStorage.setItem('Dmineur', JSON.stringify(this.userService.userConnected));
+			  sessionStorage.setItem('Dmineur', JSON.stringify(this.userService.userConnected));
   		}
-  		console.log(this.userService);
   	}
 
   }

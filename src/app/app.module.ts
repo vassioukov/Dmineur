@@ -18,7 +18,9 @@ import { CoreModule } from './core-module/core.module';
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import localeEnExtra from '@angular/common/locales/extra/en';
+
 registerLocaleData(localeEn, 'en-US', localeEnExtra);
+
 /*
   End needed
 */

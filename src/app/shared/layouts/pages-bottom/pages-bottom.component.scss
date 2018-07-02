@@ -1,0 +1,15 @@
+@import '../../theme/conf';
+.pages-bottom {
+    position:absolute; 
+    bottom:0;
+    width: 100%;
+    height: 81px;
+    background: $sidebar-bg;
+    border: none;
+    color:#ffffff;
+}
+
+.borderTest {
+	border-top: 5px solid;
+    border-color: #fca400;
+}

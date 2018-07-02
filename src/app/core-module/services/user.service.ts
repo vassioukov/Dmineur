@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 	providedIn : 'root'
 })
 export class UserService {
+
   	@Output() public somethingChanged: EventEmitter<Session> = new EventEmitter();
 	public allUsers : Array<Session> = SESSIONITEMS;
 	//Default user = Guest
@@ -33,12 +34,11 @@ export class UserService {
 	constructor(private router: Router) {
 	}
 
-	ngOnCHang
-
 	login(session):boolean{
 		console.log("user.service.ts login");
 		console.log(session);
 		var users = this.getAllUsers();
+
 		for(var i =0,c=users.length;i<c;i++){
 	      /*
 	      Web service : A faire
@@ -62,7 +62,11 @@ export class UserService {
 		        }
 	  		}
 	  	}
-	  	//_id===-2 is a guest user
+	  	/*
+	  		_id===-2 is a guest user
+	  		guest = not connected
+	  		not guest = connected
+	  	*/
 	  	return this.userConnected._id !==-2;
 	  }
 	

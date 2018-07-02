@@ -18,7 +18,7 @@ export class AppComponent {
   		this.userService.setUserConnected(JSON.parse(sessionStorage.getItem('Dmineur')));
   		this.redirect();
   	} else {
-        //Avoid incorrect routing
+      //Avoid incorrect routing
       this.router.navigate(['/public']);
     }
   }
@@ -26,7 +26,6 @@ export class AppComponent {
 
 //Redirect the user to his own space
   public redirect(){
-    console.log(this.userService.userConnected.profile);
   	switch(this.userService.userConnected.profile){
   		case 'guest':
             this.router.navigate(['/public']);
