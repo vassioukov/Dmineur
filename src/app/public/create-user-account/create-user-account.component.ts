@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 
 @Component({
@@ -11,6 +12,22 @@ export class CreateUserAccountComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit() {
+	}
+
+	checkPass()
+	{
+		var champA = document.getElementById("password").value;
+		var champB = document.getElementById("passwordVerif").value;
+		var div_comp = document.getElementById("divcomp");
+
+		if(champA == champB)
+		{
+			div_comp.innerHTML = "Correct";
+		}
+		else
+		{
+			div_comp.innerHTML = "Erreur !";
+		}
 	}
 	creationCompteClient(dataClient) {
 		var clients = []; 

@@ -49,17 +49,18 @@
 						<div class="col-sm-6 form-group">
 							<div class="form-group">
 								<label for="Password">Mot de passe</label>
-								<input type="password" class="form-control" id="Password" placeholder="Mot de passe" name="password" ngModel>
+								<input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" ngModel>
 							</div>
 						</div>
 						<div class="col-sm-6 form-group">
 							<div class="form-group">
 								<label for="Vpassword">Vérification mot de passe</label>
-								<input type="password" class="form-control" id="Vpassword" placeholder="Vérification mot de passe" name="passwordVerif" ngModel> 
+								<input type="password" class="form-control" id="passwordVerif" placeholder="Vérification mot de passe" name="passwordVerif"  (blur)="checkPass()" ngModel> 
 							</div>
+							<div id="divcomp"></div>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-lg btn-info">Validation</button>					
+					<button  type="submit" [disabled]="createClient.form.password!=createClient.form.passwordVerif" class="btn btn-lg btn-info">Validation</button>					
 				</div>
 			</form> 
 		</div>
