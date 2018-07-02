@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
-import { UserService } from '../../../core-module/services/user.service'; 
+import { UserService } from '../../../core-module/services/userService/user.service'; 
 
 @Component({
   selector: 'pages-top',

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MENU_ITEM } from '../models/menu';
 import { Router } from '@angular/router';
 import { GlobalService } from './global.service';
-import { UserService } from '../../core-module/services/user.service';
+import { UserService } from '../../core-module/services/userService/user.service';
 
 @Injectable()
 export class menuService {

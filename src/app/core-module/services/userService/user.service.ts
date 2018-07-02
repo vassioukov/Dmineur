@@ -1,8 +1,9 @@
-import { Injectable, EventEmitter, Output } from '@angular/core';
-import { SESSIONITEMS } from '../../shared/models/fake-session/sessions';
-import { Session } from '../../shared/models/fake-session/session';
+import { Injectable } from '@angular/core';
+import { SESSIONITEMS } from '../../../shared/models/fake-session/sessions';
+import { Session } from '../../../shared/models/fake-session/session';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
 
 const port = ":8101";
 const projectPath = "/Dmineur_Back_End_v2"
@@ -12,8 +13,6 @@ const demineurApiUrl = "http://localhost"+port+projectPath;
 	providedIn : 'root'
 })
 export class UserService {
-
-  	@Output() public somethingChanged: EventEmitter<Session> = new EventEmitter();
 	public allUsers : Array<Session> = SESSIONITEMS;
 	//Default user = Guest
 	public userConnected : Session = new Session(-2,'guest','guest','guest');
@@ -33,10 +32,18 @@ export class UserService {
 		this.userConnected.password = data.password;
 		this.userConnected.profile = data.profile;
 		this.isConnected = true;
-		this.somethingChanged.emit(this.userConnected);
 	}
 
 	constructor(private router: Router, private http: HttpClient) {
+		/*
+		this.http.get("https://apirone.com/api/v1/ticker").pipe(
+			map((res) => {
+				console.log(res);
+			}),
+			catchError((err) => {
+				console.log(err);
+			})
+		);*/
 	}
 
 	contactWS(path, param=null){
