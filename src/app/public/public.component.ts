@@ -6,9 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./public.component.scss']
 })
 export class PublicComponent implements OnInit {
-	currencies = [
-		{ currencyName : "Albanian Lek", currencySymbol:"Lek",id:"ALL" }
-	];
 
 	constructor() { 
 	}

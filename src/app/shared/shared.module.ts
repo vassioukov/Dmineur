@@ -15,6 +15,7 @@ import { SwitchComponent } from './components/switch/switch.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CurrencyConverterComponent } from './components/currency-converter/currency-converter.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     SwitchComponent,
     AlertComponent,
     WeatherComponent,
-    ProfileComponent
+    ProfileComponent,
+    CurrencyConverterComponent
   ],
   exports: [
     CardComponent,
@@ -46,7 +48,12 @@ import { ProfileComponent } from './components/profile/profile.component';
     SwitchComponent,
     AlertComponent,
     WeatherComponent,
-    ProfileComponent
+    ProfileComponent,
+    CurrencyConverterComponent,
+    //Very important
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class SharedModule { }
