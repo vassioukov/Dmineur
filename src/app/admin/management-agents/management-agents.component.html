@@ -1,3 +1,15 @@
-<p>
-  management-agents works!
-</p>
+<a routerLink="./new-user">Créer un nouveau conseiller</a>
+  <div class="container">
+   <router-outlet></router-outlet>
+ </div>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let user of users">
+    <button class="btn btn-default pull-right" (click)="onDeleteUser(user)">
+    <span class="fa fa-remove" style="font-size:48px;color:red"></span>
+  </button>
+    <h2>{{ user.firstName }} {{ user.lastName }} </h2>
+    <h4>Matricule n° : {{ user.matricule }} </h4>
+    <p>{{ user.email }} </p>
+    <p>{{ user.telephone }} </p>
+  </li>
+  </ul>

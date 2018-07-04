@@ -1,3 +1,52 @@
-<p>
-  dashboard works!
-</p>
+<div class="row">
+	<div class="col">
+		<section>
+			<header class="header">
+				<div class="row">
+					<div class="col-md-4">
+						<h1>Liste des conseillers</h1>
+					</div>
+					<div class="col-md-6">					
+					</div>
+				</div>
+			</header>
+		</section>
+		<section class="main">
+			<nav>
+				<section class="container">
+					<div class="row">
+						<div class="col-xs-6 col-md-4">
+							<img src="assets/images/demandes.png" class="icon" />
+							<a routerLink="/demande" routerLinkActive="active">Demande</a>
+						</div>
+						<div class="col-xs-6 col-md-4">
+							<img src="assets/images/client.png" class="icon" />
+							<a routerLink="/user" routerLinkActive="active">Client</a>
+						</div>
+						<div class="col-xs-6 col-md-4">
+							<img src="assets/images/conseiller.png" class="icon" />
+				<a routerLink="/conseiller" routerLinkActive="active">Conseiller</a>
+						</div>
+					</div>
+				</section>				
+			</nav>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Conseiller</th>
+						<th>Nombre de clients</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let Agent of fakeAgents">
+						<td>{{fakeAgent.prenom}}</td>
+						<td>
+							
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</div>
+</div>

@@ -1,3 +1,75 @@
-<p>
-  assignment-request works!
-</p>
+<div class="row">
+	<div class="col">
+		<section>
+			<header class="header">
+				<div class="row">
+					<div class="col-md-4">
+						<h1>La liste des demandes </h1>
+					</div>
+					<div class="col-md-6">	
+					</div>
+				</div>
+			</header>
+		</section>
+		<section >
+			<nav>
+				<section class="container">
+					<div class="row">
+						<div class="col-xs-4 col-md-4">
+							<div class="row">
+								<div class="col-md-3">
+									Filtrer : <br>
+								</div>
+								<div class="col-md-9">
+									<input type="checkbox" id="tous">
+									<label for="tous">Tous</label><br>
+									<input type="checkbox" id="affect">
+									<label for="affect">Affectées</label>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-4 col-md-4">
+							<div class="row">
+								<div class="col-md-3">
+									Statut : <br>
+								</div>
+								<div class="col-md-9">
+									<select id="select">
+										<option value="trait">Traitée</option> 
+										<option value="encours" selected>En cours</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-4 col-md-4">
+							<div class="row">
+								<div class="col-md-3">
+									Tri : <br>
+								</div>
+								<div class="col-md-9">
+									<input type="date" name="creationDate">
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>				
+			</nav>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Demandes</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--<tr *ngFor="let conseillerof conseillers">
+						<td>{{conseiller.conseillername}}</td>
+						<td>
+							
+						</td>
+					</tr>-->
+				</tbody>
+			</table>
+		</section>
+	</div>
+</div>
