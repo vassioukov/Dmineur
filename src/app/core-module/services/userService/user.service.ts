@@ -4,8 +4,9 @@ import { Session } from '../../../shared/models/fake-session/session';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-const port = ":8101";
+const port = ":8080";
 const projectPath = "/Dmineur_Back_End_v2"
 const demineurApiUrl = "http://localhost"+port+projectPath;
 
@@ -51,7 +52,7 @@ export class UserService {
 		return this.http.get(demineurApiUrl+path+param);	
 	}
 
-	login(session):boolean{
+	login(session){
       	/*
       		Web service : A faire
       	*/
@@ -83,7 +84,41 @@ export class UserService {
 	    });
       	console.log(test);
 
-*/
+		*/
+
+		return this.http.get(demineurApiUrl+"/utilisateurs").pipe(
+      		map((res) => {
+      			console.log(res);
+      		}),
+      		catchError((error:any) => {
+      			return Observable.throw(error.json().error || 'Error')
+      		})
+      	);
+		/*
+		console.log(demineurApiUrl+"/login");
+		var a = this.http.post(demineurApiUrl+"/login", session, {
+      		headers: new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+      	}).pipe(
+      		map((res) => {
+      			console.log(res);
+      		}),
+      		catchError((error:any) => {
+      			return Observable.throw(error.json().error || 'Error')
+      		})
+      	);
+		*/
+
+
+      	/*
+      	a.subscribe(
+      		res => {
+      			console.log(res);
+      		}, err => {
+      			console.error(err);
+      		}
+      	);
+      	console.log(a);*/
+
 		var users = this.getAllUsers();
 
 		for(var i =0,c=users.length;i<c;i++){
