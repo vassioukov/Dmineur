@@ -4,20 +4,21 @@
 			<header class="header">
 				<div class="row">
 					<div class="col-md-4">
-						<h1>Liste des conseillers</h1>
+						<h1>Tableau de bord</h1>
 					</div>
 					<div class="col-md-6">					
 					</div>
 				</div>
 			</header>
 		</section>
-		<section class="main">
+		<section >
 			<nav>
 				<section class="container">
 					<div class="row">
 						<div class="col-xs-6 col-md-4">
 							<img src="assets/images/demandes.png" class="icon" />
 							<a routerLink="/demande" routerLinkActive="active">Demande</a>
+							
 						</div>
 						<div class="col-xs-6 col-md-4">
 							<img src="assets/images/client.png" class="icon" />
@@ -25,7 +26,7 @@
 						</div>
 						<div class="col-xs-6 col-md-4">
 							<img src="assets/images/conseiller.png" class="icon" />
-				<a routerLink="/conseiller" routerLinkActive="active">Conseiller</a>
+							<a routerLink="/conseiller" routerLinkActive="active">Conseiller</a>
 						</div>
 					</div>
 				</section>				
@@ -39,8 +40,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let Agent of fakeAgents">
-						<td>{{fakeAgent.prenom}}</td>
+					<tr *ngFor="let Agent of agents">
+						<td>{{Agent.nom}}</td>
 						<td>
 							
 						</td>

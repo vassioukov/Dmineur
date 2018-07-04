@@ -9,14 +9,16 @@ import { FAKEAGENTITEMS } from '../../shared/models/fake-session/fakeAgents';
 })
 export class ManagementAgentsComponent implements OnInit {
 
-	agentList:fakeAgent[] = FAKEAGENTITEMS;
+	//agentList:fakeAgent[] = FAKEAGENTITEMS;
+	agentName: fakeAgent;
+	agents = FAKEAGENTITEMS;
 
 
   constructor() { }
 
   ngOnInit() {
 
-  	console.log(this.agentList);
+  	//console.log(this.agentList);
   }
 
 }

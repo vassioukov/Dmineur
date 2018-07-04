@@ -5,7 +5,8 @@ import { ManagementAgentsComponent } from './management-agents.component';
 const routes: Routes = [
 	{
 		path:'',
-		component: ManagementAgentsComponent
+		component: ManagementAgentsComponent,
+		
 	}	
 ];
 
