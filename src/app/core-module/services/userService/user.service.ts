@@ -85,7 +85,8 @@ export class UserService {
       	console.log(test);
 
 		*/
-
+		
+		/*
 		return this.http.get(demineurApiUrl+"/utilisateurs").pipe(
       		map((res) => {
       			console.log(res);
@@ -94,6 +95,9 @@ export class UserService {
       			return Observable.throw(error.json().error || 'Error')
       		})
       	);
+      	*/
+
+
 		/*
 		console.log(demineurApiUrl+"/login");
 		var a = this.http.post(demineurApiUrl+"/login", session, {
