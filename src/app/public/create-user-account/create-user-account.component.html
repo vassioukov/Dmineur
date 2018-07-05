@@ -1,68 +1,56 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<div class="container">
-	<h1 class="well">Registration Form</h1>
-	<div class="col-lg-12 well">
+<form #createClient="ngForm" (ngSubmit)="creationCompteClient()">
+	<div class="container">
 		<div class="row">
-			<form #createClient="ngForm" (ngSubmit)="creationCompteClient(createClient)">
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-6 form-group">
-							<label>Prenom</label>
-							<input type="text" placeholder="Enter First Name Here.." class="form-control" name="prenom" ngModel >
-						</div>
-						<div class="col-sm-6 form-group">
-							<label>Nom</label>
-							<input type="text" placeholder="Enter Last Name Here.." class="form-control" name="nom" ngModel>
-						</div>
-					</div>					
-					<!--<div class="form-group">
-						<label>Addresse</label>
-						<textarea placeholder="Enter Address Here.." rows="3" class="form-control" name="adresse" ngModel></textarea>
-					</div>	
-					<div class="row">
-						<div class="col-sm-4 form-group">
-							<label>Ville</label>
-							<input type="text" placeholder="Enter City Name Here.." class="form-control" name="ville" ngModel>
-						</div>	
-						<div class="col-sm-4 form-group">
-							<label>Pays</label>
-							<input type="text" placeholder="Enter State Name Here.." class="form-control" name=pays ngModel>
-						</div>	
-						<div class="col-sm-4 form-group">
-							<label>Code postal</label>
-							<input type="text" placeholder="Enter Zip Code Here.." class="form-control" name="CP" ngModel>
-						</div>		
-					</div>								
-					<div class="form-group">
-						<label>Numero telephone</label>
-						<input type="text" placeholder="Enter Phone Number Here.." class="form-control" name="tel" ngModel>
-					</div> -->		
-					<div class="form-group">
-						<label>Adresse Email</label>
-						<input type="mail" placeholder="Enter Email Address Here.." class="form-control" name="email" ngModel>
-					</div>	
-					<div class="row">
-						<div class="col-sm-6 form-group">
-							<div class="form-group">
-								<label for="Password">Mot de passe</label>
-								<input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" ngModel>
-							</div>
-						</div>
-						<div class="col-sm-6 form-group">
-							<div class="form-group">
-								<label for="Vpassword">Vérification mot de passe</label>
-								<input type="password" class="form-control" id="passwordVerif" placeholder="Vérification mot de passe" name="passwordVerif"  (blur)="checkPass()" ngModel> 
-							</div>
-							<div id="divcomp"></div>
-						</div>
-					</div>
-					<button  type="submit" [disabled]="createClient.form.password!=createClient.form.passwordVerif" class="btn btn-lg btn-info">Validation</button>					
+			<div class="col-md-6 ">
+				<div class="form-group">
+					<label for="prenom">Prénom</label>
+					<input id="prenom" type="text" placeholder="Entrez votre prénom" class="form-control" name="prenom" [(ngModel)]="user.prenom" #prenom="ngModel" >
 				</div>
-			</form> 
+			</div>
+			<div class="col-md-6 form-group">
+				<label for="nom">Nom</label>
+				<input id="nom" type="text" placeholder="Entrez votre nom" class="form-control" name="nom"  [(ngModel)]="user.nom"  #nom="ngModel">
+			</div>
 		</div>
+		<div class="row">							 	
+			<div class="col-md-6 form-group">
+				<label for="email">Adresse Email</label>
+				<input id="email" type="mail" placeholder="Entrez votre email" class="form-control" name="email" [(ngModel)]="user.email"  #email="ngModel">
+			</div>
+			<div class="col-md-6 form-group">
+				<label>Numero telephone</label>
+				<input type="text" placeholder="Enter Phone Number Here.." class="form-control" name="tel" [(ngModel)]="user.telephone" #tel="ngModel">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 form-group">
+				<label for="password">Mot de passe</label>
+				<input id="password" type="password" placeholder="Entrez votre mot de passe" class="form-control" name="prenom" [(ngModel)]="user.password" #password="ngModel" (blur)="checkPass()">
+			</div>
+			<div class="col-md-6 form-group">
+				<label for="passwordVerif">Vérification mot de passe</label>
+				<input id="passwordVerif" type="text" placeholder="Entrez votre mot de passe à nouveau" class="form-control" name="passwordVerif"  [(ngModel)]="user.passwordVerif"  #passwordVerif="ngModel" (blur)="checkPass()">
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Addresse</label>
+			<textarea placeholder="Entrez votre adresse" rows="3" class="form-control" name="adresse" [(ngModel)]="user.addresse" #addresse="ngModel"></textarea>
+		</div>	
+		<div class="row">
+			<div class="col-md-4 form-group">
+				<label for="ville">Ville</label>
+				<input id="ville" type="text" placeholder="Entrez le nom de votre ville" class="form-control" name="ville" [(ngModel)]="user.ville" #ville="ngModel">
+			</div>	
+			<div class="col-md-4 form-group">
+				<label for="pays">Pays</label>
+				<input id="pays" type="text" placeholder="Entrez le nom de votre pays" class="form-control" name=pays [(ngModel)]="user.pays" #pays="ngModel">
+			</div>	
+			<div class="col-md-4 form-group">
+				<label for="cp">Code postal</label>
+				<input id="cp" type="text" placeholder="Entrez votre code postal" class="form-control" name="CP" [(ngModel)]="user.cp" #cp="ngModel">
+			</div>		
+		</div>
+
+		<button  type="submit" [disabled]="user.password!=user.passwordVerif" class="btn btn-lg btn-info">Validation</button>
 	</div>
-</div>
+</form> 

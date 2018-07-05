@@ -4,7 +4,7 @@ import { Session } from '../../../shared/models/fake-session/session';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, of as observableOf } from 'rxjs';
 
 const port = ":8080";
 const projectPath = "/Dmineur_Back_End_v2"
@@ -52,7 +52,7 @@ export class UserService {
 		return this.http.get(demineurApiUrl+path+param);	
 	}
 
-	login(form):boolean{
+	login(form):Observable<boolean | {}>{
 		this.isConnected = false;
 		console.log(JSON.stringify(form));
 		delete(form.rememberMe);
@@ -61,9 +61,10 @@ export class UserService {
 			map((res) => {
 				console.log(res);
 				if(res != null){
-					this.setUserConnected(JSON.parse(res));
+					this.setUserConnected(<Session>res);
 				}
-			    return false;
+			    //return asObservable(this.isConnected);
+			    return this.isConnected;
 			}),
 			catchError((err) => {
 				return err;

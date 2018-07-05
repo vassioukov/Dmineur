@@ -8,7 +8,8 @@ import { UserService } from '../../../core-module/services/userService/user.serv
   styleUrls: ['./pages-top.component.scss'],
 })
 export class PagesTopComponent {
-  avatarImgSrc: string = 'assets/images/logo/logo_94px.png';
+  //avatarImgSrc: string = 'assets/images/logo/logo_94px.png';
+  avatarImgSrc: string = 'assets/images/LOGO_BANK_DMINEUR1.png';
   userName: String = this.userService.userConnected.email;
   userPost: string = 'Musician, Player';
   sidebarToggle: boolean = true;
