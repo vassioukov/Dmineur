@@ -4,8 +4,9 @@ import { Session } from '../../../shared/models/fake-session/session';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-const port = ":8101";
+const port = ":8080";
 const projectPath = "/Dmineur_Back_End_v2"
 const demineurApiUrl = "http://localhost"+port+projectPath;
 
@@ -51,65 +52,41 @@ export class UserService {
 		return this.http.get(demineurApiUrl+path+param);	
 	}
 
-	login(session):boolean{
-      	/*
-      		Web service : A faire
-      	*/
-      	/*
-      	this.contactWS("/utilisateurs","/1").subscribe( res => {
-	      console.log("res");
-	      console.log(res);
-	    }, err => {
-	      console.log("err");
-	      console.log(err);
-	    });
-	    */
-/*
-	    const body = new HttpParams()
-	    	.set("email",session.email)
-	    	.set("password",session.password);
+	login(form):boolean{
+		this.isConnected = false;
+		console.log(JSON.stringify(form));
+		delete(form.rememberMe);
+		console.log(JSON.stringify(form));
+		return this.http.post(demineurApiUrl+"/user/login",JSON.stringify(form)).pipe(
+			map((res) => {
+				console.log(res);
+				if(res != null){
+					this.setUserConnected(JSON.parse(res));
+				}
+			    return false;
+			}),
+			catchError((err) => {
+				return err;
+			})
+		);
+  	}
 
-
-      	var test = this.http.post(demineurApiUrl+'/login', body.toString(), {
-      		headers: new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
-      	});
-
-      	test.subscribe( res => {
-	      console.log("res");
-	      console.log(res);
-	    }, err => {
-	      console.log("err");
-	      console.log(err);
-	    });
-      	console.log(test);
-
-*/
-		var users = this.getAllUsers();
-
-		for(var i =0,c=users.length;i<c;i++){
-	  		if(users[i].email===session.email&&users[i].password===session.password){
-	  			this.setUserConnected({_id:users[i]._id,email:users[i].email,password:users[i].password,profile:users[i].profile})
-
-		        switch(this.userConnected.profile){
-		          case 'client':
-		            this.router.navigate(['/client']);
-		            break;
-		          case 'agent':
-		            this.router.navigate(['/agent']);
-		            break;
-		          case 'admin':
-		            this.router.navigate(['/admin']);
-		            break;
-		          default:
-		            alert("Something went wrong in login.component.ts");
-		            break;
-		        }
-	  		}
-	  	}
-
-	  	//_id==-2 is a guest user
-	  	return this.userConnected._id !==-2;
-	  }
+  	routing(){
+  		switch(this.userConnected.profile){
+          case 'client':
+            this.router.navigate(['/client']);
+            break;
+          case 'agent':
+            this.router.navigate(['/agent']);
+            break;
+          case 'admin':
+            this.router.navigate(['/admin']);
+            break;
+          default:
+            alert("Something went wrong in login.component.ts");
+            break;
+        }
+  	}
 	
 
 	/**
