@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from './core-module/services/user.service';
+import { UserService } from './core-module/services/userService/user.service';
 
 @Component({
   selector: 'app-root',
@@ -18,15 +18,14 @@ export class AppComponent {
   		this.userService.setUserConnected(JSON.parse(sessionStorage.getItem('Dmineur')));
   		this.redirect();
   	} else {
-        //Avoid incorrect routing
-      //this.router.navigate(['/public']);
+      //Avoid incorrect routing
+      this.router.navigate(['/public']);
     }
   }
 
 
 //Redirect the user to his own space
   public redirect(){
-    console.log(this.userService.userConnected.profile);
   	switch(this.userService.userConnected.profile){
   		case 'guest':
             this.router.navigate(['/public']);

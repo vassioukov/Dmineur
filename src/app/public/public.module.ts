@@ -16,7 +16,8 @@ import { PublicComponent } from './public.component';
   ],
   exports: [
     LayoutModule,
-    SharedModule],
+    SharedModule
+  ],
   declarations: [
   	PublicComponent
   ],

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { collapse } from '../../animation/collapse-animate';
 import { GlobalService } from '../../services/global.service';
-import { UserService } from '../../../core-module/services/user.service';
+import { UserService } from '../../../core-module/services/userService/user.service';
 import { Session } from '../../models/fake-session/session';
 
 @Component({
@@ -17,10 +17,6 @@ export class MenuComponent {
 
   constructor(private _globalService: GlobalService, private userService: UserService) { 
     this.userLogged = this.userService.getUserConnected();
-  }
-
-  public onChange(session: Session){
-    this.userLogged = session;
   }
 
   private isToggleOn(item) {

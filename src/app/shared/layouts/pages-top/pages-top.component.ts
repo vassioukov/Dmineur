@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { GlobalService } from '../../services/global.service';
-import { UserService } from '../../../core-module/services/user.service'; 
+import { UserService } from '../../../core-module/services/userService/user.service'; 
 
 @Component({
   selector: 'pages-top',
@@ -8,7 +8,8 @@ import { UserService } from '../../../core-module/services/user.service';
   styleUrls: ['./pages-top.component.scss'],
 })
 export class PagesTopComponent {
-  avatarImgSrc: string = 'assets/images/logo/logo_94px.png';
+  //avatarImgSrc: string = 'assets/images/logo/logo_94px.png';
+  avatarImgSrc: string = 'assets/images/LOGO_BANK_DMINEUR1.png';
   userName: String = this.userService.userConnected.email;
   userPost: string = 'Musician, Player';
   sidebarToggle: boolean = true;
@@ -16,6 +17,11 @@ export class PagesTopComponent {
 
   constructor(private _globalService: GlobalService, private userService: UserService) { 
   
+  }
+
+  //Return true if connected, false if not
+  public isConnected():boolean{
+    return this.userService.isConnected;
   }
 
   public _sidebarToggle() {

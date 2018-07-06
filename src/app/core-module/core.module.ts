@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService } from './services/user.service';
+import { UserService } from './services/userService/user.service';
+import { DeviseService } from './services/deviseService/devise.service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,10 @@ export class CoreModule {
 	static forRoot(): ModuleWithProviders {
 		return {
 			ngModule: CoreModule,
-			providers: [UserService]
+			providers: [
+				UserService,
+				DeviseService
+			]
 		}
 	}
 }
