@@ -36,15 +36,6 @@ export class UserService {
 	}
 
 	constructor(private router: Router, private http: HttpClient) {
-		/*
-		this.http.get("https://apirone.com/api/v1/ticker").pipe(
-			map((res) => {
-				console.log(res);
-			}),
-			catchError((err) => {
-				console.log(err);
-			})
-		);*/
 	}
 
 	contactWS(path, param=null){
