@@ -13,4 +13,8 @@ export class Address {
   static fromJson(json) {
     return new Address(json.numRue, json.nomRue, json.cp, json.ville);
   }
+
+  static defaultAddress(){
+    return new Address("", "", "", ""); 
+  }
 }

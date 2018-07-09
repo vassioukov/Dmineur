@@ -8,10 +8,13 @@ import { UserService} from '../../core-module/services/userService/user.service'
 	styleUrls: ['./create-user-account.component.css']
 })
 export class CreateUserAccountComponent implements OnInit {
-	user = new Utilisateur(null,null,null,null,null,null,null,null,null,null);
+	//user = new Utilisateur(null,null,null,null,null,null,null,null,null,null);
+	user = Utilisateur.defaultUser();
 	constructor(private userService:UserService) { }
 
 	ngOnInit() {
+		//Define a second property password to check password equality
+		this.user.passwordVerif;
 	}
 
 	checkPass()
@@ -32,24 +35,20 @@ export class CreateUserAccountComponent implements OnInit {
 	}
 
 	creationCompteClient() {
+		console.log(this.user);
+		//Copie the object
+		let userToSave = Object.assign({},this.user);
+		//Delete unnecessary property for saving
+		delete (userToSave.passwordVerif);
+
 		//Test mot de passe à faire
-		this.userService.createClient(this.user).subscribe(
+		this.userService.createClient(userToSave).subscribe(
 			res => {
 				console.log("res");
 				console.log(res);
 			}, (err) => {
 				console.log(err);
 				alert("lobby.component convert.deviseService error");
-			});
-		/*
-		var clients = []; 
-		var temp = localStorage.getItem("recupclient") == null?[]:JSON.parse(localStorage.getItem("recupclient")); 
-		for(var i = 0, c = temp.length; i < c;i++){
-			clients.push(temp[i]);
-		}
-		console.log(dataClient.value);
-		clients.push(dataClient.value);
-		localStorage.setItem("recupclient", JSON.stringify(clients));
-		*/
+		});
 	}
 }

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { SESSIONITEMS } from '../../../shared/models/fake-session/sessions';
 import { Session } from '../../../shared/models/fake-session/session';
+import { Utilisateur } from '../../../shared/models/utilisateur';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { Observable, of as observableOf } from 'rxjs';
+import { Observable } from 'rxjs';
 
 const port = ":8080";
 const projectPath = "/Dmineur_Back_End_v2"
@@ -38,23 +39,15 @@ export class UserService {
 	constructor(private router: Router, private http: HttpClient) {
 	}
 
-	contactWS(path, param=null){
-		console.log(demineurApiUrl+path+param);
-		return this.http.get(demineurApiUrl+path+param);	
-	}
-
 	login(form):Observable<boolean | {}>{
+  		//Test effectué, suppression property testé
+  		delete(form.rememberMe);
 		this.isConnected = false;
-		console.log(JSON.stringify(form));
-		delete(form.rememberMe);
-		console.log(JSON.stringify(form));
 		return this.http.post(demineurApiUrl+"/login",JSON.stringify(form)).pipe(
 			map((res) => {
-				console.log(res);
 				if(res != null){
-					this.setUserConnected(<Session>res);
+					this.setUserConnected(<Utilisateur>res);
 				}
-			    //return asObservable(this.isConnected);
 			    return this.isConnected;
 			}),
 			catchError((err) => {
@@ -64,9 +57,6 @@ export class UserService {
   	}
 
   	createClient(form):Observable<boolean | {}>{
-  		//Test du mot de passe effectué,
-  		//Suppression de la propriété passwordVerif
-  		delete(form.passwordVerif);
   		return this.http.post(demineurApiUrl+"/clients",JSON.stringify(form)).pipe(
   			map((res) => {
   				return res;
