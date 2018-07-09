@@ -48,7 +48,7 @@ export class UserService {
 		console.log(JSON.stringify(form));
 		delete(form.rememberMe);
 		console.log(JSON.stringify(form));
-		return this.http.post(demineurApiUrl+"/user/login",JSON.stringify(form)).pipe(
+		return this.http.post(demineurApiUrl+"/login",JSON.stringify(form)).pipe(
 			map((res) => {
 				console.log(res);
 				if(res != null){
@@ -61,6 +61,20 @@ export class UserService {
 				return err;
 			})
 		);
+  	}
+
+  	createClient(form):Observable<boolean | {}>{
+  		//Test du mot de passe effectué,
+  		//Suppression de la propriété passwordVerif
+  		delete(form.passwordVerif);
+  		return this.http.post(demineurApiUrl+"/clients",JSON.stringify(form)).pipe(
+  			map((res) => {
+  				return res;
+  			}),
+  			catchError((err) => {
+  				return err;
+  			})
+  		);
   	}
 
   	routing(){

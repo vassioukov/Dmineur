@@ -5,7 +5,11 @@ import { AgentComponent } from './agent.component';
 const routes: Routes = [
 	{
 		path:'agent',
-		component: AgentComponent 
+		component: AgentComponent,
+        children: [
+            { path: '', redirectTo: 'agent', pathMatch: 'full' },
+            { path: 'managementClients', loadChildren:'./management-clients/management-clients.module#ManagementClientsModule'},
+        ]
 	}	
 ];
 
