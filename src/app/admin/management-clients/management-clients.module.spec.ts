@@ -1,10 +1,10 @@
-import { ManagementsClientsModule } from './managements-clients.module';
+import { ManagementsClientsByAgentModule } from './managements-clients.module';
 
-describe('ManagementsClientsModule', () => {
-  let managementsClientsModule: ManagementsClientsModule;
+describe('ManagementsClientsByAgentModule', () => {
+  let managementsClientsModule: ManagementsClientsByAgentModule;
 
   beforeEach(() => {
-    managementsClientsModule = new ManagementsClientsModule();
+    managementsClientsModule = new ManagementsClientsByAgentModule();
   });
 
   it('should create an instance', () => {
