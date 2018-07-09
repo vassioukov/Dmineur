@@ -8,29 +8,29 @@ export class UserService {
   	matricule: '01',
   	email: 'vincent.vallet@me.com',
   	telephone: '0660697060'
-   },
-   {
+  },
+  {
   	firstName: 'Alexandre',
   	lastName: 'Machin',
   	matricule: '02',
   	email: 'alexandre@gmail.com',
   	telephone: '0601020304'
-   },
-   {
+  },
+  {
     firstName: 'Kevin',
     lastName: 'Truc',
     matricule: '03',
     email: 'kevin@me.com',
     telephone: '0504150584'
-   },
-   {
+  },
+  {
     firstName: 'Ines',
     lastName: 'Muche',
     matricule: '04',
     email: 'ines@gmail.com',
     telephone: '0215515748'
-   }
-   ];
+  }
+  ];
 
   userSubject = new Subject<User[]>();
 
@@ -50,11 +50,10 @@ export class UserService {
           return true;
         }
       }
-    );
+      );
     this.users.splice(userIndexToRemove, 1);
-  	this.emitUsers();
+    this.emitUsers();
   }
-
 }
 
 

@@ -5,17 +5,23 @@ import { ManagementAgentsComponent } from './management-agents.component';
 import { UserService } from './services/user.service';
 import { NewUserComponent } from './new-user/new-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LayoutModule } from '../../shared/layout.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ManagementAgentsRoutingModule,
     FormsModule, 
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    LayoutModule,
+    SharedModule
   ],
   exports:[
   	FormsModule, 
-  	ReactiveFormsModule 
+  	ReactiveFormsModule,
+    LayoutModule,
+    SharedModule
   ],
   declarations: [
   	ManagementAgentsComponent,

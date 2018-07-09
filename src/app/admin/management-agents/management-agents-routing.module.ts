@@ -8,7 +8,7 @@ const routes: Routes = [
     {
         path:'',  component: ManagementAgentsComponent,
         children: [
-            { path: 'new-user', component: NewUserComponent },
+            { path: 'new-user', loadChildren:'./management-clients/new-user.module#NewUserModule'},
         ]
     }
 ];
