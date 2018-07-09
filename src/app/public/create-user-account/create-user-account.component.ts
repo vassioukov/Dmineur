@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { Utilisateur } from '../../shared/models/utilisateur';
-
+import { UserService} from '../../core-module/services/userService/user.service'
 
 @Component({
 	selector: 'app-create-user-account',
@@ -8,8 +8,8 @@ import { Utilisateur } from '../../shared/models/utilisateur';
 	styleUrls: ['./create-user-account.component.css']
 })
 export class CreateUserAccountComponent implements OnInit {
-	user = new Utilisateur(null,null,null,null,null,null,null);
-	constructor() { }
+	user = new Utilisateur(null,null,null,null,null,null,null,null,null,null);
+	constructor(private userService:UserService) { }
 
 	ngOnInit() {
 	}
@@ -32,7 +32,15 @@ export class CreateUserAccountComponent implements OnInit {
 	}
 
 	creationCompteClient() {
-
+		//Test mot de passe à faire
+		this.userService.createClient(this.user).subscribe(
+			res => {
+				console.log("res");
+				console.log(res);
+			}, (err) => {
+				console.log(err);
+				alert("lobby.component convert.deviseService error");
+			});
 		/*
 		var clients = []; 
 		var temp = localStorage.getItem("recupclient") == null?[]:JSON.parse(localStorage.getItem("recupclient")); 

@@ -36,15 +36,6 @@ export class UserService {
 	}
 
 	constructor(private router: Router, private http: HttpClient) {
-		/*
-		this.http.get("https://apirone.com/api/v1/ticker").pipe(
-			map((res) => {
-				console.log(res);
-			}),
-			catchError((err) => {
-				console.log(err);
-			})
-		);*/
 	}
 
 	contactWS(path, param=null){
@@ -70,6 +61,20 @@ export class UserService {
 				return err;
 			})
 		);
+  	}
+
+  	createClient(form):Observable<boolean | {}>{
+  		//Test du mot de passe effectué,
+  		//Suppression de la propriété passwordVerif
+  		delete(form.passwordVerif);
+  		return this.http.post(demineurApiUrl+"/clients",JSON.stringify(form)).pipe(
+  			map((res) => {
+  				return res;
+  			}),
+  			catchError((err) => {
+  				return err;
+  			})
+  		);
   	}
 
   	routing(){
