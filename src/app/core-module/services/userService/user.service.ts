@@ -57,7 +57,7 @@ export class UserService {
 		console.log(JSON.stringify(form));
 		delete(form.rememberMe);
 		console.log(JSON.stringify(form));
-		return this.http.post(demineurApiUrl+"/user/login",JSON.stringify(form)).pipe(
+		return this.http.post(demineurApiUrl+"/login",JSON.stringify(form)).pipe(
 			map((res) => {
 				console.log(res);
 				if(res != null){
