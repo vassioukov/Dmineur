@@ -1,13 +1,13 @@
-import { ManagementClientsByAgentModule } from './management-clients.module';
+import { ManagementClientsByAdminModule } from './management-clients.module';
 
 describe('ManagementsClientsByAgentModule', () => {
-  let managementClientsModule: ManagementClientsByAgentModule;
+  let managementClientsByAdminModule: ManagementClientsByAdminModule;
 
   beforeEach(() => {
-    managementClientsModule = new ManagementClientsByAgentModule();
+    managementClientsByAdminModule = new ManagementClientsByAdminModule();
   });
 
   it('should create an instance', () => {
-    expect(managementClientsModule).toBeTruthy();
+    expect(managementClientsByAdminModule).toBeTruthy();
   });
 });
