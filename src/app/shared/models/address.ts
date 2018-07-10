@@ -15,6 +15,6 @@ export class Address {
   }
 
   static defaultAddress(){
-    return new Address("", "", "", ""); 
+    return new Address(null, "", "", ""); 
   }
 }

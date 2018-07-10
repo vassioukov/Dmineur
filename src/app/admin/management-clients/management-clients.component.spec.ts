@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManagementsClientsByAgentComponent } from './managements-clients.component';
+import { ManagementClientsByAgentComponent } from './management-clients.component';
 
 describe('ManagementsClientsByAgentComponent', () => {
-  let component: ManagementsClientsByAgentComponent;
-  let fixture: ComponentFixture<ManagementsClientsByAgentComponent>;
+  let component: ManagementClientsByAgentComponent;
+  let fixture: ComponentFixture<ManagementClientsByAgentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManagementsClientsByAgentComponent ]
+      declarations: [ ManagementClientsByAgentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManagementsClientsByAgentComponent);
+    fixture = TestBed.createComponent(ManagementClientsByAgentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -17,7 +17,7 @@ const demineurApiUrl = "http://localhost"+port+projectPath;
 export class UserService {
 	public allUsers : Array<Session> = SESSIONITEMS;
 	//Default user = Guest
-	public userConnected : Session = new Session(-2,'guest','guest','guest');
+	public userConnected:Utilisateur = Utilisateur.defaultUser();
 	public isConnected: boolean = false;
 
 	public getUserConnected(){
@@ -28,8 +28,8 @@ export class UserService {
 		Set the user's session
 		Ajouter webservice
 	*/
-	public setUserConnected(data: Session){
-		this.userConnected._id = data._id;
+	public setUserConnected(data: Utilisateur){
+		this.userConnected.id = data.id;
 		this.userConnected.email = data.email;
 		this.userConnected.password = data.password;
 		this.userConnected.profile = data.profile;
@@ -91,7 +91,7 @@ export class UserService {
 	logout() : void {
 	  	localStorage.removeItem('Dmineur');
 	  	sessionStorage.removeItem('Dmineur');
-		this.userConnected  = new Session(-2,'guest','guest','guest');
+		this.userConnected  = Utilisateur.defaultUser();
 		this.isConnected = false;
 	  	this.router.navigate(['/public']);
 	}

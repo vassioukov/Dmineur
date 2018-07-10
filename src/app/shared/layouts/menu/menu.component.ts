@@ -13,7 +13,7 @@ import { Session } from '../../models/fake-session/session';
 export class MenuComponent {
   @Input() menuInfo: any;
   //Feeded by userConnected from UserService
-  userLogged: Session;
+  userLogged;
 
   constructor(private _globalService: GlobalService, private userService: UserService) { 
     this.userLogged = this.userService.getUserConnected();
