@@ -29,10 +29,17 @@ export class UserService {
 		Ajouter webservice
 	*/
 	public setUserConnected(data: Utilisateur){
+		console.log("data");
+		console.log(data);
+		this.userConnected = Utilisateur.fromJson(data);
+		console.log("this.userConnected");
+		console.log(this.userConnected);
+		/*
 		this.userConnected.id = data.id;
 		this.userConnected.email = data.email;
 		this.userConnected.password = data.password;
 		this.userConnected.profile = data.profile;
+		*/
 		this.isConnected = true;
 	}
 

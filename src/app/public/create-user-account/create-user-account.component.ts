@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Utilisateur } from '../../shared/models/utilisateur';
-import { UserService} from '../../core-module/services/userService/user.service'
+import { UserService} from '../../core-module/services/userService/user.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-create-user-account',
@@ -10,7 +11,7 @@ import { UserService} from '../../core-module/services/userService/user.service'
 export class CreateUserAccountComponent implements OnInit {
 	//user = new Utilisateur(null,null,null,null,null,null,null,null,null,null);
 	user = Utilisateur.defaultUser();
-	constructor(private userService:UserService) { }
+	constructor(private router: Router, private userService:UserService) { }
 
 	ngOnInit() {
 		//Define a second property password to check password equality
@@ -46,6 +47,9 @@ export class CreateUserAccountComponent implements OnInit {
 			res => {
 				console.log("res");
 				console.log(res);
+				res.firstName="AZEEZADQSWXC";
+				this.userService.setUserConnected(res);
+				this.userService.routing();
 			}, (err) => {
 				console.log(err);
 				alert("lobby.component convert.deviseService error");
