@@ -26,7 +26,7 @@ export class Utilisateur {
 
   static defaultUser(){
     return new Utilisateur({
-        id:0, 
+        id:null, 
         email:"", 
         password:"", 
         pseudo:"",
