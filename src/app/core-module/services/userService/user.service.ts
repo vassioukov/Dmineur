@@ -63,7 +63,7 @@ export class UserService {
 		);
   	}
 
-  	createClient(form):Observable<boolean | {}>{
+  	createClient(form):Observable<Utilisateur | {}>{
   		return this.http.post(demineurApiUrl+"/clients",JSON.stringify(form)).pipe(
   			map((res) => {
   				return res;
