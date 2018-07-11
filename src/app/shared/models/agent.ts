@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Utilisateur } from './utilisateur';
 import { Address } from './address'; 
 
 @Injectable() 
-export class Utilisateur {
+export class Agent extends Utilisateur {
 
-  constructor(
+
+  constructor(      
       public id: number,
       public email: String,
       public password: String,
@@ -17,11 +19,11 @@ export class Utilisateur {
       public address: Address,
       public passwordVerif: String
     ) { 
-
+    super(id, email, password, pseudo, firstName, lastName, dateOfBirth, mobile, profile, address, passwordVerif);
   }
 
   static fromJson(json) {
-    return new Utilisateur(
+    return new Agent(
       json.id,
       json.email,
       json.password,
@@ -35,9 +37,9 @@ export class Utilisateur {
       json.passwordVerif
     );
   }
-
-  static defaultUser(){
-    return Utilisateur.fromJson({
+  
+  static defaultAgent(){
+    return Agent.fromJson({
         id:null, 
         email:"", 
         password:"", 
@@ -52,4 +54,5 @@ export class Utilisateur {
       }
     );
   }
+  
 }
