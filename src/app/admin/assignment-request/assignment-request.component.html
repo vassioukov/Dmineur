@@ -57,17 +57,22 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Demandes</th>
+						<th>Type de demande</th>
+						<th>Prénom - Nom</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<!--<tr *ngFor="let conseillerof conseillers">
-						<td>{{conseiller.conseillername}}</td>
+					<tr *ngFor="let demandeInscription of demandesInscriptions">
+						<td>{{demandeInscription.type_demande}}</td>
 						<td>
-							
+							{{demandeInscription.client.firstName}} 
+							{{demandeInscription.client.lastName}}
 						</td>
-					</tr>-->
+						<td>
+							<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandeInscription.id)"></i>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</section>

@@ -28,18 +28,9 @@ export class UserService {
 		Set the user's session
 		Ajouter webservice
 	*/
-	public setUserConnected(data: Utilisateur){
-		console.log("data");
-		console.log(data);
+	public setUserConnected(data: {} | Utilisateur){
+		//Affectation des données utilisateurs à l'objet Utilisateur "userConnected"
 		this.userConnected = Utilisateur.fromJson(data);
-		console.log("this.userConnected");
-		console.log(this.userConnected);
-		/*
-		this.userConnected.id = data.id;
-		this.userConnected.email = data.email;
-		this.userConnected.password = data.password;
-		this.userConnected.profile = data.profile;
-		*/
 		this.isConnected = true;
 	}
 
@@ -106,5 +97,27 @@ export class UserService {
 	//Return every users
 	public getAllUsers(){
 		return this.allUsers;
+	}
+
+	getAllDemandesInscriptions():Observable<any | {}>{
+		return this.http.get(demineurApiUrl+"/admin/demandesInscriptions").pipe(
+  			map((res) => {
+  				return res;
+  			}),
+  			catchError((err) => {
+  				return err;
+  			})
+  		);
+	}
+
+	getDemandeInscription(demande_id):Observable<any | {}>{
+		return this.http.get(demineurApiUrl+"/admin/demandeInscription/"+demande_id).pipe(
+  			map((res) => {
+  				return res;
+  			}),
+  			catchError((err) => {
+  				return err;
+  			})
+  		);
 	}
 }

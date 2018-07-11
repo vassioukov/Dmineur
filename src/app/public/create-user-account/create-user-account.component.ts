@@ -47,7 +47,6 @@ export class CreateUserAccountComponent implements OnInit {
 			res => {
 				console.log("res");
 				console.log(res);
-				res.firstName="AZEEZADQSWXC";
 				this.userService.setUserConnected(res);
 				this.userService.routing();
 			}, (err) => {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from "../../core-module/services/userService/user.service"; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assignment-request',
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./assignment-request.component.css']
 })
 export class AssignmentRequestComponent implements OnInit {
-
-  constructor() { }
+	demandesInscriptions;
+  	constructor(private userService:UserService, private router:Router) { }
 
   ngOnInit() {
+  	this.userService.getAllDemandesInscriptions().subscribe(
+  		res => {
+  			this.demandesInscriptions = res;
+  			console.log(this.demandesInscriptions);
+  		},
+  		err => {
+  			console.log(err);
+  		}
+  	)
+  }
+
+  goToDemande(demande_id){
+  	this.router.navigate(['/admin/request/'+demande_id]);
   }
 
 }
