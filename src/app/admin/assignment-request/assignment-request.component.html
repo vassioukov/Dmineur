@@ -63,15 +63,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let demandeInscription of demandesInscriptions">
-						<td>{{demandeInscription.type_demande}}</td>
-						<td>
-							{{demandeInscription.client.firstName}} 
-							{{demandeInscription.client.lastName}}
-						</td>
-						<td>
-							<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandeInscription.id)"></i>
-						</td>
+					<tr *ngFor="let Client of clients">
+						<td>{{Client.firstName}}  {{Client.lastName}}</td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>

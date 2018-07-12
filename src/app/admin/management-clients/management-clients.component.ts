@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {fakeClient} from  '../../shared/models/fake-session/fakeClient';
-import {FAKECLIENTITEMS} from  '../../shared/models/fake-session/fakeClients';
+import { UserService } from "../../core-module/services/userService/user.service";
+import {Client} from '../../shared/models/utilisateur/client';
 
 @Component({
   selector: 'app-management-clients',
@@ -9,12 +9,18 @@ import {FAKECLIENTITEMS} from  '../../shared/models/fake-session/fakeClients';
 })
 
 export class ManagementClientsByAdminComponent implements OnInit {
-	clientName: fakeClient;
-	clients = FAKECLIENTITEMS;
+	 clients: Client[];
 
-  constructor() { }
+  constructor(private userService : UserService) { }
 
   ngOnInit() {
+    this.userService.getAllClients().subscribe(
+      res => {
+        this.clients= res;
+      }, err => {
+        console.error(err);
+      }
+      );
   }
 
 }

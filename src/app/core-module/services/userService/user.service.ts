@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
+import {Agent} from '../../../shared/models/utilisateur/agent';
+import {Client} from '../../../shared/models/utilisateur/client';
 const port = ":8080";
 const projectPath = "/Dmineur_Back_End_v2"
 const demineurApiUrl = "http://localhost"+port+projectPath;
@@ -120,14 +121,32 @@ export class UserService {
 	findAll(): Observable<Utilisateur[]> {
 		return this.http.get(demineurApiUrl+"admin/agents").pipe(
 			map((res:Response) => {res.json()}),
-			catchError((error:any) => {
-  				Observable.throw(error.json().error || 'Server error')
+			catchError<Utilisateur[],never>((err) => {
+				return err;
   			})
-			/*
-			catchError((error:any) => {
-				Observable.throw(error.json().error || 'Server error')
-			)}*/
 		);
 	}
 
+	getAllAgents():Observable<Agent[]>{
+		return this.http.get(demineurApiUrl+"/admin/agents").pipe(
+  			map((res:Agent[]) => {
+  				return res;
+  			}),
+  			catchError<Agent[],never>((err) => {
+  				return err;
+  			})
+  		);
+	}
+
+
+	getAllClients():Observable<Client[]>{
+		return this.http.get(demineurApiUrl+"/clients").pipe(
+  			map((res:Client[]) => {
+  				return res;
+  			}),
+  			catchError<Client[],never>((err) => {
+  				return err;
+  			})
+  		);
+	}
 }

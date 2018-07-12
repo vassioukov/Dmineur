@@ -4,7 +4,7 @@
 			<header class="header">
 				<div class="row">
 					<div class="col-md-4">
-						<h1>Clients validés</h1>
+						<h1>Nos Clients</h1>
 					</div>
 					<div class="col-md-6">					
 					</div>
@@ -16,17 +16,15 @@
 				<thead>
 					<tr>
 						<th>Clients</th>
-						<th>Date de validation</th>
+						<th>Nombre de comptes</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let client of clients">
-						<td>{{client.firstName}}</td>
-						
-						<td>
-							
-						</td>
+					<tr *ngFor="let Client of clients">
+						<td>{{Client.firstName}}  {{Client.lastName}}</td>
+						<td></td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>
