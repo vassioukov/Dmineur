@@ -1,3 +1,56 @@
-<p>
-  management-clients-by-agent works!
-</p>
+<section class="container">
+	<div class="row">
+		<div class="col-md-3 col-sm-6 col-xs-12">
+			Statut : <br>
+		</div>
+		<div class="col-md-9">
+			<label for="tousTraite" >Tous</label>
+			<input type="radio" id="tousTraite" [(ngModel)]="filter_demande_traite" value="all" name="filter_demande_traite"/>
+			<label for="enCours">En cours</label>
+			<input type="radio" id="enCours" [(ngModel)]="filter_demande_traite" value="enCours" name="filter_demande_traite"/>
+			<label for="traitee">Traitée</label>
+			<input type="radio" id="traitee" [(ngModel)]="filter_demande_traite" value="traitée" name="filter_demande_traite"/>
+		</div>
+		<div class="col-xs-4 col-md-4">
+			<div class="row">
+				<div class="col-md-3">
+					Tri : <br>
+				</div>
+				<div class="col-md-9">
+					<input type="date" name="creationDate">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>	
+<table class="table">
+	<thead>
+		<tr>
+			<th>Type de demande</th>
+			<th>Affectation</th>
+			<th>Traitée</th>
+			<th>Prénom - Nom</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let demandeInscription of demandesInscriptions" [hidden]="hide(demandeInscription)">
+			<td>{{demandeInscription.type_demande}}</td>
+			<td>
+				<span *ngIf="demandeInscription.agent==null">Non affecté</span>
+				<span *ngIf="demandeInscription.agent!=null">Affecté à {{demandeInscription.agent.firstName}} {{demandeInscription.agent.lastName}}</span>
+			</td>
+			<td>
+				<span *ngIf="demandeInscription.demande_traite==0">En cours</span>
+				<span *ngIf="demandeInscription.demande_traite==1">Traitée</span>
+			</td>
+			<td>
+				{{demandeInscription.client.firstName}} 
+				{{demandeInscription.client.lastName}}
+			</td>
+			<td>
+				<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandeInscription.id)"></i>
+			</td>						
+		</tr>
+	</tbody>
+</table>

@@ -30,6 +30,7 @@ export class UserService {
 		Ajouter webservice
 	*/
 	public setUserConnected(data: Utilisateur){
+    console.log(data);
 		//Affectation des données utilisateurs à l'objet Utilisateur "userConnected"
 		this.userConnected = Utilisateur.fromJson(data);
 		this.isConnected = true;
@@ -93,7 +94,8 @@ export class UserService {
 	  	this.router.navigate(['/public']);
 	}
 
-	getAllDemandesInscriptions():Observable<DemandeInscription[]>{
+  getAllDemandesInscriptions():Observable<DemandeInscription[]>{
+  //Méthode utilisé par un admin
 		return this.http.get(demineurApiUrl+"/admin/demandesInscriptions").pipe(
   			map((res:DemandeInscription[]) => {
   				return res;
@@ -104,17 +106,31 @@ export class UserService {
   		);
 	}
 
-	getDemandeInscription(demande_id):Observable<DemandeInscription>{
-		return this.http.get(demineurApiUrl+"/admin/demandeInscription/"+demande_id).pipe(
-  			map((res:DemandeInscription) => {
-  				return res;
-  			}),
-  			catchError<DemandeInscription,never>((err) => {
-  				return err;
-  			})
-  		);
-	}
+  //Méthode utilisé par un admin
+  getDemandeInscription(demande_id):Observable<DemandeInscription>{
+    return this.http.get(demineurApiUrl+"/admin/demandeInscription/"+demande_id).pipe(
+        map((res:DemandeInscription) => {
+          return res;
+        }),
+        catchError<DemandeInscription,never>((err) => {
+          return err;
+        })
+      );
+  }
 
+  //Méthode utilisé par un admin
+  getDemandeInscriptionByAgent(demande_id):Observable<DemandeInscription>{
+    return this.http.get(demineurApiUrl+"/"+this.userConnected.profile+"/"+this.userConnected.id+"/demandeInscription/"+demande_id).pipe(
+        map((res:DemandeInscription) => {
+          return res;
+        }),
+        catchError<DemandeInscription,never>((err) => {
+          return err;
+        })
+      );
+  }
+
+  //Méthode utilisé par un admin
 	getAllAgents():Observable<Agent[]>{
 		return this.http.get(demineurApiUrl+"/admin/agents").pipe(
   			map((res:Agent[]) => {
@@ -126,6 +142,7 @@ export class UserService {
   		);
 	}
 
+  //Méthode utilisé par un agent et admin
 	getAllClients():Observable<Client[]>{
 		return this.http.get(demineurApiUrl+"/clients").pipe(
   			map((res:Client[]) => {
@@ -137,6 +154,7 @@ export class UserService {
   		);
 	}
 
+  //Méthode utilisé par un admin
 	setAgentToRequestInscription(request):Observable<boolean>{
 		return this.http.put(demineurApiUrl+"/admin/setAgentToRequestInscription",request).pipe(
   			map((res:boolean) => {
@@ -147,4 +165,17 @@ export class UserService {
   			})
   		);
 	}
+
+  //Méthode utilisé par un agent
+  getAgentDemandesInscriptions():Observable<DemandeInscription[]>{
+    console.log(this.userConnected);
+    return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeInscriptions").pipe(
+        map((res:DemandeInscription[]) => {
+          return res;
+        }),
+        catchError<DemandeInscription[],never>((err) => {
+          return err;
+        })
+      );
+  }
 }
