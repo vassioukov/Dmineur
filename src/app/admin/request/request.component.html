@@ -15,3 +15,12 @@ Nom : {{request.client.lastName}}
 ....
 
 ....
+
+<select class="form-control" id="agents"
+        required
+        [(ngModel)]="request.agent" name="agentSelected"
+        #agentAffected="ngModel">
+  <option *ngFor="let agent of agents" [ngValue]="agent">{{agent.email}} | {{agent.firstName}} {{agent.lastName}} </option>
+</select>
+
+<button (click)="affect()" class="btn btn-primary">Affecter</button>

@@ -21,10 +21,12 @@
 									Filtrer : <br>
 								</div>
 								<div class="col-md-9">
-									<input type="checkbox" id="tous">
-									<label for="tous">Tous</label><br>
-									<input type="checkbox" id="affect">
+									<label for="tousAffectee" >Tous</label>
+									<input type="radio" id="tousAffectee" [(ngModel)]="filter_affectation" value="all" name="filter_affectation"/>
 									<label for="affect">Affectées</label>
+									<input type="radio" id="affect" [(ngModel)]="filter_affectation" value="affected" name="filter_affectation"/>
+									<label for="nonAffect">Non affectées</label>
+									<input type="radio" id="nonAffect" [(ngModel)]="filter_affectation" value="nonAffected" name="filter_affectation"/>
 								</div>
 							</div>
 						</div>
@@ -34,10 +36,12 @@
 									Statut : <br>
 								</div>
 								<div class="col-md-9">
-									<select id="select">
-										<option value="trait">Traitée</option> 
-										<option value="encours" selected>En cours</option>
-									</select>
+									<label for="tousTraite" >Tous</label>
+									<input type="radio" id="tousTraite" [(ngModel)]="filter_demande_traite" value="all" name="filter_demande_traite"/>
+									<label for="enCours">En cours</label>
+									<input type="radio" id="enCours" [(ngModel)]="filter_demande_traite" value="enCours" name="filter_demande_traite"/>
+									<label for="traitee">Traitée</label>
+									<input type="radio" id="traitee" [(ngModel)]="filter_demande_traite" value="traitée" name="filter_demande_traite"/>
 								</div>
 							</div>
 						</div>
@@ -58,20 +62,30 @@
 				<thead>
 					<tr>
 						<th>Type de demande</th>
+						<th>Affectation</th>
+						<th>Traitée</th>
 						<th>Prénom - Nom</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let demandeInscription of demandesInscriptions">
+					<tr *ngFor="let demandeInscription of demandesInscriptions" [hidden]="hide(demandeInscription)">
 						<td>{{demandeInscription.type_demande}}</td>
+						<td>
+							<span *ngIf="demandeInscription.agent==null">Non affecté</span>
+							<span *ngIf="demandeInscription.agent!=null">Affecté</span>
+						</td>
+						<td>
+							<span *ngIf="demandeInscription.demande_traite==0">En cours</span>
+							<span *ngIf="demandeInscription.demande_traite==1">Traitée</span>
+						</td>
 						<td>
 							{{demandeInscription.client.firstName}} 
 							{{demandeInscription.client.lastName}}
 						</td>
 						<td>
 							<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandeInscription.id)"></i>
-						</td>
+						</td>						
 					</tr>
 				</tbody>
 			</table>
