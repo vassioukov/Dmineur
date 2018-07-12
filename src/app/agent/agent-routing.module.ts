@@ -8,7 +8,7 @@ const routes: Routes = [
 		component: AgentComponent,
         children: [
             { path: '', redirectTo: 'agent', pathMatch: 'full' },
-            { path: 'managementClients', loadChildren:'./management-clients/management-clients.module#ManagementClientsModule'},
+            { path: 'managementClients', loadChildren:'./management-clients/management-clients.module#ManagementClientsByAgentModule'},
         ]
 	}	
 ];

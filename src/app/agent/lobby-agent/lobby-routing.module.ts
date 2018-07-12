@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ManagementClientsByAgentComponent } from './management-clients.component';
+import { LobbyAgentComponent } from './lobby.component';
 
 const routes: Routes = [
 	{
-		path:'managementClients',
-		component: ManagementClientsByAgentComponent
+		path:'',
+		component: LobbyAgentComponent
 	}	
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ManagementClientsByAgentRoutingModule { }
+export class LobbyAgentRoutingModule { }

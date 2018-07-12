@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ManagementClientsRoutingModule } from './management-clients-routing.module';
-import { ManagementClientsComponent } from './management-clients.component';
+import { ManagementClientsByAdminRoutingModule } from './management-clients-routing.module';
+import { ManagementClientsByAdminComponent } from './management-clients.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ManagementClientsRoutingModule
+    ManagementClientsByAdminRoutingModule
   ],
-  declarations: [ManagementClientsComponent]
+  declarations: [ManagementClientsByAdminComponent]
 })
-export class ManagementClientsModule { }
+export class ManagementClientsByAdminModule { }
