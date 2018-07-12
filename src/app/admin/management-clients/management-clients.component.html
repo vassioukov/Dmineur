@@ -1,3 +1,35 @@
-<p>
-  managements-clients works!
-</p>
+<div class="row">
+	<div class="col">
+		<section>
+			<header class="header">
+				<div class="row">
+					<div class="col-md-4">
+						<h1>Clients validés</h1>
+					</div>
+					<div class="col-md-6">					
+					</div>
+				</div>
+			</header>
+		</section>
+		<section >
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Clients</th>
+						<th>Date de validation</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let client of clients">
+						<td>{{client.firstName}}</td>
+						
+						<td>
+							
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</div>
+</div>

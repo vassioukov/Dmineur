@@ -6,6 +6,8 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, of as observableOf } from 'rxjs';
 
+import {Utilisateur} from '../../../shared/models/utilisateur';
+
 const port = ":8080";
 const projectPath = "/Dmineur_Back_End_v2"
 const demineurApiUrl = "http://localhost"+port+projectPath;
@@ -110,4 +112,21 @@ export class UserService {
 	public getAllUsers(){
 		return this.allUsers;
 	}
+
+
+
+	//http://localhost:8080/Dmineur_Back_End_v2/admin/agents
+	findAll(): Observable<Utilisateur[]> {
+		return this.http.get(demineurApiUrl+"admin/agents").pipe(
+			map((res:Response) => {res.json()}),
+			catchError((error:any) => {
+  				Observable.throw(error.json().error || 'Server error')
+  			})
+			/*
+			catchError((error:any) => {
+				Observable.throw(error.json().error || 'Server error')
+			)}*/
+		);
+	}
+
 }
