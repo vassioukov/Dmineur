@@ -7,7 +7,8 @@ import {FAKECLIENTITEMS} from  '../../shared/models/fake-session/fakeClients';
   templateUrl: './management-clients.component.html',
   styleUrls: ['./management-clients.component.css']
 })
-export class ManagementClientsComponent implements OnInit {
+
+export class ManagementClientsByAdminComponent implements OnInit {
 	clientName: fakeClient;
 	clients = FAKECLIENTITEMS;
 

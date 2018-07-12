@@ -1,4 +1,4 @@
-import {Client} from './client';
+import {Client} from '../models/utilisateur/client';
 import {Transaction} from './transactions';
 export class Compte  {
 	private rib : number;
