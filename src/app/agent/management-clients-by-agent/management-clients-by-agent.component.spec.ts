@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManagementClientsByAgentComponent } from './management-clients.component';
+import { ManagementClientsByAgentComponent } from './management-clients-by-agent.component';
 
 describe('ManagementClientsByAgentComponent', () => {
   let component: ManagementClientsByAgentComponent;

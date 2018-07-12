@@ -73,7 +73,7 @@
 						<td>{{demandeInscription.type_demande}}</td>
 						<td>
 							<span *ngIf="demandeInscription.agent==null">Non affecté</span>
-							<span *ngIf="demandeInscription.agent!=null">Affecté</span>
+							<span *ngIf="demandeInscription.agent!=null">Affecté à {{demandeInscription.agent.firstName}} {{demandeInscription.agent.lastName}}</span>
 						</td>
 						<td>
 							<span *ngIf="demandeInscription.demande_traite==0">En cours</span>

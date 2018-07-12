@@ -38,11 +38,9 @@ export class UserService {
 	constructor(private router: Router, private http: HttpClient) {
 	}
 
-	login(form):Observable<boolean>{
-  		//Test effectué, suppression property testé
-  		delete(form.rememberMe);
+	login(user):Observable<boolean>{
 		this.isConnected = false;
-		return this.http.post(demineurApiUrl+"/login",JSON.stringify(form)).pipe(
+		return this.http.post(demineurApiUrl+"/login",user).pipe(
 			map((res:Utilisateur) => {
 				if(res != null){
 					this.setUserConnected(<Utilisateur>res);

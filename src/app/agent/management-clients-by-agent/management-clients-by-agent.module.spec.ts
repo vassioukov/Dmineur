@@ -1,4 +1,4 @@
-import { ManagementClientsByAgentModule } from './management-clients.module';
+import { ManagementClientsByAgentModule } from './management-clients-by-agent.module';
 
 describe('ManagementClientsByAgentModule', () => {
   let managementClientsByAgentModule: ManagementClientsByAgentModule;

@@ -15,6 +15,12 @@ export class Address {
   }
 
   static defaultAddress(){
-    return new Address(null, "", "", ""); 
+    return Address.fromJson({
+        id : null,
+        nomRue : "",
+        cp : "",
+        ville : ""
+      }
+    ); 
   }
 }
