@@ -4,6 +4,7 @@ import { FAKEAGENTITEMS } from '../../shared/models/fake-session/fakeAgents';
 import { User } from './models/users.modele';
 import { Subscription } from 'rxjs';
 import { UserService } from './services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-management-agents',
@@ -14,10 +15,11 @@ import { UserService } from './services/user.service';
 export class ManagementAgentsComponent implements OnInit, OnDestroy {
 
 	  agentList:fakeAgent[] = FAKEAGENTITEMS;
+    print=false;
     users: User[];
     userSubscription: Subscription;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private router: Router) { }
 
   ngOnInit() {
     this.userSubscription = this.userService.userSubject.subscribe(
@@ -36,4 +38,12 @@ export class ManagementAgentsComponent implements OnInit, OnDestroy {
     this.userService.removeUser(user);
   }
 
+  onEditUser(i: number) {
+    //this.userService.changeUser(i);
+    this.router.navigate(["./admin/managementAgents/new-user/"+i]);
+  }
+
+  toggle(){
+    this.print=!this.print;
+  }
 }

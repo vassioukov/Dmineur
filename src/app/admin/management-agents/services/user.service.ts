@@ -1,5 +1,6 @@
 import { User } from '../models/users.modele';
 import { Subject } from 'rxjs';
+import { NewUserComponent } from '../new-user/new-user.component'
 
 export class UserService {
   private users: User[] = [{
@@ -53,6 +54,11 @@ export class UserService {
     );
     this.users.splice(userIndexToRemove, 1);
   	this.emitUsers();
+  }
+
+   changeUser(i: number){
+     console.log(this.users[i])
+    
   }
 
 }

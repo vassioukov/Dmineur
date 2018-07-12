@@ -12,6 +12,7 @@ const routes: Routes = [
             { path: 'assignmentRequest', loadChildren:'./assignment-request/assignment-request.module#AssignmentRequestModule'},
             { path: 'managementAgents', loadChildren:'./management-agents/management-agents.module#ManagementAgentsModule'},
             { path: 'managementClients', loadChildren:'./management-clients/management-clients.module#ManagementClientsModule'},
+            { path: 'managementAgents/new-user/:id', loadChildren:'./management-agents/new-user/new-user.module#NewUserModule'},
         ]
     }
 ];

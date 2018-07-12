@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../models/users.modele';
 
 @Component({
@@ -13,12 +12,17 @@ import { User } from '../models/users.modele';
 export class NewUserComponent implements OnInit {
 
   userForm: FormGroup;
-
+ 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(
+      queryParams=>{
+        console.log(queryParams['id'])
+      });
     this.initForm();
   }
 
