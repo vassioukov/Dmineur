@@ -3,7 +3,7 @@ import { Utilisateur } from './utilisateur';
 import { Address } from './address'; 
 
 @Injectable() 
-export class Agent extends Utilisateur {
+export class Admin extends Utilisateur {
 
 
   constructor(      
@@ -18,14 +18,14 @@ export class Agent extends Utilisateur {
       public profile: String,
       public address: Address,
       public passwordVerif: String,
-      public registrationNumber: number,
+      public fonction: String,
       public dateStartContract: Date
     ) { 
     super(id, email, password, pseudo, firstName, lastName, dateOfBirth, mobile, profile, address, passwordVerif);
   }
 
   static fromJson(json) {
-    return new Agent(
+    return new Admin(
       json.id,
       json.email,
       json.password,
@@ -37,13 +37,13 @@ export class Agent extends Utilisateur {
       json.profile,
       json.address,
       json.passwordVerif,
-      json.registrationNumber,
+      json.fonction,
       json.dateStartContract
     );
   }
   
-  static defaultAgent(){
-    return Agent.fromJson({
+  static defaultAdmin(){
+    return Admin.fromJson({
         id:null, 
         email:"", 
         password:"", 
@@ -52,13 +52,13 @@ export class Agent extends Utilisateur {
         lastName:"", 
         dateOfBirth:new Date(), 
         mobile:"", 
-        profile:"guest", 
+        profile:Utilisateur.profile_admin, 
         address:Address.defaultAddress(),
         passwordVerif:"",
-        registrationNumber:"00000",
+        fonction:"Administrateur toussa toussa",
         dateStartContract:new Date()
       }
     );
   }
-  
+
 }

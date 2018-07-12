@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FicheInscription } from './ficheInscription';
 import { Demande } from '../demande';
-import { Agent } from '../../agent';
-import { Client } from '../../client';
+import { Agent } from '../../utilisateur/agent';
+import { Client } from '../../utilisateur/client';
 
 @Injectable() 
 export class DemandeInscription extends Demande {

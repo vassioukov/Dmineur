@@ -15,10 +15,9 @@ export class AssignmentRequestComponent implements OnInit {
   	this.userService.getAllDemandesInscriptions().subscribe(
   		res => {
   			this.demandesInscriptions = res;
-  			console.log(this.demandesInscriptions);
   		},
   		err => {
-  			console.log(err);
+  			console.error(err);
   		}
   	)
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { Utilisateur } from '../../shared/models/utilisateur';
+import { Utilisateur } from '../../shared/models/utilisateur/utilisateur';
 import { UserService} from '../../core-module/services/userService/user.service';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 	styleUrls: ['./create-user-account.component.css']
 })
 export class CreateUserAccountComponent implements OnInit {
-	//user = new Utilisateur(null,null,null,null,null,null,null,null,null,null);
 	user = Utilisateur.defaultUser();
 	constructor(private router: Router, private userService:UserService) { }
 
@@ -36,21 +35,17 @@ export class CreateUserAccountComponent implements OnInit {
 	}
 
 	creationCompteClient() {
-		console.log(this.user);
-		//Copie the object
+		//Copy the object
 		let userToSave = Object.assign({},this.user);
 		//Delete unnecessary property for saving
 		delete (userToSave.passwordVerif);
 
-		//Test mot de passe à faire
 		this.userService.createClient(userToSave).subscribe(
 			res => {
-				console.log("res");
-				console.log(res);
 				this.userService.setUserConnected(res);
 				this.userService.routing();
 			}, (err) => {
-				console.log(err);
+				console.error(err);
 				alert("lobby.component convert.deviseService error");
 		});
 	}

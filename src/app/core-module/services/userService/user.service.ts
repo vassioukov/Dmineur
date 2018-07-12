@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { SESSIONITEMS } from '../../../shared/models/fake-session/sessions';
 import { Session } from '../../../shared/models/fake-session/session';
-import { Utilisateur } from '../../../shared/models/utilisateur';
+import { Utilisateur } from '../../../shared/models/utilisateur/utilisateur';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
@@ -15,7 +14,6 @@ const demineurApiUrl = "http://localhost"+port+projectPath;
 	providedIn : 'root'
 })
 export class UserService {
-	public allUsers : Array<Session> = SESSIONITEMS;
 	//Default user = Guest
 	public userConnected:Utilisateur = Utilisateur.defaultUser();
 	public isConnected: boolean = false;
@@ -67,13 +65,13 @@ export class UserService {
 
   	routing(){
   		switch(this.userConnected.profile){
-          case 'client':
+          case Utilisateur.profile_client:
             this.router.navigate(['/client']);
             break;
-          case 'agent':
+          case Utilisateur.profile_agent:
             this.router.navigate(['/agent']);
             break;
-          case 'admin':
+          case Utilisateur.profile_admin:
             this.router.navigate(['/admin']);
             break;
           default:
@@ -92,11 +90,6 @@ export class UserService {
 		this.userConnected  = Utilisateur.defaultUser();
 		this.isConnected = false;
 	  	this.router.navigate(['/public']);
-	}
-
-	//Return every users
-	public getAllUsers(){
-		return this.allUsers;
 	}
 
 	getAllDemandesInscriptions():Observable<any | {}>{

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Session } from '../../shared/models/fake-session/session';
 import { Router } from '@angular/router';
 import { UserService } from '../../core-module/services/userService/user.service';
 
@@ -9,14 +8,11 @@ import { UserService } from '../../core-module/services/userService/user.service
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  userLogged: Session;
 
 
   constructor(public userService: UserService) { 
   }
 
-
-  //Utiliser alert
   login(loginForm){
     this.userService.login(Object.assign({},loginForm.value)).subscribe(
       res => {

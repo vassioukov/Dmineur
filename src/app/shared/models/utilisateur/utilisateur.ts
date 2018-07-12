@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Utilisateur } from './utilisateur';
 import { Address } from './address'; 
 
 @Injectable() 
-export class Client extends Utilisateur {
-  //public demandes:Array<DemandeClient>
-  //public comptes:Array<Compte>
-
+export class Utilisateur {
+  static readonly profile_guest = "guest";
+  static readonly profile_client = "client";
+  static readonly profile_agent = "agent";
+  static readonly profile_admin = "admin";
 
   constructor(
       public id: number,
@@ -19,14 +19,13 @@ export class Client extends Utilisateur {
       public mobile: String,
       public profile: String,
       public address: Address,
-      public passwordVerif: String,
-      public active:boolean
+      public passwordVerif: String
     ) { 
-    super(id, email, password, pseudo, firstName, lastName, dateOfBirth, mobile, profile, address, passwordVerif);
+
   }
 
   static fromJson(json) {
-    return new Client(
+    return new Utilisateur(
       json.id,
       json.email,
       json.password,
@@ -37,13 +36,12 @@ export class Client extends Utilisateur {
       json.mobile,
       json.profile,
       json.address,
-      json.passwordVerif,
-      json.active
+      json.passwordVerif
     );
   }
-  
-  static defaultClient(){
-    return Client.fromJson({
+
+  static defaultUser(){
+    return Utilisateur.fromJson({
         id:null, 
         email:"", 
         password:"", 
@@ -52,7 +50,7 @@ export class Client extends Utilisateur {
         lastName:"", 
         dateOfBirth:new Date(), 
         mobile:"", 
-        profile:"guest", 
+        profile:Utilisateur.profile_guest, 
         address:Address.defaultAddress(),
         passwordVerif:""
       }

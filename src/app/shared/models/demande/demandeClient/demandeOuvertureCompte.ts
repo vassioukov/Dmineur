@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DemandeClient } from './demandeClient';
 import { Demande } from '../demande';
-import { Client } from '../../client';
+import { Client } from '../../utilisateur/client';
 
 @Injectable() 
 export class DemandeOuvertureCompte extends DemandeClient {

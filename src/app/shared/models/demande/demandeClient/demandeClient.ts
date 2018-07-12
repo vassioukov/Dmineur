@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Demande } from '../demande';
-import { Client } from '../../client';
+import { Client } from '../../utilisateur/client';
 
 @Injectable() 
 export class DemandeClient extends Demande {
@@ -39,5 +39,9 @@ export class DemandeClient extends Demande {
 		    	type_demande_client:DemandeClient.type_demande_client_ouverture_compte
 		    }
 		);
+	}
+
+	static defaultListDemandes(){
+		return new Array<DemandeClient>();
 	}
 }
