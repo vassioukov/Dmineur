@@ -57,8 +57,7 @@ export class UserService {
   }
 
    changeUser(i: number){
-     console.log(this.users[i])
-    
+     return this.users[i];
   }
 
 }
