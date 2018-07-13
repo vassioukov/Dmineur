@@ -27,22 +27,17 @@
 	<thead>
 		<tr>
 			<th>Traitée</th>
-			<th>Prénom - Nom</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let demandeInscription of demandesInscriptions" [hidden]="hide(demandeInscription)">
+		<tr *ngFor="let demandeChequier of demandeChequiers" [hidden]="hide(demandeChequier)">
 			<td>
-				<span *ngIf="demandeInscription.demande_traite==0">En cours</span>
-				<span *ngIf="demandeInscription.demande_traite==1">Traitée</span>
+				<span *ngIf="demandeChequier.demande_traite==0">En cours</span>
+				<span *ngIf="demandeChequier.demande_traite==1">Traitée</span>
 			</td>
 			<td>
-				{{demandeInscription.client.firstName}} 
-				{{demandeInscription.client.lastName}}
-			</td>
-			<td>
-				<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandeInscription.id)"></i>
+				<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandeChequier.id)"></i>
 			</td>						
 		</tr>
 	</tbody>

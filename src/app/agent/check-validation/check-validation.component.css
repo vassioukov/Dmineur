@@ -1,0 +1,13 @@
+
+
+i.iStyleAsA {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+    cursor: pointer;
+}
+i:hover.iStyleAsA {
+    color: #0056b3;
+    text-decoration: underline;
+}

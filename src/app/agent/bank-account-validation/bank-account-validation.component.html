@@ -26,23 +26,18 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>Traitée</th>
-			<th>Prénom - Nom</th>
+			<th>Traitement</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let demandeInscription of demandesInscriptions" [hidden]="hide(demandeInscription)">
+		<tr *ngFor="let demandesOuvertureClientCompteBancaire of demandesOuvertureClientCompteBancaires" [hidden]="hide(demandesOuvertureClientCompteBancaire)">
 			<td>
-				<span *ngIf="demandeInscription.demande_traite==0">En cours</span>
-				<span *ngIf="demandeInscription.demande_traite==1">Traitée</span>
+				<span *ngIf="demandesOuvertureClientCompteBancaire.demande_traite==0">En cours</span>
+				<span *ngIf="demandesOuvertureClientCompteBancaire.demande_traite==1">Traitée</span>
 			</td>
 			<td>
-				{{demandeInscription.client.firstName}} 
-				{{demandeInscription.client.lastName}}
-			</td>
-			<td>
-				<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandeInscription.id)"></i>
+				<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandesOuvertureClientCompteBancaire.id)"></i>
 			</td>						
 		</tr>
 	</tbody>

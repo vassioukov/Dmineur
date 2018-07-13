@@ -1,28 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../core-module/services/userService/user.service';
-import { DemandeInscription } from '../../shared/models/demande/demandeInscription/demandeInscription';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-management-clients-by-agent',
-  templateUrl: './management-clients-by-agent.component.html',
-  styleUrls: ['./management-clients-by-agent.component.css']
+  selector: 'app-check-validation',
+  templateUrl: './check-validation.component.html',
+  styleUrls: ['./check-validation.component.css']
 })
-export class ManagementClientsByAgentComponent implements OnInit {
+export class CheckValidationComponent implements OnInit {
+	demandeChequiers;
 	filter_demande_traite="all";
-	demandesInscriptions:DemandeInscription[];
-	constructor(private userService:UserService, private router:Router) { }
 
-	ngOnInit() {
-		this.userService.getAgentDemandesInscriptions().subscribe(
-			res=>{
-				this.demandesInscriptions = res;
-			},
-			err => {
-				console.error(err);
-			}
-		);
-	}
+	constructor(private userService:UserService, private router:Router) { }
 
 	hide(demande){
       let hide = false;
@@ -47,8 +36,19 @@ export class ManagementClientsByAgentComponent implements OnInit {
       return hide;
     }
 
-	goToDemande(demande_id){
-    //Pouvoir envoyer "MAJ" ou "inscription"
-		this.router.navigate(['/agent/request/'+demande_id], {fragment:"inscription"});
+	ngOnInit() {
+		this.userService.getDemandeChecks().subscribe(
+			res => {
+				this.demandeChequiers = res;
+			}, err => {
+				console.error(err);
+			}
+		);
 	}
+
+	
+	goToDemande(demande_id){
+		this.router.navigate(['/agent/request/'+demande_id], {fragment:"check"});
+	}
+
 }

@@ -4,6 +4,9 @@ import { Utilisateur } from '../../../shared/models/utilisateur/utilisateur';
 import { Agent } from '../../../shared/models/utilisateur/agent';
 import { Client } from '../../../shared/models/utilisateur/client';
 import { DemandeInscription } from '../../../shared/models/demande/demandeInscription/demandeInscription';
+import { DemandeOuvertureCompte } from '../../../shared/models/demande/demandeClient/demandeOuvertureCompte';
+import { DemandeChequier } from '../../../shared/models/demande/demandeClient/demandeChequier';
+import { DemandeMAJDonnee } from '../../../shared/models/demande/demandeClient/demandeMAJDonnee';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
@@ -176,6 +179,118 @@ export class UserService {
         catchError<DemandeInscription[],never>((err) => {
           return err;
         })
-      );
+    );
+  }
+  //Méthode utilisé par un agent
+  getDemandeOuvertureClientCompteBancaires():Observable<DemandeOuvertureCompte[]>{
+    console.log(this.userConnected);
+    return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeOuvertureClientCompteBancaires").pipe(
+        map((res:DemandeOuvertureCompte[]) => {
+          return res;
+        }),
+        catchError<DemandeOuvertureCompte[],never>((err) => {
+          return err;
+        })
+    );
+  }
+
+  /*
+  * Récupération d'une demande de chéquier
+  */
+  getDemandeMAJDonneeClients(id):Observable<DemandeMAJDonnee[]>{
+      return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeMAJDonnees/").pipe(
+        map((res:DemandeMAJDonnee[]) => {
+          console.log("récupération d'une demande de MAJ de donnée");
+          console.log(res);
+          return res;
+        }),
+        catchError<DemandeMAJDonnee[],never>((err) => {
+          return err;
+        })
+    );
+  }
+
+  /*
+  * Récupération d'une demande de chéquier
+  */
+  getDemandeChecks():Observable<DemandeChequier[]>{
+      return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeChecks").pipe(
+        map((res:DemandeMAJDonnee[]) => {
+          console.log("récupération d'une demande de chéquier");
+          console.log(res);
+          return res;
+        }),
+        catchError<DemandeMAJDonnee[],never>((err) => {
+          return err;
+        })
+    );
+  }
+
+
+  //Méthode utilisé par un agent
+
+  /*
+  * Récupération des demandes d'inscriptions
+  */
+  getAgentDemandesInscription(id):Observable<DemandeInscription>{
+    return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeInscriptions/"+id).pipe(
+        map((res:DemandeInscription) => {
+          console.log("récupération d'une demande d'inscription");
+          console.log(res);
+          return res;
+        }),
+        catchError<DemandeInscription,never>((err) => {
+          return err;
+        })
+    );
+  }
+
+
+  /*
+  * Récupération d'une demande d'ouverture d'un compte bancaire
+  */
+  getDemandeOuvertureClientCompteBancaire(id):Observable<DemandeOuvertureCompte>{
+      return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeOuvertureClientCompteBancaires/"+id).pipe(
+        map((res:DemandeOuvertureCompte) => {
+          console.log("récupération d'une demande d'ouverture de compte bancaire");
+          console.log(res);
+          return res;
+        }),
+        catchError<DemandeOuvertureCompte,never>((err) => {
+          return err;
+        })
+    );
+  }
+
+  /*
+  * Récupération d'une demande de chéquier
+  */
+  getDemandeCheck(id):Observable<DemandeChequier>{
+      return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeChecks/"+id).pipe(
+        map((res:DemandeChequier) => {
+          console.log("récupération d'une demande de chéquier");
+          console.log(res);
+          return res;
+        }),
+        catchError<DemandeChequier,never>((err) => {
+          return err;
+        })
+    );
+  }
+
+  /*
+  * Récupération d'une demande de chéquier
+  */
+  getDemandeMAJDonneeClient(id):Observable<DemandeMAJDonnee>{
+      return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeMAJDonnees/"+id).pipe(
+        map((res:DemandeMAJDonnee) => {
+          console.log("récupération d'une demande de MAJ de donnée");
+          console.log(res);
+          return res;
+        }),
+        catchError<DemandeMAJDonnee,never>((err) => {
+          return err;
+        })
+    );
   }
 }
