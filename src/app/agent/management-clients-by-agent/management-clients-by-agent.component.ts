@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class ManagementClientsByAgentComponent implements OnInit {
   filter_demande_traite="all";
   filter_demande_maj_traite="all";
+
   demandesInscriptions:DemandeInscription[];
   demandesMAJDonnees:DemandeMAJDonnee[];
 	constructor(private userService:UserService, private router:Router) { }

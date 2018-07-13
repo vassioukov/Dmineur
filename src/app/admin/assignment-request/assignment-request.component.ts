@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../../core-module/services/userService/user.service"; 
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-assignment-request',
@@ -11,6 +12,8 @@ export class AssignmentRequestComponent implements OnInit {
 	demandesInscriptions;
   filter_affectation:String="all";
   filter_demande_traite:String="all";
+  date = new FormControl(new Date());
+  serializedDate = new FormControl((new Date()).toISOString());
   	constructor(private userService:UserService, private router:Router) { }
 
     hide(demande){
