@@ -1,49 +1,26 @@
-import { User } from '../models/users.modele';
+import { Utilisateur } from '../../../shared/models/utilisateur/utilisateur';
 import { Subject } from 'rxjs';
 
 export class UserService {
-  private users: User[] = [{
-  	firstName: 'Vincent',
-  	lastName: 'Vallet',
-  	matricule: '01',
-  	email: 'vincent.vallet@me.com',
-  	telephone: '0660697060'
-  },
-  {
-  	firstName: 'Alexandre',
-  	lastName: 'Machin',
-  	matricule: '02',
-  	email: 'alexandre@gmail.com',
-  	telephone: '0601020304'
-  },
-  {
-    firstName: 'Kevin',
-    lastName: 'Truc',
-    matricule: '03',
-    email: 'kevin@me.com',
-    telephone: '0504150584'
-  },
-  {
-    firstName: 'Ines',
-    lastName: 'Muche',
-    matricule: '04',
-    email: 'ines@gmail.com',
-    telephone: '0215515748'
-  }
+  private users: Utilisateur[] = [
+    Utilisateur.defaultUser(),
+    Utilisateur.defaultUser(),
+    Utilisateur.defaultUser(),
+    Utilisateur.defaultUser(),
   ];
 
-  userSubject = new Subject<User[]>();
+  userSubject = new Subject<Utilisateur[]>();
 
   emitUsers() {
     this.userSubject.next(this.users.slice());
   }
 
-  addUser(user: User) {
+  addUser(user: Utilisateur) {
     this.users.push(user);
     this.emitUsers();
   }
 
-  removeUser(user: User) {
+  removeUser(user: Utilisateur) {
     const userIndexToRemove = this.users.findIndex(
       (userEl) => {
         if(userEl === user) {

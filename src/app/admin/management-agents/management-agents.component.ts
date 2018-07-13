@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fakeAgent } from '../../shared/models/fake-session/fakeAgent';
 import { FAKEAGENTITEMS } from '../../shared/models/fake-session/fakeAgents';
-import { User } from './models/users.modele';
+import { Utilisateur } from '../../shared/models/utilisateur/utilisateur';
 import { Subscription } from 'rxjs';
 import { UserService } from './services/user.service';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class ManagementAgentsComponent implements OnInit, OnDestroy {
 
 	  agentList:fakeAgent[] = FAKEAGENTITEMS;
-    users: User[];
+    users: Utilisateur[];
     userSubscription: Subscription;
     userForm;
 
@@ -23,7 +23,7 @@ export class ManagementAgentsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userSubscription = this.userService.userSubject.subscribe(
-      (users: User[]) => {
+      (users: Utilisateur[]) => {
         this.users = users;
       }
     );
@@ -34,16 +34,16 @@ export class ManagementAgentsComponent implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
-  onDeleteUser(user: User) {
+  onDeleteUser(user: Utilisateur) {
     this.userService.removeUser(user);
   }
 
-  onEditUser(user: User) {
+  onEditUser(user: Utilisateur) {
     //this.userService.updateUser(user);
   }
    onSubmitForm() {
     const formValue = this.userForm.value;
-    const newUser = new User(
+    const newUser = new Utilisateur(
       formValue['firstName'],
       formValue['lastName'],
       formValue['matricule'],
