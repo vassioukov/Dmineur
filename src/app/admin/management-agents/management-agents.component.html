@@ -35,7 +35,7 @@
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item" *ngFor="let user of users; let i = index">
-								<button class="btn btn-default pull-right" (click)="onDeleteUser(user)">
+								<button class="btn btn-default pull-right" (click)="onDeleteConfirm(user)">
 									<span class="fa fa-trash" style="font-size:24px;color:red"></span>
 								</button>
 								<button class="btn btn-default pull-right" (click)="onEditUser(i)">

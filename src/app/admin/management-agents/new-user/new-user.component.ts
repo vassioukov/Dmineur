@@ -57,8 +57,10 @@ export class NewUserComponent implements OnInit {
       formValue['email'],
       formValue['telephone']
     );
+   //A FAIRE if id == null alors faire ça en bas, sinon remplacer la valeur
     this.userService.addUser(newUser);
     this.router.navigate(['/admin/managementAgents']);
   }
 
+  }
 }

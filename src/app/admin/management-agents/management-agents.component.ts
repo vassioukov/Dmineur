@@ -46,4 +46,12 @@ export class ManagementAgentsComponent implements OnInit, OnDestroy {
   toggle(){
     this.print=!this.print;
   }
+
+  onDeleteConfirm(user: User) {
+    if(confirm('Etes-vous sûr de vouloir supprimer ce conseiller ?')) {
+      this.onDeleteUser(user);
+    } else {
+      return null;
+    }
+}
 }

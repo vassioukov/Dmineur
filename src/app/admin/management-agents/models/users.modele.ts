@@ -4,6 +4,6 @@ export class User {
     public lastName: string,
     public matricule: string,
     public email: string,
-    public telephone: string,
+    public telephone: number,
   ) {}
 }
