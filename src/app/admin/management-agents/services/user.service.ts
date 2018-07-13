@@ -56,10 +56,19 @@ export class UserService {
   	this.emitUsers();
   }
 
-   changeUser(i: number){
-     return this.users[i];
+
+  getUser(i: number){
+    return this.users[i];
   }
 
+   changeUser(i: number, user){
+     this.users[i].firstName=user.firstName;
+     this.users[i].lastName=user.lastName;
+     this.users[i].matricule=user.matricule;
+     this.users[i].email=user.email;
+     this.users[i].telephone=user.telephone;
+
+  }
 }
 
 

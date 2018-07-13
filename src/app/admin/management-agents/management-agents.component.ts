@@ -39,7 +39,6 @@ export class ManagementAgentsComponent implements OnInit, OnDestroy {
   }
 
   onEditUser(i: number) {
-    //this.userService.changeUser(i);
     this.router.navigate(["./admin/managementAgents/new-user/"+i]);
   }
 

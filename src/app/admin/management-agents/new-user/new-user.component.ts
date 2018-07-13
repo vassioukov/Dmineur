@@ -10,7 +10,7 @@ import { User } from '../models/users.modele';
   styleUrls: ['./new-user.component.scss']
 })
 export class NewUserComponent implements OnInit {
-
+  id;
   userForm: FormGroup;
  
   constructor(private formBuilder: FormBuilder,
@@ -21,7 +21,8 @@ export class NewUserComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       queryParams=>{
-        let user = this.userService.changeUser(queryParams['id']);
+        this.id=queryParams['id'];
+        let user = this.userService.getUser(this.id);
         this.initForm(user);
       });
   }
@@ -57,10 +58,13 @@ export class NewUserComponent implements OnInit {
       formValue['email'],
       formValue['telephone']
     );
-   //A FAIRE if id == null alors faire ça en bas, sinon remplacer la valeur
+   if (this.id == null) {
     this.userService.addUser(newUser);
     this.router.navigate(['/admin/managementAgents']);
-  }
+  }else{
+    this.userService.changeUser(this.id, newUser);
 
+    this.router.navigate(['/admin/managementAgents']);
+  }
   }
 }
