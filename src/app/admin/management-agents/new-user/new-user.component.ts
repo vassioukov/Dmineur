@@ -2,11 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
-<<<<<<< HEAD
-
-=======
-import { User } from '../models/users.modele';
->>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
 
 @Component({
   selector: 'app-new-user',

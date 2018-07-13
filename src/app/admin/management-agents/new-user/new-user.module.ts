@@ -3,8 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { NewUserRoutingModule } from './new-user-routing.module';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { LayoutModule } from '../../../shared/layout.module';
 import { SharedModule } from '../../../shared/shared.module';
+=======
+>>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
 =======
 >>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
 
@@ -12,9 +15,13 @@ import { SharedModule } from '../../../shared/shared.module';
   imports: [
     CommonModule,
 <<<<<<< HEAD
+<<<<<<< HEAD
     NewUserRoutingModule,
     LayoutModule,
     SharedModule
+=======
+    NewUserRoutingModule
+>>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
 =======
     NewUserRoutingModule
 >>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557

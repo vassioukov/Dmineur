@@ -39,6 +39,13 @@ export class UserService {
      return this.users[i];
   }
 
+<<<<<<< HEAD
+>>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
+=======
+   changeUser(i: number){
+     return this.users[i];
+  }
+
 >>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
 }
 
