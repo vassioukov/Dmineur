@@ -1,11 +1,13 @@
 Type de demande : {{request.type_demande}}
 <br>
+<div *ngIf="route.snapshot.fragment=='inscription'">
 Fiche d'inscription : 
 <br>
  - Nombre d'enfants : {{request.ficheInscription.numberOfChildren}}
 <br>
  - Situation : {{request.ficheInscription.maritalStatus}}
 <br>
+</div>
 Email du client : {{request.client.email}}
 <br>
 Prénom : {{request.client.firstName}}

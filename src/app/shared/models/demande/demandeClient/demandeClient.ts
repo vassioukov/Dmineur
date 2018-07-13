@@ -4,9 +4,9 @@ import { Client } from '../../utilisateur/client';
 
 @Injectable() 
 export class DemandeClient extends Demande {
-	static readonly type_demande_client_MAJ_donnee = "demandeMAJDonnee";
-	static readonly type_demande_client_ouverture_compte = "demandeOuvertureClient";
-	static readonly type_demande_client_chequier = "demandeChequier";
+	static readonly type_demande_client_MAJ_donnee = "demandeClientMAJDonnee";
+	static readonly type_demande_client_ouverture_compte = "demandeOuvertureCompteBancaire";
+	static readonly type_demande_client_chequier = "demandeClientChequier";
 
 	constructor(
 		//From Demande
@@ -15,7 +15,6 @@ export class DemandeClient extends Demande {
 		public demande_traite:boolean,
 		//---------------------
 		public client:Client,
-		public type_demande_client:String
 	) { 
 		super(id,type_demande,demande_traite);
 	}
@@ -25,18 +24,16 @@ export class DemandeClient extends Demande {
 	    	json.id, 
 	    	json.type_demande, 
 	    	json.demande_traite, 
-	    	json.client, 
-	    	json.type_demande_client
+	    	json.client
 		);
 	}
 
 	static defaultDemandeClient(){
 		return DemandeClient.fromJson({
 		    	id:null,
-		    	type_demande:Demande.type_demande_client,
+		    	type_demande:DemandeClient.type_demande_client_ouverture_compte,
 		    	demande_traite:false,
-		    	client:Client.defaultClient(),
-		    	type_demande_client:DemandeClient.type_demande_client_ouverture_compte
+		    	client:Client.defaultClient()
 		    }
 		);
 	}

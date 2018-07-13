@@ -6,6 +6,7 @@ import { ManagementClientsByAgentComponent } from './management-clients-by-agent
 
 import { LayoutModule } from '../../shared/layout.module';
 import { SharedModule } from '../../shared/shared.module';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   imports: [

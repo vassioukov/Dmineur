@@ -27,6 +27,7 @@
 	<thead>
 		<tr>
 			<th>Traitement</th>
+			<th>Prénom - Nom</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -35,6 +36,10 @@
 			<td>
 				<span *ngIf="demandesOuvertureClientCompteBancaire.demande_traite==0">En cours</span>
 				<span *ngIf="demandesOuvertureClientCompteBancaire.demande_traite==1">Traitée</span>
+			</td>
+			<td>
+				{{demandesOuvertureClientCompteBancaire.client.firstName}} 
+				{{demandesOuvertureClientCompteBancaire.client.lastName}}
 			</td>
 			<td>
 				<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandesOuvertureClientCompteBancaire.id)"></i>

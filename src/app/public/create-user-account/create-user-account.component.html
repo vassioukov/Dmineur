@@ -1,4 +1,7 @@
-<form #createClient="ngForm" (ngSubmit)="creationCompteClient()">
+<mat-tab-group>
+	<mat-tab label="Inscription rapide">
+		<br>
+		<form #createClient="ngForm" (ngSubmit)="creationCompteClient()">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-6 ">
@@ -56,3 +59,9 @@
 		<button  type="submit" [disabled]="user.password!=user.passwordVerif" class="btn btn-lg btn-info">Validation</button>
 	</div>
 </form> 
+	</mat-tab>
+	<mat-tab label="Inscription complète">
+		<h1>Some more tab content</h1>
+		<p>...</p>
+	</mat-tab>
+</mat-tab-group>

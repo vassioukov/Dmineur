@@ -195,10 +195,10 @@ export class UserService {
   }
 
   /*
-  * Récupération d'une demande de chéquier
+  * Récupération des demandes de MAJ de données des clients  affectés à l'agent
   */
-  getDemandeMAJDonneeClients(id):Observable<DemandeMAJDonnee[]>{
-      return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeMAJDonnees/").pipe(
+  getDemandeMAJDonneeClients():Observable<DemandeMAJDonnee[]>{
+      return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeMAJDonnees").pipe(
         map((res:DemandeMAJDonnee[]) => {
           console.log("récupération d'une demande de MAJ de donnée");
           console.log(res);
@@ -210,24 +210,8 @@ export class UserService {
     );
   }
 
-  /*
-  * Récupération d'une demande de chéquier
-  */
-  getDemandeChecks():Observable<DemandeChequier[]>{
-      return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeChecks").pipe(
-        map((res:DemandeMAJDonnee[]) => {
-          console.log("récupération d'une demande de chéquier");
-          console.log(res);
-          return res;
-        }),
-        catchError<DemandeMAJDonnee[],never>((err) => {
-          return err;
-        })
-    );
-  }
 
 
-  //Méthode utilisé par un agent
 
   /*
   * Récupération des demandes d'inscriptions
@@ -245,6 +229,25 @@ export class UserService {
     );
   }
 
+
+
+
+
+  /*
+  * Récupération d'une demande de chéquier
+  */
+  getDemandeChecks():Observable<DemandeChequier[]>{
+      return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeChecks").pipe(
+        map((res:DemandeMAJDonnee[]) => {
+          console.log("récupération d'une demande de chéquier");
+          console.log(res);
+          return res;
+        }),
+        catchError<DemandeMAJDonnee[],never>((err) => {
+          return err;
+        })
+    );
+  }
 
   /*
   * Récupération d'une demande d'ouverture d'un compte bancaire
@@ -279,7 +282,7 @@ export class UserService {
   }
 
   /*
-  * Récupération d'une demande de chéquier
+  * Récupération d'une demande de mise à jour des données d'un client
   */
   getDemandeMAJDonneeClient(id):Observable<DemandeMAJDonnee>{
       return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeMAJDonnees/"+id).pipe(
