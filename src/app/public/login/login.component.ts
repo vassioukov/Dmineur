@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../core-module/services/userService/user.service';
+import { Utilisateur } from '../../shared/models/utilisateur/utilisateur';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,17 @@ import { UserService } from '../../core-module/services/userService/user.service
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-
+  user
 
   constructor(public userService: UserService) { 
   }
 
   login(loginForm){
-    this.userService.login(Object.assign({},loginForm.value)).subscribe(
+    let user = Utilisateur.defaultUser();
+    user.email = loginForm.value.email;
+    user.password = loginForm.value.password;
+    
+    this.userService.login(user).subscribe(
       res => {
         /**
         * A remplacer avec un token de session
@@ -27,6 +32,7 @@ export class LoginComponent {
         }
         this.userService.routing();
       }, err => {
+        console.error(err);
       }
     );
   }

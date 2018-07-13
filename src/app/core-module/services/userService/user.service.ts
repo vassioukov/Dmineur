@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Session } from '../../../shared/models/fake-session/session';
 import { Utilisateur } from '../../../shared/models/utilisateur/utilisateur';
+import { Agent } from '../../../shared/models/utilisateur/agent';
+import { Client } from '../../../shared/models/utilisateur/client';
+import { DemandeInscription } from '../../../shared/models/demande/demandeInscription/demandeInscription';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
+<<<<<<< HEAD
 import { Observable } from 'rxjs';
 import {Agent} from '../../../shared/models/utilisateur/agent';
 import {Client} from '../../../shared/models/utilisateur/client';
+=======
+import { Observable, of as observableOf } from 'rxjs';
+
+>>>>>>> b2673b8d6e400eeae98aa0c50b18078667d7f56a
 const port = ":8080";
 const projectPath = "/Dmineur_Back_End_v2"
 const demineurApiUrl = "http://localhost"+port+projectPath;
@@ -27,7 +35,8 @@ export class UserService {
 		Set the user's session
 		Ajouter webservice
 	*/
-	public setUserConnected(data: {} | Utilisateur){
+	public setUserConnected(data: Utilisateur){
+    console.log(data);
 		//Affectation des données utilisateurs à l'objet Utilisateur "userConnected"
 		this.userConnected = Utilisateur.fromJson(data);
 		this.isConnected = true;
@@ -36,29 +45,27 @@ export class UserService {
 	constructor(private router: Router, private http: HttpClient) {
 	}
 
-	login(form):Observable<boolean | {}>{
-  		//Test effectué, suppression property testé
-  		delete(form.rememberMe);
+	login(user):Observable<boolean>{
 		this.isConnected = false;
-		return this.http.post(demineurApiUrl+"/login",JSON.stringify(form)).pipe(
-			map((res) => {
+		return this.http.post(demineurApiUrl+"/login",user).pipe(
+			map((res:Utilisateur) => {
 				if(res != null){
 					this.setUserConnected(<Utilisateur>res);
 				}
 			    return this.isConnected;
 			}),
-			catchError((err) => {
+			catchError<boolean,never>((err) => {
 				return err;
 			})
 		);
   	}
 
-  	createClient(form):Observable<Utilisateur | {}>{
+  	createClient(form):Observable<Utilisateur>{
   		return this.http.post(demineurApiUrl+"/clients",JSON.stringify(form)).pipe(
-  			map((res) => {
+  			map((res:Utilisateur) => {
   				return res;
   			}),
-  			catchError((err) => {
+  			catchError<Utilisateur,never>((err) => {
   				return err;
   			})
   		);
@@ -93,28 +100,67 @@ export class UserService {
 	  	this.router.navigate(['/public']);
 	}
 
-	getAllDemandesInscriptions():Observable<any | {}>{
+  getAllDemandesInscriptions():Observable<DemandeInscription[]>{
+  //Méthode utilisé par un admin
 		return this.http.get(demineurApiUrl+"/admin/demandesInscriptions").pipe(
-  			map((res) => {
+  			map((res:DemandeInscription[]) => {
   				return res;
   			}),
-  			catchError((err) => {
+  			catchError<DemandeInscription[],never>((err) => {
   				return err;
   			})
   		);
 	}
 
-	getDemandeInscription(demande_id):Observable<any | {}>{
-		return this.http.get(demineurApiUrl+"/admin/demandeInscription/"+demande_id).pipe(
-  			map((res) => {
+  //Méthode utilisé par un admin
+  getDemandeInscription(demande_id):Observable<DemandeInscription>{
+    return this.http.get(demineurApiUrl+"/admin/demandeInscription/"+demande_id).pipe(
+        map((res:DemandeInscription) => {
+          return res;
+        }),
+        catchError<DemandeInscription,never>((err) => {
+          return err;
+        })
+      );
+  }
+
+  //Méthode utilisé par un admin
+  getDemandeInscriptionByAgent(demande_id):Observable<DemandeInscription>{
+    return this.http.get(demineurApiUrl+"/"+this.userConnected.profile+"/"+this.userConnected.id+"/demandeInscription/"+demande_id).pipe(
+        map((res:DemandeInscription) => {
+          return res;
+        }),
+        catchError<DemandeInscription,never>((err) => {
+          return err;
+        })
+      );
+  }
+
+  //Méthode utilisé par un admin
+	getAllAgents():Observable<Agent[]>{
+		return this.http.get(demineurApiUrl+"/admin/agents").pipe(
+  			map((res:Agent[]) => {
   				return res;
   			}),
-  			catchError((err) => {
+  			catchError<Agent[],never>((err) => {
   				return err;
   			})
   		);
 	}
 
+  //Méthode utilisé par un agent et admin
+	getAllClients():Observable<Client[]>{
+		return this.http.get(demineurApiUrl+"/clients").pipe(
+  			map((res:Client[]) => {
+  				return res;
+  			}),
+  			catchError<Client[],never>((err) => {
+  				return err;
+  			})
+  		);
+	}
+
+<<<<<<< HEAD
 
 
 	//http://localhost:8080/Dmineur_Back_End_v2/admin/agents
@@ -133,11 +179,21 @@ export class UserService {
   				return res;
   			}),
   			catchError<Agent[],never>((err) => {
+=======
+  //Méthode utilisé par un admin
+	setAgentToRequestInscription(request):Observable<boolean>{
+		return this.http.put(demineurApiUrl+"/admin/setAgentToRequestInscription",request).pipe(
+  			map((res:boolean) => {
+  				return res;
+  			}),
+  			catchError<boolean,never>((err) => {
+>>>>>>> b2673b8d6e400eeae98aa0c50b18078667d7f56a
   				return err;
   			})
   		);
 	}
 
+<<<<<<< HEAD
 
 	getAllClients():Observable<Client[]>{
 		return this.http.get(demineurApiUrl+"/clients").pipe(
@@ -149,4 +205,18 @@ export class UserService {
   			})
   		);
 	}
+=======
+  //Méthode utilisé par un agent
+  getAgentDemandesInscriptions():Observable<DemandeInscription[]>{
+    console.log(this.userConnected);
+    return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeInscriptions").pipe(
+        map((res:DemandeInscription[]) => {
+          return res;
+        }),
+        catchError<DemandeInscription[],never>((err) => {
+          return err;
+        })
+      );
+  }
+>>>>>>> b2673b8d6e400eeae98aa0c50b18078667d7f56a
 }

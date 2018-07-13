@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ManagementClientsByAgentComponent } from './management-clients.component';
+import { ManagementClientsByAgentComponent } from './management-clients-by-agent.component';
 
 const routes: Routes = [
 	{
-		path:'managementClients',
+		path:'',
 		component: ManagementClientsByAgentComponent
 	}	
 ];

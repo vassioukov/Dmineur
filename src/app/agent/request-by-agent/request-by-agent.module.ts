@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AssignmentRequestRoutingModule } from './assignment-request-routing.module';
-import { AssignmentRequestComponent } from './assignment-request.component';
+import { RequestByAgentRoutingModule } from './request-by-agent-routing.module';
+import { RequestByAgentComponent } from './request-by-agent.component';
+
 import { LayoutModule } from '../../shared/layout.module';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    AssignmentRequestRoutingModule,
+    RequestByAgentRoutingModule,
     LayoutModule,
     SharedModule
   ],
-  declarations: [AssignmentRequestComponent]
+  declarations: [RequestByAgentComponent]
 })
-export class AssignmentRequestModule { }
+export class RequestByAgentModule { }

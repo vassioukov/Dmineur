@@ -35,25 +35,4 @@ export class DemandeInscription extends Demande {
 			}
 		);
 	}
-
-	getFicheInscription():FicheInscription{
-		return this.ficheInscription;
-	}
-	setFicheInscription(ficheInscription){
-		this.ficheInscription = ficheInscription;
-	}
-
-	getAgent():Agent{
-		return this.agent;
-	}
-	setAgent(agent){
-		this.agent = agent;
-	}
-
-	getClient():Client{
-		return this.client;
-	}
-	setClient(client){
-		this.client = client;
-	}
 }

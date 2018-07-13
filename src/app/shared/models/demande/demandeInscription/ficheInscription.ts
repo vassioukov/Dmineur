@@ -15,8 +15,8 @@ export class FicheInscription {
 
   static defaultFicheInscription(){
     return FicheInscription.fromJson({
-        numberOfChildren:null, 
-        maritalStatus:null
+        numberOfChildren:0, 
+        maritalStatus:0
       }
     );
   }

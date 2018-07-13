@@ -69,13 +69,13 @@ export let MENU_ITEM = [
     Routes agent
     */
     {
-        path: 'lobby',
+        path: 'lobby-agent',
         title: 'Accueil',
         icon: 'home',
         profile:'agent'
     },
     {
-        path: 'managementClients',
+        path: 'managementClientsByAgent',
         title: 'Gestion des clients',
         icon: 'users',
         profile:'agent'

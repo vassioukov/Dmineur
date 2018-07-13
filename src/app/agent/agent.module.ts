@@ -13,6 +13,10 @@ import { AgentComponent } from './agent.component';
     SharedModule,
     AgentRoutingModule
   ],
+  exports : [
+    LayoutModule,
+    SharedModule,
+  ],
   declarations: [AgentComponent]
 })
 export class AgentModule { }

@@ -7,8 +7,10 @@ const routes: Routes = [
 		path:'agent',
 		component: AgentComponent,
         children: [
-            { path: '', redirectTo: 'agent', pathMatch: 'full' },
-            { path: 'managementClients', loadChildren:'./management-clients/management-clients.module#ManagementClientsByAgentModule'},
+            { path: '', redirectTo: 'lobby-agent', pathMatch: 'full' },
+            { path: 'lobby-agent', loadChildren:'./lobby-agent/lobby.module#LobbyAgentModule'},
+            { path: 'managementClientsByAgent', loadChildren:'./management-clients-by-agent/management-clients-by-agent.module#ManagementClientsByAgentModule'},
+            { path: 'request/:id', loadChildren:'./request-by-agent/request-by-agent.module#RequestByAgentModule'},
         ]
 	}	
 ];

@@ -9,9 +9,103 @@ import { Router } from '@angular/router';
   styleUrls: ['./assignment-request.component.css']
 })
 export class AssignmentRequestComponent implements OnInit {
+<<<<<<< HEAD
 
   demandesInscriptions;
   constructor(private userService:UserService, private router:Router) { }
+=======
+	demandesInscriptions;
+  filter_affectation:String="all";
+  filter_demande_traite:String="all";
+  	constructor(private userService:UserService, private router:Router) { }
+>>>>>>> b2673b8d6e400eeae98aa0c50b18078667d7f56a
+
+    hide(demande){
+      let hide = false;
+      switch(this.filter_affectation){
+        case 'all':
+          switch(this.filter_demande_traite){
+            case 'all':
+              //Nothing todo
+              break;
+            case 'enCours':
+              //La demande a été traité ? On le l'affiche pas
+              if(demande.demande_traite==1){
+                hide = true;
+              }
+              break;
+            case 'traitée':
+              //La demande n'a pas été traité ? On le l'affiche pas
+              if(demande.demande_traite==0){
+                hide = true;
+              }
+              break;
+          }
+          break;
+        case 'affected':
+          switch(this.filter_demande_traite){
+            case 'all':
+              if(demande.agent==null){
+                hide = true;
+              }
+              break;
+            case 'enCours':
+              //La demande a été traité ? On le l'affiche pas
+              if(demande.agent==null){
+                hide = true;
+              } else {
+                //Demande traite, on ne l'affiche pas
+                if(demande.demande_traite==1){
+                  hide = true;
+                }
+              }
+              break;
+            case 'traitée':
+              //La demande n'a pas été traité ? On le l'affiche pas
+              if(demande.agent==null){
+                hide = true;
+              } else {
+                //Demande en cours, on ne l'affiche pas
+                if(demande.demande_traite==0){
+                  hide = true;
+                }
+              }
+              break;
+          }
+          break;
+        case 'nonAffected':
+          switch(this.filter_demande_traite){
+            case 'all':
+              if(demande.agent!=null){
+                hide = true;
+              }
+              break;
+            case 'enCours':
+              //La demande a été traité ? On le l'affiche pas
+              if(demande.agent!=null){
+                hide = true;
+              } else {
+                //Demande traite, on ne l'affiche pas
+                if(demande.demande_traite==1){
+                  hide = true;
+                }
+              }
+              break;
+            case 'traitée':
+              //La demande n'a pas été traité ? On le l'affiche pas
+              if(demande.agent!=null){
+                hide = true;
+              } else {
+                //Demande en cours, on ne l'affiche pas
+                if(demande.demande_traite==0){
+                  hide = true;
+                }
+              }
+              break;
+          }
+      }
+      return hide;
+    }
 
   ngOnInit() {
   	this.userService.getAllDemandesInscriptions().subscribe(
