@@ -15,11 +15,20 @@ import { Router } from '@angular/router';
 export class ManagementAgentsComponent implements OnInit, OnDestroy {
 
 	  agentList:fakeAgent[] = FAKEAGENTITEMS;
+<<<<<<< HEAD
     users: Utilisateur[];
+=======
+    print=false;
+    users: User[];
+>>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
     userSubscription: Subscription;
     userForm;
 
+<<<<<<< HEAD
   constructor(private userService: UserService, private router:Router) { }
+=======
+  constructor(private userService: UserService,private router: Router) { }
+>>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
 
   ngOnInit() {
     this.userSubscription = this.userService.userSubject.subscribe(
@@ -38,6 +47,7 @@ export class ManagementAgentsComponent implements OnInit, OnDestroy {
     this.userService.removeUser(user);
   }
 
+<<<<<<< HEAD
   onEditUser(user: Utilisateur) {
     //this.userService.updateUser(user);
   }
@@ -54,4 +64,22 @@ export class ManagementAgentsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/admin/managementAgents']);
   }
 
+=======
+  onEditUser(i: number) {
+    //this.userService.changeUser(i);
+    this.router.navigate(["./admin/managementAgents/new-user/"+i]);
+  }
+
+  toggle(){
+    this.print=!this.print;
+  }
+
+  onDeleteConfirm(user: User) {
+    if(confirm('Etes-vous sûr de vouloir supprimer ce conseiller ?')) {
+      this.onDeleteUser(user);
+    } else {
+      return null;
+    }
+}
+>>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
 }
