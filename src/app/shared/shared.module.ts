@@ -20,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatFormFieldModule, MatInputModule } from '@angular/material/';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { MatNativeDateModule, MatFormFieldModule, MatInputModule } from '@angula
     MatFormFieldModule,
     MatNativeDateModule,
     MatFormFieldModule, 
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule
   ],
   declarations: [
     CardComponent,
@@ -72,7 +74,8 @@ import { MatNativeDateModule, MatFormFieldModule, MatInputModule } from '@angula
     MatFormFieldModule,
     MatNativeDateModule,
     MatFormFieldModule, 
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule
   ]
 })
 export class SharedModule { }

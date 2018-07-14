@@ -15,41 +15,33 @@
 			<nav>
 				<section class="container">
 					<div class="row">
-						<div class="col-xs-4 col-md-4">
-							<div class="row">
-								<div class="col-md-3">
-									Filtrer : <br>
-								</div>
-								<div class="col-md-9">
-									<label for="tousAffectee" >Tous</label>
-									<input type="radio" id="tousAffectee" [(ngModel)]="filter_affectation" value="all" name="filter_affectation"/>
-									<label for="affect">Affectées</label>
-									<input type="radio" id="affect" [(ngModel)]="filter_affectation" value="affected" name="filter_affectation"/>
-									<label for="nonAffect">Non affectées</label>
-									<input type="radio" id="nonAffect" [(ngModel)]="filter_affectation" value="nonAffected" name="filter_affectation"/>
-								</div>
-							</div>
+						<div class="col-xs-12 col-md-6">
+							<fieldset >
+        						<legend style="width:auto; margin-bottom: 0px; font-size: 12px; font-weight: bold; color: #1f497d;">Filtrer par status d'affectation</legend>
+								<mat-radio-group class="example-radio-group" [(ngModel)]="filter_affectation" class="row">
+									<div class="col-md-4 col-xs-12">
+										<mat-radio-button class="example-radio-button" id="all" value="all" name="filter_affectation">
+											Tous
+										</mat-radio-button>
+									</div>
+									<div class="col-md-4 col-xs-12">
+										<mat-radio-button class="example-radio-button" id="affect" value="affected" name="filter_affectation">
+											Affectées
+										</mat-radio-button>
+									</div>
+									<div class="col-md-4 col-xs-12">
+										<mat-radio-button class="example-radio-button" id="nonAffect" value="nonAffected" name="filter_affectation">
+											Non affectées
+										</mat-radio-button>	
+									</div>
+								</mat-radio-group>
+							</fieldset>
 						</div>
-						<div class="col-xs-4 col-md-4">
+						<div class="col-xs-12 col-md-6">
 							<div class="row">
-								<div class="col-md-3">
-									Statut : <br>
-								</div>
-								<div class="col-md-9">
-									<label for="tousTraite" >Tous</label>
-									<input type="radio" id="tousTraite" [(ngModel)]="filter_demande_traite" value="all" name="filter_demande_traite"/>
-									<label for="enCours">En cours</label>
-									<input type="radio" id="enCours" [(ngModel)]="filter_demande_traite" value="enCours" name="filter_demande_traite"/>
-									<label for="traitee">Traitée</label>
-									<input type="radio" id="traitee" [(ngModel)]="filter_demande_traite" value="traitée" name="filter_demande_traite"/>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-4 col-md-4">
-							<div class="row">
-								Recherche des demandes entre deux dates
+								Tri par date à faire ici
+								<!--
 								<div class="col-md-4">
-									
 									<mat-form-field>
 									  <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="date">
 									  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -71,8 +63,34 @@
 									  <mat-datepicker #picker3></mat-datepicker>
 									</mat-form-field>
 								</div>
+							-->
 							</div>
 						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-md-6">
+							<fieldset >
+        						<legend style="width:auto; margin-bottom: 0px; font-size: 12px; font-weight: bold; color: #1f497d;">Filtrer par status du traitement</legend>
+								<mat-radio-group class="example-radio-group" [(ngModel)]="filter_demande_traite" class="row">
+									<div class="col-md-4 col-xs-12">
+										<mat-radio-button class="example-radio-button" id="tousTraite" value="all" name="filter_demande_traite">
+											Tous
+										</mat-radio-button>
+									</div>
+									<div class="col-md-4 col-xs-12">
+										<mat-radio-button class="example-radio-button" id="enCours" value="enCours" name="filter_demande_traite">
+											En cours
+										</mat-radio-button>
+									</div>
+									<div class="col-md-4 col-xs-12">
+										<mat-radio-button class="example-radio-button" id="traitée" value="traitée" name="filter_demande_traite">
+											Traitée
+										</mat-radio-button>	
+									</div>
+								</mat-radio-group>
+							</fieldset>
+						</div>
+						
 					</div>
 				</section>				
 			</nav>
@@ -99,7 +117,7 @@
 						</td>
 						<td>
 							{{demandeInscription.client.firstName}} 
-							{{demandeInscription.client.lastName}}
+							<div [innerHTML]="demandeInscription.client.lastName"></div>
 						</td>
 						<td>
 							<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandeInscription.id)"></i>

@@ -11,3 +11,18 @@ i:hover.iStyleAsA {
     color: #0056b3;
     text-decoration: underline;
 }
+
+
+
+.example-radio-group {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+mat-form-field {
+	width: 140px;
+}

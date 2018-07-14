@@ -80,4 +80,30 @@ export class RequestByAgentComponent implements OnInit {
       }
     )
   }
+
+  validerDemandeInscription(){
+    this.userService.validerDemandeInscription(this.request).subscribe(
+      res => {
+
+      },
+      err => {
+
+      }
+    );
+  }
+
+  refuserDemandeInscription(){
+    /*
+    * Inscription incomplète, demande de mise à jour de donnée + notification vers client
+    * Le client devra traiter la demande de mise à jour qui relancer le processus de validation pour l'agent
+    */
+    this.userService.refuserDemandeInscription(this.request).subscribe(
+      res => {
+
+      },
+      err => {
+
+      }
+    ); 
+  }
 }
