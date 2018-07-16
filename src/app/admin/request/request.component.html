@@ -1,0 +1,28 @@
+
+
+Type de demande : {{request.type_demande}}
+<br>
+Fiche d'inscription : 
+<br>
+ - Nombre d'enfants : {{request.ficheInscription.numberOfChildren}}
+<br>
+ - Situation : {{request.ficheInscription.maritalStatus}}
+<br>
+Email du client : {{request.client.email}}
+<br>
+Prénom : {{request.client.firstName}}
+<br>
+Nom : {{request.client.lastName}}
+<br>
+....
+
+....
+
+<select class="form-control" id="agents"
+        required
+        [(ngModel)]="request.agent" name="agentSelected"
+        #agentAffected="ngModel">
+  <option *ngFor="let agent of agents" [ngValue]="agent">{{agent.email}} | {{agent.firstName}} {{agent.lastName}} </option>
+</select>
+
+<button (click)="affect()" class="btn btn-primary">Affecter</button>

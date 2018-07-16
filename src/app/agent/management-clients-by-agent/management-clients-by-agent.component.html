@@ -1,0 +1,95 @@
+<mat-tab-group>
+  <mat-tab label="Demandes d'inscription">
+	<br>
+  	<div class="container">
+		<mat-radio-group class="example-radio-group" [(ngModel)]="filter_demande_traite" class="row">
+			<div class="col-md-4 col-xs-12">
+				<mat-radio-button class="example-radio-button" id="tousTraite" value="all" name="filter_demande_traite">
+					Tous
+				</mat-radio-button>
+			</div>
+			<div class="col-md-4 col-xs-12">
+				<mat-radio-button class="example-radio-button" id="enCours" value="enCours" name="filter_demande_traite">
+					En cours
+				</mat-radio-button>
+			</div>
+			<div class="col-md-4 col-xs-12">
+				<mat-radio-button class="example-radio-button" id="traitee" value="traitée" name="filter_demande_traite">
+					Traitée
+				</mat-radio-button>	
+			</div>
+		</mat-radio-group>
+	</div>	
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Traitée</th>
+				<th>Prénom - Nom</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let demandeInscription of demandesInscriptions" [hidden]="hide(demandeInscription)">
+				<td>
+					<span *ngIf="demandeInscription.demande_traite==0">En cours</span>
+					<span *ngIf="demandeInscription.demande_traite==1">Traitée</span>
+				</td>
+				<td>
+					{{demandeInscription.client.firstName}} 
+					{{demandeInscription.client.lastName}}
+				</td>
+				<td>
+					<i class="iStyleAsA fa fa-edit" (click)="goToDemandeInscription(demandeInscription.id)"></i>
+				</td>						
+			</tr>
+		</tbody>
+	</table>
+  </mat-tab>
+  <mat-tab label="Demande de MAJ de données">
+	<br>
+  	<section class="container">
+		<mat-radio-group class="example-radio-group" [(ngModel)]="filter_demande_maj_traite" class="row">
+			<div class="col-md-4 col-xs-12">
+				<mat-radio-button class="example-radio-button" id="tousTraite" value="all" name="filter_demande_maj_traite">
+					Tous
+				</mat-radio-button>
+			</div>
+			<div class="col-md-4 col-xs-12">
+				<mat-radio-button class="example-radio-button" id="enCours" value="enCours" name="filter_demande_maj_traite">
+					En cours
+				</mat-radio-button>
+			</div>
+			<div class="col-md-4 col-xs-12">
+				<mat-radio-button class="example-radio-button" id="traitee" value="traitée" name="filter_demande_maj_traite">
+					Traitée
+				</mat-radio-button>	
+			</div>
+		</mat-radio-group>
+	</section>	
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Traitée</th>
+				<th>Prénom - Nom</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let demandeMAJDonnees of demandesMAJDonnees" [hidden]="hide_MAJ(demandeMAJDonnees)">
+				<td>
+					<span *ngIf="demandeMAJDonnees.demande_traite==0">En cours</span>
+					<span *ngIf="demandeMAJDonnees.demande_traite==1">Traitée</span>
+				</td>
+				<td>
+					{{demandeMAJDonnees.client.firstName}} 
+					{{demandeMAJDonnees.client.lastName}}
+				</td>
+				<td>
+					<i class="iStyleAsA fa fa-edit" (click)="goToDemandeMAJ(demandeMAJDonnees.id)"></i>
+				</td>						
+			</tr>
+		</tbody>
+	</table>
+  </mat-tab>
+</mat-tab-group>
+
