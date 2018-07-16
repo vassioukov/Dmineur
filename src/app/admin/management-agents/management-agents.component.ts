@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { fakeAgent } from '../../shared/models/fake-session/fakeAgent';
-import { FAKEAGENTITEMS } from '../../shared/models/fake-session/fakeAgents';
 import { Utilisateur } from '../../shared/models/utilisateur/utilisateur';
+import { Address } from '../../shared/models/utilisateur/address';
+import { Agent } from '../../shared/models/utilisateur/agent';
 import { Subscription } from 'rxjs';
-import { UserService } from './services/user.service';
+import {UserService} from '../../core-module/services/userService/user.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-management-agents',
@@ -12,74 +13,47 @@ import { Router } from '@angular/router';
   styleUrls: ['./management-agents.component.css']
 })
 
-export class ManagementAgentsComponent implements OnInit, OnDestroy {
+export class ManagementAgentsComponent implements OnInit {
 
-	  agentList:fakeAgent[] = FAKEAGENTITEMS;
-<<<<<<< HEAD
-    users: Utilisateur[];
-=======
-    print=false;
-    users: User[];
->>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
-    userSubscription: Subscription;
-    userForm;
+  agents: Agent[];
 
-<<<<<<< HEAD
-  constructor(private userService: UserService, private router:Router) { }
-=======
-  constructor(private userService: UserService,private router: Router) { }
->>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
+  print=false;
+  userSubscription: Subscription;
+  userForm;
+
+  constructor(private userService: UserService, 
+              private router: Router, 
+              private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.userSubscription = this.userService.userSubject.subscribe(
-      (users: Utilisateur[]) => {
-        this.users = users;
+    this.userService.getAllAgents().subscribe(
+      res => {
+        this.agents= res;
+      }, err => {
+        console.error(err);
       }
-    );
-    this.userService.emitUsers();
+      );
+    this.userService.emitAgents();
   }
 
-  ngOnDestroy() {
-    this.userSubscription.unsubscribe();
+  onDeleteAgent(agent: Agent) {
+    this.userService.removeAgent(agent);
   }
 
-  onDeleteUser(user: Utilisateur) {
-    this.userService.removeUser(user);
-  }
-
-<<<<<<< HEAD
-  onEditUser(user: Utilisateur) {
-    //this.userService.updateUser(user);
-  }
-   onSubmitForm() {
-    const formValue = this.userForm.value;
-    const newUser = new Utilisateur(
-      formValue['firstName'],
-      formValue['lastName'],
-      formValue['matricule'],
-      formValue['email'],
-      formValue['telephone']
-    );
-    this.userService.addUser(newUser);
-    this.router.navigate(['/admin/managementAgents']);
-  }
-
-=======
-  onEditUser(i: number) {
+  onEditAgent(i: number) {
     //this.userService.changeUser(i);
-    this.router.navigate(["./admin/managementAgents/new-user/"+i]);
+    this.router.navigate(["./admin/managementAgents/new-agent/"+i]);
   }
 
   toggle(){
     this.print=!this.print;
   }
 
-  onDeleteConfirm(user: User) {
+  onDeleteConfirm(agent: Agent) {
     if(confirm('Etes-vous sûr de vouloir supprimer ce conseiller ?')) {
-      this.onDeleteUser(user);
+      this.onDeleteAgent(agent);
     } else {
       return null;
     }
-}
->>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
+  }
 }

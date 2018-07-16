@@ -18,7 +18,7 @@
 						<div class="col-md-4">
 							<i _ngcontent-c1="" aria-hidden="true" class="fa fa-user-plus" title="ajout">&nbsp;</i>
 							
-							<a routerLink="./new-user" *ngIf="!print" (click)="toggle()">Voir formulaire d'ajout</a>
+							<a routerLink="./new-agent" *ngIf="!print" (click)="toggle()">Voir formulaire d'ajout</a>
 							<a routerLink="/admin/managementAgents" *ngIf="print" (click)="toggle()">Cacher formulaire d'ajout</a>
 						</div>
 						<div class="col-md-4">
@@ -34,26 +34,22 @@
 							<router-outlet></router-outlet>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item" *ngFor="let user of users; let i = index">
+							<li class="list-group-item" *ngFor="let Agent of agents; let i = index">
+								{{Agent.firstName}}  {{Agent.lastName}}
 								<button class="btn btn-default pull-right" (click)="onDeleteConfirm(user)">
-									<span class="fa fa-trash" style="font-size:24px;color:red"></span>
-								</button>
-<<<<<<< HEAD
-								<button class="fa fa-pencil" aria-hidden="true" (click)="onEditUser(user)" >Edit</button>
-								<h2>{{ user.firstName }} {{ user.lastName }} </h2>
-=======
-								<button class="btn btn-default pull-right" (click)="onEditUser(i)">
-									<span class="fa fa-pencil" style="font-size:24px;color:blue"></span>
-								</button>
-								<h2> {{ user.firstName }} {{ user.lastName }} </h2><h6> {{ user.email }} - {{ user.telephone }} </h6>
->>>>>>> 046f75128047d7d07efa5462a07b9ebfd0722557
-							</li>
-						</ul></th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
-		</section>
+									<span class="fa fa-trash" style="font-size:24px;color:red"></span></button>
+									<button class="btn btn-default pull-right" (click)="onEditUser(i)">
+										<span class="fa fa-pencil" style="font-size:24px;color:blue"></span>
+									</button>
+								</li>
+							</ul></th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+			</section>
+		</div>
 	</div>
-</div>
 

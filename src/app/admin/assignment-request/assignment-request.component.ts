@@ -9,16 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./assignment-request.component.css']
 })
 export class AssignmentRequestComponent implements OnInit {
-<<<<<<< HEAD
-
-  demandesInscriptions;
-  constructor(private userService:UserService, private router:Router) { }
-=======
 	demandesInscriptions;
   filter_affectation:String="all";
   filter_demande_traite:String="all";
   	constructor(private userService:UserService, private router:Router) { }
->>>>>>> b2673b8d6e400eeae98aa0c50b18078667d7f56a
 
     hide(demande){
       let hide = false;
