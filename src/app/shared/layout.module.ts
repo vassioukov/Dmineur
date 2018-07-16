@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared.module';
@@ -41,6 +41,7 @@ import { PagesBottomComponent } from './layouts/pages-bottom/pages-bottom.compon
         RightConfigComponent,
         LoadingComponent,
         PagesBottomComponent,
+        CommonModule
     ]
 })
 export class LayoutModule { }

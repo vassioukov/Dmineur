@@ -41,6 +41,7 @@ export class RequestComponent implements OnInit {
 
   affect(){
     console.log(this.request);
+    this.request.agent.firstName="YOLOOOOOO";
     this.userService.setAgentToRequestInscription(this.request).subscribe(
       res => {
         console.log(res);

@@ -321,4 +321,16 @@ export class UserService {
         })
     );
   }
+
+
+  getAdminNotifications():Observable<Notification[]>{
+      return this.http.get(demineurApiUrl+"/admin/"+this.userConnected.id+"/notifications").pipe(
+        map((res:Notification[]) => {
+          return res;
+        }),
+        catchError<any,never>((err) => {
+          return err;
+        })
+    );
+  }
 }
