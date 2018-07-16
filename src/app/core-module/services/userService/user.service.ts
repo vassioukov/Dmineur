@@ -310,8 +310,8 @@ export class UserService {
     );
   }
 
-  refuserDemandeInscription(request: DemandeInscription):Observable<any>{
-      return this.http.get(demineurApiUrl+"/agents/").pipe(
+  demandeInscriptionIncompleteDemandeMAJDonnee(request: DemandeInscription):Observable<any>{
+      return this.http.post(demineurApiUrl+"/agents/"+this.userConnected.id+"/demandeMAJDonnees", request).pipe(
         map((res:any) => {
           console.log(res);
           return res;

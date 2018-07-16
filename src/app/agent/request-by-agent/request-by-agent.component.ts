@@ -92,12 +92,12 @@ export class RequestByAgentComponent implements OnInit {
     );
   }
 
-  refuserDemandeInscription(){
+  demandeInscriptionIncompleteDemandeMAJDonnee(){
     /*
     * Inscription incomplète, demande de mise à jour de donnée + notification vers client
     * Le client devra traiter la demande de mise à jour qui relancer le processus de validation pour l'agent
     */
-    this.userService.refuserDemandeInscription(this.request).subscribe(
+    this.userService.demandeInscriptionIncompleteDemandeMAJDonnee(this.request).subscribe(
       res => {
 
       },

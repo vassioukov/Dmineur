@@ -27,7 +27,6 @@ export class PagesTopComponent implements OnInit {
   }
 
   ngOnInit(){
-      this.getAdminNotifications();  
       this.initializationSubscriber = IntervalObservable.create(1000).subscribe(n => this.startRetrieveAdminNotifications());
 
   }
@@ -35,8 +34,16 @@ export class PagesTopComponent implements OnInit {
   //Initialise un interval de récupération
   startRetrieveAdminNotifications(){
     if(this.userService.isConnected){
-      this.notificationSubscriber = IntervalObservable.create(10000).subscribe(n => this.getAdminNotifications());
-      this.initializationSubscriber.unsubscribe();
+      switch(this.userService.userConnected.profile){
+        case "admin":
+          this.notificationSubscriber = IntervalObservable.create(60000).subscribe(n => this.getAdminNotifications());
+          this.initializationSubscriber.unsubscribe();
+          break;
+        case "agent":
+          break;
+        case "client":
+           break;
+      }
     }
   }
 

@@ -19,7 +19,7 @@ Nom : {{request.client.lastName}}
 ....
 <div *ngIf="route.snapshot.fragment=='inscription'">
 	<button (click)="validerDemandeInscription()" class="btn btn-primary">Activer le compte client</button>
-	<button (click)="refuserDemandeInscription()" class="btn btn-warning" mat-raised-button
-        matTooltip="Le client doit fournir plus d'informations pour activer son compte utilisateur"
+	<button (click)="demandeInscriptionIncompleteDemandeMAJDonnee()" class="btn btn-warning" mat-raised-button
+        matTooltip="Génération d'une demande de MAJ de données"
         aria-label="Inscription is incomplete, need more information from the client">Inscription incomplète </button>
 </div>
