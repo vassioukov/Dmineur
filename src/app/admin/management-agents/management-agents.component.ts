@@ -26,6 +26,13 @@ export class ManagementAgentsComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    console.log("here");
+    this.getAllAgents();
+    this.userService.emitAgents();
+  }
+
+  getAllAgents(){
+    console.log("getAllAgents");
     this.userService.getAllAgents().subscribe(
       res => {
         this.agents= res;
@@ -33,7 +40,6 @@ export class ManagementAgentsComponent implements OnInit {
         console.error(err);
       }
       );
-    this.userService.emitAgents();
   }
 
   onDeleteAgent(agent: Agent) {

@@ -34,11 +34,11 @@
 							<router-outlet></router-outlet>
 						</div>
 						<ul class="list-group">
-							<li class="list-group-item" *ngFor="let Agent of agents; let i = index">
-								{{Agent.firstName}}  {{Agent.lastName}}
+							<li class="list-group-item" *ngFor="let agent of agents; let i = index">
+								{{agent.firstName}}  {{agent.lastName}}
 								<button class="btn btn-default pull-right" (click)="onDeleteConfirm(user)">
 									<span class="fa fa-trash" style="font-size:24px;color:red"></span></button>
-									<button class="btn btn-default pull-right" (click)="onEditUser(i)">
+									<button class="btn btn-default pull-right" (click)="onEditAgent(agent.id)">
 										<span class="fa fa-pencil" style="font-size:24px;color:blue"></span>
 									</button>
 								</li>

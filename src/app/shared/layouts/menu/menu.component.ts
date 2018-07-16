@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { collapse } from '../../animation/collapse-animate';
 import { GlobalService } from '../../services/global.service';
 import { UserService } from '../../../core-module/services/userService/user.service';
-import { Session } from '../../models/fake-session/session';
 
 @Component({
   selector: 'du-menu',

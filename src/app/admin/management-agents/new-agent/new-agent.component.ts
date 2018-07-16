@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import {UserService} from '../../../core-module/services/userService/user.service';
+import { UserService } from '../../../core-module/services/userService/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import {Agent} from '../../../shared/models/utilisateur/agent';
+import { Agent } from '../../../shared/models/utilisateur/agent';
 import { identityRevealedValidator } from './identity-revealed.directive';
 @Component({
 	selector: 'app-new-agent',
@@ -11,9 +11,37 @@ import { identityRevealedValidator } from './identity-revealed.directive';
 })
 export class NewAgentComponent implements OnInit {
 
+  @Output() someEvent = new EventEmitter<string>();
+
+
 	id;
-	agentForm: FormGroup;
+	
 	user:Agent = Agent.defaultAgent();
+	agentForm: FormGroup = new FormGroup({
+            'password': new FormControl(this.user.password, [
+                Validators.required,
+                Validators.minLength(4),
+                ]),
+            'passwordVerif': new FormControl(this.user.passwordVerif),
+            'firstName' : new FormControl(this.user.firstName , [
+                Validators.required]),
+            'lastName' : new FormControl(this.user.lastName , [
+                Validators.required]),
+            'email' : new FormControl(this.user.email , [
+                Validators.required]),
+            'registrationNumber' : new FormControl(this.user.registrationNumber , [
+                Validators.required]),
+            'mobile' : new FormControl(this.user.mobile , [
+                Validators.required]),
+            'numRue' : new FormControl(this.user.address.numRue , [
+                Validators.required]),
+            'nomRue' : new FormControl(this.user.address.nomRue , [
+                Validators.required]),
+            'cp' : new FormControl(this.user.address.cp , [
+                Validators.required]),
+            'ville' : new FormControl(this.user.address.ville , [
+                Validators.required]),
+        }, { validators: identityRevealedValidator });
 
 	constructor(private formBuilder: FormBuilder,
 		private userService: UserService,
@@ -21,41 +49,23 @@ export class NewAgentComponent implements OnInit {
 		private route: ActivatedRoute) { }
 
 	ngOnInit() {
+
+
 		this.route.params.subscribe(
 			queryParams=>{
 				this.id=queryParams['id'];
-
-				this.agentForm = new FormGroup({
-			            'password': new FormControl(this.user.password, [
-			                Validators.required,
-			                Validators.minLength(4),
-			                ]),
-			            'passwordVerif': new FormControl(this.user.passwordVerif),
-			            'firstName' : new FormControl(this.user.firstName , [
-			                Validators.required]),
-			            'lastName' : new FormControl(this.user.lastName , [
-			                Validators.required]),
-			            'email' : new FormControl(this.user.email , [
-			                Validators.required]),
-			            'mobile' : new FormControl(this.user.mobile , [
-			                Validators.required]),
-			            'numRue' : new FormControl(this.user.address.numRue , [
-			                Validators.required]),
-			            'nomRue' : new FormControl(this.user.address.nomRue , [
-			                Validators.required]),
-			            'cp' : new FormControl(this.user.address.cp , [
-			                Validators.required]),
-			            'ville' : new FormControl(this.user.address.ville , [
-			                Validators.required]),
-			        }, { validators: identityRevealedValidator });
-
-
-
-
-
-				let user = this.userService.getAgent(this.id);
-				this.initForm(user);
+				this.userService.getAgent(this.id).subscribe(
+					res => {
+						this.user = res;
+						console.log(this.user);
+						this.initForm(this.user);
+					}, err => {
+						console.error(err);
+					}
+				);
 			});
+
+		
 	}
 
 	initForm(user) {
@@ -96,12 +106,24 @@ export class NewAgentComponent implements OnInit {
 			formValue['dateStartContract']
 			);
 		if (this.id == null) {
-			this.userService.addAgent(newAgent);
+			this.userService.addAgent(newAgent).subscribe(
+				res => {
+					console.log(res);
+				}, err => {
+					console.error(err);
+				}
+
+			);
 			this.router.navigate(['/admin/managementAgents']);
 		}else{
-			this.userService.changeAgent(this.id, newAgent);
 
+			this.userService.changeAgent(this.id, newAgent);
 			this.router.navigate(['/admin/managementAgents']);
 		}
 	}
+
+	onEditAgent(i: number) {
+    //this.userService.changeUser(i);
+    	this.router.navigate(["./admin/managementAgents/new-agent/"+i]);
+  }
 }

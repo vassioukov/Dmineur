@@ -9,6 +9,7 @@ const routes: Routes = [
         children: [
 
             { path: 'new-agent', loadChildren:'./new-agent/new-agent.module#NewAgentModule'},
+            { path: 'new-agent/:id', loadChildren:'./new-agent/new-agent.module#NewAgentModule'},
 
         ]
     }

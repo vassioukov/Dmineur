@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Session } from '../../../shared/models/fake-session/session';
 import { Utilisateur } from '../../../shared/models/utilisateur/utilisateur';
 import { Agent } from '../../../shared/models/utilisateur/agent';
 import { Client } from '../../../shared/models/utilisateur/client';
@@ -32,8 +31,18 @@ export class UserService {
   }
 
   addAgent(agent: Utilisateur) {
-    this.agents.push(agent);
+    
+    //this.agents.push(agent);
     this.emitAgents();
+    
+     return this.http.post(demineurApiUrl+"/admin/agents/", agent).pipe(
+      map((res:Agent) => {
+        return res;
+      }),
+      catchError<Agent,never>((err) => {
+        return err;
+      })
+      );
   }
 
   removeAgent(agent: Utilisateur) {
@@ -52,28 +61,15 @@ export class UserService {
     return this.agents[i];
   }
   getAgent(id : number){
-    return this.http.get(demineurApiUrl+"/admin/agents").pipe(
-      map((res:Agent[]) => {
+    return this.http.get(demineurApiUrl+"/admin/agents/"+id).pipe(
+      map((res:Agent) => {
         return res;
       }),
-      catchError<Agent[],never>((err) => {
+      catchError<Agent,never>((err) => {
         return err;
       })
       );
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

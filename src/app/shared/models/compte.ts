@@ -20,3 +20,4 @@ export class Compte  {
 		this.solde = solde;
 		this.remunerateur = remunerateur;;
 }
+}

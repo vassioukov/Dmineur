@@ -1,5 +1,5 @@
-import {Client} from '../models/utilisateur/client';
-import {Transaction} from './transactions';
+import {Client} from '../utilisateur/client';
+import {Transaction} from '../transactions';
 export class Compte  {
 	private rib : number;
 	private description : String;
@@ -19,4 +19,5 @@ export class Compte  {
 		this.dateCreation = dateCreation;
 		this.solde = solde;
 		this.remunerateur = remunerateur;;
+	}
 }
