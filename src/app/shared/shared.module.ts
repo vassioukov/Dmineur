@@ -16,6 +16,12 @@ import { AlertComponent } from './components/alert/alert.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CurrencyConverterComponent } from './components/currency-converter/currency-converter.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatFormFieldModule, MatInputModule } from '@angular/material/';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 @NgModule({
   imports: [
@@ -24,6 +30,14 @@ import { CurrencyConverterComponent } from './components/currency-converter/curr
     FormsModule,
     ReactiveFormsModule,
     JsonpModule,
+    MatTabsModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatFormFieldModule, 
+    MatInputModule,
+    MatTooltipModule
   ],
   declarations: [
     CardComponent,
@@ -54,6 +68,14 @@ import { CurrencyConverterComponent } from './components/currency-converter/curr
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTabsModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatFormFieldModule, 
+    MatInputModule,
+    MatTooltipModule
   ]
 })
 export class SharedModule { }

@@ -1,11 +1,13 @@
 Type de demande : {{request.type_demande}}
 <br>
+<div *ngIf="route.snapshot.fragment=='inscription'">
 Fiche d'inscription : 
 <br>
  - Nombre d'enfants : {{request.ficheInscription.numberOfChildren}}
 <br>
  - Situation : {{request.ficheInscription.maritalStatus}}
 <br>
+</div>
 Email du client : {{request.client.email}}
 <br>
 Prénom : {{request.client.firstName}}
@@ -15,3 +17,9 @@ Nom : {{request.client.lastName}}
 ....
 
 ....
+<div *ngIf="route.snapshot.fragment=='inscription'">
+	<button (click)="validerDemandeInscription()" class="btn btn-primary">Activer le compte client</button>
+	<button (click)="demandeInscriptionIncompleteDemandeMAJDonnee()" class="btn btn-warning" mat-raised-button
+        matTooltip="Génération d'une demande de MAJ de données"
+        aria-label="Inscription is incomplete, need more information from the client">Inscription incomplète </button>
+</div>

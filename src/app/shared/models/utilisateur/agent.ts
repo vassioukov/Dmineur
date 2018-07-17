@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Utilisateur } from './utilisateur';
+import { Client } from './client';
 import { Address } from './address'; 
 
 @Injectable() 
@@ -19,7 +20,8 @@ export class Agent extends Utilisateur {
       public address: Address,
       public passwordVerif: String,
       public registrationNumber: number,
-      public dateStartContract: Date
+      public dateStartContract: Date,
+      public clients: Client[]
     ) { 
     super(id, email, password, pseudo, firstName, lastName, dateOfBirth, mobile, profile, address, passwordVerif);
   }
@@ -38,7 +40,8 @@ export class Agent extends Utilisateur {
       json.address,
       json.passwordVerif,
       json.registrationNumber,
-      json.dateStartContract
+      json.dateStartContract,
+      json.clients
     );
   }
   
@@ -56,7 +59,8 @@ export class Agent extends Utilisateur {
         address:Address.defaultAddress(),
         passwordVerif:"",
         registrationNumber:"00000",
-        dateStartContract:new Date()
+        dateStartContract:new Date(),
+        clients:[]
       }
     );
   }

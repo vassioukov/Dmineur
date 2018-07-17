@@ -13,10 +13,9 @@ export class DemandeOuvertureCompte extends DemandeClient {
   		public type_demande:String,
   		public demande_traite:boolean,
       //From DemandeClient
-  		public client:Client,
-  		public type_demande_client:String
+  		public client:Client
   	) { 
-  	super(id,type_demande,demande_traite,client,type_demande_client);
+  	super(id,type_demande,demande_traite,client);
   }
 
   static fromJson(json) {
@@ -24,18 +23,16 @@ export class DemandeOuvertureCompte extends DemandeClient {
     	json.id, 
     	json.type_demande, 
     	json.demande_traite, 
-    	json.client, 
-    	json.type_demande_client
+    	json.client
     );
   }
 
   static defaultDemandeOuvertureCompte(){
     return DemandeOuvertureCompte.fromJson({
       	id:null,
-      	type_demande:Demande.type_demande_client,
+      	type_demande:DemandeClient.type_demande_client_ouverture_compte,
       	demande_traite:false,
-      	client:Client.defaultClient(),
-      	type_demande_client:DemandeClient.type_demande_client_ouverture_compte
+      	client:Client.defaultClient()
       }
     );
   }

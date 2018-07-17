@@ -13,6 +13,7 @@ export class NotificationComponent implements OnInit {
   constructor(private _globalService: GlobalService) { }
 
   ngOnInit() {
+    console.log("notif");
     this.getNewNotification();
   }
 

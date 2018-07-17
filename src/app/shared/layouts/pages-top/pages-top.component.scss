@@ -179,3 +179,66 @@
         display: none;
     }
 }
+
+
+
+
+#container {
+    top: 25px;
+    font-family: Helvetica;
+    color: #ccc;
+    font-weight: bold; 
+    position: absolute;
+    
+
+}
+
+#under {
+    z-index: 100;
+    width: 600px;
+    padding: 10px 10px 20px 10px;
+    border: 1px solid #BFBFBF;
+    background-color: white;
+    box-shadow: -10px -10px 10px #aaaaaa;
+    position: absolute;
+    right: 20px;
+    top: 45px;
+    opacity: 0.9;
+}
+
+.under::-webkit-scrollbar { 
+    /* This is the magic bit */
+    display: none;
+}
+
+
+#notificationDemandeInscription {
+    text-align: justify;
+    padding: 10px;
+}
+
+.titreOnglet {
+    font-size: 1.2rem;
+    text-align:center;   
+}
+
+.demandeTitre {
+    font-weight:bold;
+    font-size: 16px;
+}
+
+
+.notification{
+    color: #555555;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    display: block;
+    padding-top: 15px;
+    margin-top: -10px;
+
+}
+
+#toggleSidebar {
+    top: 25px;
+}

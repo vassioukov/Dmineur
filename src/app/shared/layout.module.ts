@@ -41,6 +41,7 @@ import { PagesBottomComponent } from './layouts/pages-bottom/pages-bottom.compon
         RightConfigComponent,
         LoadingComponent,
         PagesBottomComponent,
+        CommonModule
     ]
 })
 export class LayoutModule { }

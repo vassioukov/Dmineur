@@ -1,10 +1,21 @@
 
 
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid red; /* red */
+}
+.cross-validation-error input {
+  border-left: 5px solid red;
+}
+
+/*
 body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -77,4 +88,9 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+.formClient {
+  margin-top:20px;
+  overflow: hidden;
 }

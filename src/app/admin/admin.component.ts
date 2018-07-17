@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from "../core-module/services/userService/user.service";
+
+declare let EventSource:any;
 
 @Component({
   selector: 'app-admin',
@@ -6,8 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-
-  constructor() { }
+  constructor(private userService:UserService) { }
 
   ngOnInit() {
   }
