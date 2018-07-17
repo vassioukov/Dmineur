@@ -11,6 +11,7 @@ const routes: Routes = [
             { path: 'dashboard', loadChildren:'./dashboard/dashboard.module#DashboardModule'},
             { path: 'assignmentRequest', loadChildren:'./assignment-request/assignment-request.module#AssignmentRequestModule'},
             { path: 'managementAgents', loadChildren:'./management-agents/management-agents.module#ManagementAgentsModule'},
+            { path: 'managementAgents/new-user/:id', loadChildren:'./management-agents/new-user/new-user.module#NewUserModule'},
             { path: 'managementClients', loadChildren:'./management-clients/management-clients.module#ManagementClientsByAdminModule'},
             { path: 'request/:id', loadChildren:'./request/request.module#RequestModule'},
         ]
