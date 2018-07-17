@@ -16,7 +16,7 @@ export class Address {
 
   static defaultAddress(){
     return Address.fromJson({
-        numRue : null,
+        id : null,
         nomRue : "",
         cp : "",
         ville : ""
