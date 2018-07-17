@@ -16,10 +16,14 @@
 				<section class="container">
 					<div class="row">
 						<div class="col-md-4">
-							<i _ngcontent-c1="" aria-hidden="true" class="fa fa-user-plus" title="ajout">&nbsp;</i>
-							
-							<a routerLink="./new-agent" *ngIf="!print" (click)="toggle()">Voir formulaire d'ajout</a>
-							<a routerLink="/admin/managementAgents" *ngIf="print" (click)="toggle()">Cacher formulaire d'ajout</a>
+							<div *ngIf="!print">
+								<i _ngcontent-c1="" aria-hidden="true" class="fa fa-user-plus" title="add">&nbsp;</i>
+							<a routerLink="./new-agent"  (click)="toggle()">     Ajouter un agent</a>
+							</div>
+							<div *ngIf="print">
+								<i _ngcontent-c2="" class="fa fa-undo" aria-hidden="true" title="back" ></i>
+							<a routerLink="/admin/managementAgents"  (click)="toggle()">     Retour</a>
+							</div>
 						</div>
 						<div class="col-md-4">
 							

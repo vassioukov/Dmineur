@@ -29,6 +29,9 @@ export class ManagementAgentsComponent implements OnInit {
     console.log("here");
     this.getAllAgents();
     this.userService.emitAgents();
+
+    this.userSubscription.unsubscribe(
+     );
   }
 
   getAllAgents(){
