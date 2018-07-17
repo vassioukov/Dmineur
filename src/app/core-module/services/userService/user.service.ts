@@ -10,7 +10,7 @@ import { DemandeMAJDonnee } from '../../../shared/models/demande/demandeClient/d
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { Observable, of as observableOf } from 'rxjs';
+import { Observable, of as observableOf, Subject } from 'rxjs';
 
 const port = ":8080";
 const projectPath = "/Dmineur_Back_End_v2"
@@ -23,6 +23,18 @@ export class UserService {
 	//Default user = Guest
 	public userConnected:Utilisateur = Utilisateur.defaultUser();
 	public isConnected: boolean = false;
+  agentsSubject = new Subject<Agent[]>();
+
+  //Emet la liste des agents à jour
+  emitAgents() {
+    this.getAllAgents().subscribe(
+      res => {
+        this.agentsSubject.next(res);
+      }, err => {
+        console.error(err);
+      }
+    )
+  }
 
 	public getUserConnected(){
 		return this.userConnected;
@@ -66,6 +78,48 @@ export class UserService {
   			})
   		);
   	}
+
+    addAgent(agent: Agent) {
+      
+      //this.agents.push(agent);
+      //this.emitAgents();
+      
+      return this.http.post(demineurApiUrl+"/admin/agents/", agent).pipe(
+        map((res:Agent) => {
+          //Emit event to refresh an agents's list
+          this.emitAgents();
+          return res;
+        }),
+        catchError<Agent,never>((err) => {
+          return err;
+        })
+      );
+    }
+
+    updateAgent(agent: Agent){
+      return this.http.put(demineurApiUrl+"/admin/agents/", agent).pipe(
+        map((res:Agent) => {
+          //Emit event to refresh an agents's list
+          this.emitAgents();
+          return res;
+        }),
+        catchError<Agent,never>((err) => {
+          return err;
+        })
+      );
+    }
+
+    getAgent(id : number){
+      return this.http.get(demineurApiUrl+"/admin/agents/"+id).pipe(
+        map((res:Agent) => {
+          console.log(res);
+          return res;
+        }),
+        catchError<Agent,never>((err) => {
+          return err;
+        })
+        );
+    }
 
   	routing(){
   		switch(this.userConnected.profile){
@@ -333,4 +387,27 @@ export class UserService {
         })
     );
   }
+
+  getAgentNotifications():Observable<Notification[]>{
+      return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/notifications").pipe(
+        map((res:Notification[]) => {
+          return res;
+        }),
+        catchError<any,never>((err) => {
+          return err;
+        })
+    );
+  }
+
+  getClientNotifications():Observable<Notification[]>{
+      return this.http.get(demineurApiUrl+"/clients/"+this.userConnected.id+"/notifications").pipe(
+        map((res:Notification[]) => {
+          return res;
+        }),
+        catchError<any,never>((err) => {
+          return err;
+        })
+    );
+  }
+
 }

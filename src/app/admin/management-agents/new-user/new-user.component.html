@@ -1,26 +1,164 @@
-<div class="col-sm-8 col-sm-offset-2">
-  <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
-    <div class="form-group">
-      <label for="firstName">Prénom :</label>
-      <input type="text" id="firstName" class="form-control" formControlName="firstName">
+<form [formGroup]="userForm" #formDir="ngForm" (ngSubmit)="submit()" style="margin-top: 20px;overflow: hidden;" >
+
+  <div [hidden]="formDir.submitted">
+
+    <div class="cross-validation" [class.cross-validation-error]="userForm.errors?.identityRevealed && (userForm.touched || userForm.dirty)">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+
+            <label for="firstName">Prénom</label>
+            <input id="firstName" type="text" placeholder="Entrez votre prénom" class="form-control" formControlName="firstName" name="firstName" [(ngModel)]="agent.firstName" required>
+          </div>
+          <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+          class="alert alert-danger">
+
+            <div *ngIf="firstName.errors.required">
+              Champ Obligatoire
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="lastName">Nom</label>
+            <input id="lastName" type="text" placeholder="Entrez votre nom" class="form-control" name="lastName" formControlName="lastName" [(ngModel)]="agent.lastName" required>
+          </div>
+          <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+          class="alert alert-danger">
+
+            <div *ngIf="lastName.errors.required">
+              Champ Obligatoire
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="mail" placeholder="Entrez votre email" class="form-control" name="email" formControlName="email"  [(ngModel)]="agent.email" required >
+          </div>
+          <div *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="alert alert-danger">
+
+            <div *ngIf="email.errors.required">
+              Champ Obligatoire
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="mobile">Numéro de téléphone</label>
+            <input id="mobile" type="text" placeholder="Entrez votre numero de téléphone" class="form-control" name="mobile" formControlName="mobile"  [(ngModel)]="agent.mobile" required >
+          </div>
+          <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)"
+          class="alert alert-danger">
+
+            <div *ngIf="mobile.errors.required">
+              Champ Obligatoire
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" class="form-control" placeholder="Entrez votre mot de passe" 
+            formControlName="password" [(ngModel)]="agent.password"   required   >
+
+          </div>
+          <div *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="alert alert-danger">
+
+            <div *ngIf="password.errors.required">
+              Le mot de passe est obligatoire
+            </div>
+            <div *ngIf="password.errors.minlength">
+              Le mot de passe doit avoir au moins 4 caractères
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="passwordVerif">Confirmation du mot de passe</label>
+            <input type="password" id="passwordVerif" class="form-control" placeholder="Entrez à nouveau votre mot de passe" 
+            formControlName="passwordVerif" [(ngModel)]="agent.passwordVerif" required >
+          </div>
+          <div *ngIf="userForm.errors?.identityRevealed && (passwordVerif.touched || passwordVerif.dirty)" class="cross-validation-error-message alert alert-danger text-center">
+            Les mots de passes doivent être identiques
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="lastName">Nom :</label>
-      <input type="text" id="lastName" class="form-control" formControlName="lastName">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="dateOfBirth">Date de naissance</label>
+          <input type="date" id="dateOfBirth" class="form-control" 
+          formControlName="dateOfBirth" [(ngModel)]="agent.dateOfBirth"   required   >
+
+        </div>
+        <div *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)"
+        class="alert alert-danger">
+
+          <div *ngIf="dateOfBirth.errors.required">
+            La date de naissance est obligatoire
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="registrationNumber">Matricule</label>
+          <input type="text" id="registrationNumber" class="form-control" placeholder="Entre votre matricule" 
+          formControlName="registrationNumber" required >
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="matricule">Matricule :</label>
-      <input type="text" id="matricule" class="form-control" formControlName="matricule">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="dateStartContract">Date de début de contrat</label>
+          <input type="date" id="dateStartContract" class="form-control" 
+          formControlName="dateStartContract" [(ngModel)]="agent.dateStartContract"   required   >
+
+        </div>
+        <div *ngIf="dateStartContract.invalid && (dateStartContract.dirty || dateStartContract.touched)"
+        class="alert alert-danger">
+
+          <div *ngIf="dateStartContract.errors.required">
+            La date de début de contrat est obligatoire
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+
+      </div>
     </div>
-    <div class="form-group">
-      <label for="email">Adresse e-mail :</label>
-      <input type="text" id="email" class="form-control" formControlName="email">
+    <div class="row">
+      <div class="col-md-2" >
+        <button type="submit" class="btn btn-primary"
+        [disabled]="userForm.invalid" >
+          <span *ngIf="id===undefined">Valider</span>
+          <span *ngIf="id!==undefined">Mise à jour</span>
+        </button>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-default" (click)="formDir.resetForm({})">Réinitialiser</button>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="telephone">Téléphone :</label>
-      <input type="text" id="email" class="form-control" formControlName="telephone">
-    </div>
-    
-    <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Soumettre</button>
-  </form>
-</div>
+  </div>
+</form>

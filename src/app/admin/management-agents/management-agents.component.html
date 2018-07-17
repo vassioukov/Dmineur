@@ -1,3 +1,4 @@
+<!--
 <a routerLink="./new-user">Créer un nouveau conseiller</a>
   <div class="container">
    <router-outlet></router-outlet>
@@ -13,3 +14,62 @@
     <p>{{ user.telephone }} </p>
   </li>
   </ul>
+-->
+<div>
+  <div class="row">
+    <div class="col-md-4">
+      <h1>Liste des conseillers</h1>
+    </div>
+    <div class="col-md-6">          
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <i _ngcontent-c1="" aria-hidden="true" class="fa fa-user-plus" title="ajout">&nbsp;</i>
+
+      <a routerLink="./new-user" *ngIf="!print" (click)="toggle()">Voir formulaire d'ajout</a>
+      <a routerLink="/admin/managementAgents" *ngIf="print" (click)="toggle()">Cacher formulaire d'ajout</a>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+  <br>
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let agent of agents; let i = index">
+      <button class="btn btn-default pull-right" (click)="onDeleteConfirm(agent)">
+        <span class="fa fa-trash" style="font-size:24px;color:red"></span>
+      </button>
+      <button class="btn btn-default pull-right" (click)="onEditUser(agent.id)">
+        <span class="fa fa-pencil" style="font-size:24px;color:blue"></span>
+      </button>
+      <h2> {{ agent.firstName }} {{ agent.lastName }} </h2><h6> {{ agent.email }} - {{ agent.telephone }} </h6>
+    </li>
+  </ul>
+</div>
+
+
+<!--
+      <table class="table">
+        <thead>
+          <tr>
+            <th>
+          </th>
+          </tr>
+        </thead>
+        <tbody>
+          tr *ngFor="let Agent of agents">
+            <td>{{Agent.nom}}</td>
+            <td>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
+-->

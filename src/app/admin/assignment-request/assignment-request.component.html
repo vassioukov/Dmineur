@@ -1,119 +1,110 @@
-<div class="row">
-	<div class="col">
-		<section >
-			<nav>
-				<section class="container">
-					<div class="row">
-						<div class="col-xs-12 col-md-6">
-							<fieldset >
-        						<legend style="width:auto; margin-bottom: 0px; font-size: 12px; font-weight: bold; color: #1f497d;">Filtrer par status d'affectation</legend>
-								<mat-radio-group class="example-radio-group" [(ngModel)]="filter_affectation" class="row">
-									<div class="col-md-4 col-xs-12">
-										<mat-radio-button class="example-radio-button" id="all" value="all" name="filter_affectation">
-											Tous
-										</mat-radio-button>
-									</div>
-									<div class="col-md-4 col-xs-12">
-										<mat-radio-button class="example-radio-button" id="affect" value="affected" name="filter_affectation">
-											Affectées
-										</mat-radio-button>
-									</div>
-									<div class="col-md-4 col-xs-12">
-										<mat-radio-button class="example-radio-button" id="nonAffect" value="nonAffected" name="filter_affectation">
-											Non affectées
-										</mat-radio-button>	
-									</div>
-								</mat-radio-group>
-							</fieldset>
-						</div>
-						<div class="col-xs-12 col-md-6">
-							<div class="row">
-								Tri par date à faire ici
-								<!--
-								<div class="col-md-4">
-									<mat-form-field>
-									  <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="date">
-									  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-									  <mat-datepicker #picker1></mat-datepicker>
-									</mat-form-field>
-								</div>
-								<div class="col-md-4">
-									<mat-form-field>
-									  <input matInput [matDatepicker]="picker2" placeholder="Angular forms (w/ deserialization)"
-									         [formControl]="serializedDate">
-									  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-									  <mat-datepicker #picker2></mat-datepicker>
-									</mat-form-field>
-								</div>
-								<div class="col-md-4">
-									<mat-form-field>
-									  <input matInput [matDatepicker]="picker3" placeholder="Value binding" [value]="date.value">
-									  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-									  <mat-datepicker #picker3></mat-datepicker>
-									</mat-form-field>
-								</div>
-							-->
-							</div>
-						</div>
+
+<section class="container" style="margin:unset">
+	<div class="row">
+		<div class="col-md-6">
+			<fieldset >
+				<legend style="width:auto; margin-bottom: 0px; font-size: 12px; font-weight: bold; color: #1f497d;">Filtrer par status d'affectation</legend>
+				<mat-radio-group class="example-radio-group" [(ngModel)]="filter_affectation" class="row">
+					<div class="col-md-4 col-xs-4">
+						<mat-radio-button class="example-radio-button" id="all" value="all" name="filter_affectation">
+							Tous
+						</mat-radio-button>
 					</div>
-					<div class="row">
-						<div class="col-xs-12 col-md-6">
-							<fieldset >
-        						<legend style="width:auto; margin-bottom: 0px; font-size: 12px; font-weight: bold; color: #1f497d;">Filtrer par status du traitement</legend>
-								<mat-radio-group class="example-radio-group" [(ngModel)]="filter_demande_traite" class="row">
-									<div class="col-md-4 col-xs-12">
-										<mat-radio-button class="example-radio-button" id="tousTraite" value="all" name="filter_demande_traite">
-											Tous
-										</mat-radio-button>
-									</div>
-									<div class="col-md-4 col-xs-12">
-										<mat-radio-button class="example-radio-button" id="enCours" value="enCours" name="filter_demande_traite">
-											En cours
-										</mat-radio-button>
-									</div>
-									<div class="col-md-4 col-xs-12">
-										<mat-radio-button class="example-radio-button" id="traitée" value="traitée" name="filter_demande_traite">
-											Traitée
-										</mat-radio-button>	
-									</div>
-								</mat-radio-group>
-							</fieldset>
-						</div>
-						
+					<div class="col-md-4 col-xs-4">
+						<mat-radio-button class="example-radio-button" id="affect" value="affected" name="filter_affectation">
+							Affectées
+						</mat-radio-button>
 					</div>
-				</section>				
-			</nav>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Type de demande</th>
-						<th>Affectation</th>
-						<th>Traitée</th>
-						<th>Prénom - Nom</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let demandeInscription of demandesInscriptions" [hidden]="hide(demandeInscription)">
-						<td>{{demandeInscription.type_demande}}</td>
-						<td>
-							<span *ngIf="demandeInscription.agent==null">Non affecté</span>
-							<span *ngIf="demandeInscription.agent!=null">Affecté à {{demandeInscription.agent.firstName}} {{demandeInscription.agent.lastName}}</span>
-						</td>
-						<td>
-							<span *ngIf="demandeInscription.demande_traite==0">En cours</span>
-							<span *ngIf="demandeInscription.demande_traite==1">Traitée</span>
-						</td>
-						<td>
-							{{demandeInscription.client.firstName}} 
-							<div [innerHTML]="demandeInscription.client.lastName"></div>
-						</td>
-						<td>
-							<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandeInscription.id)"></i>
-						</td>						
-					</tr>
-				</tbody>
-			</table>
-		</section>
+					<div class="col-md-4 col-xs-4">
+						<mat-radio-button class="example-radio-button" id="nonAffect" value="nonAffected" name="filter_affectation">
+							Non affectées
+						</mat-radio-button>	
+					</div>
+				</mat-radio-group>
+			</fieldset>
+		</div>
+		<div class="col-md-6 right-filter">
+			<fieldset >
+				<legend style="width:auto; margin-bottom: 0px; font-size: 12px; font-weight: bold; color: #1f497d;">Filtrer par status du traitement</legend>
+				<mat-radio-group class="example-radio-group" [(ngModel)]="filter_demande_traite" class="row">
+					<div class="col-md-4 col-xs-4">
+						<mat-radio-button class="example-radio-button" id="tousTraite" value="all" name="filter_demande_traite">
+							Tous
+						</mat-radio-button>
+					</div>
+					<div class="col-md-4 col-xs-4">
+						<mat-radio-button class="example-radio-button" id="enCours" value="enCours" name="filter_demande_traite">
+							En cours
+						</mat-radio-button>
+					</div>
+					<div class="col-md-4 col-xs-4">
+						<mat-radio-button class="example-radio-button" id="traitée" value="traitée" name="filter_demande_traite">
+							Traitée
+						</mat-radio-button>	
+					</div>
+				</mat-radio-group>
+			</fieldset>
+		</div>
 	</div>
-</div>
+	<div class="row">
+		<div class="col-xs-12 col-md-6">
+			
+			<div class="row">
+				<div class="col-md-4">
+					<mat-form-field>
+					  <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="date">
+					  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+					  <mat-datepicker #picker1></mat-datepicker>
+					</mat-form-field>
+				</div>
+				<div class="col-md-4">
+					<mat-form-field>
+					  <input matInput [matDatepicker]="picker2" placeholder="Angular forms (w/ deserialization)"
+					         [formControl]="serializedDate">
+					  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+					  <mat-datepicker #picker2></mat-datepicker>
+					</mat-form-field>
+				</div>
+				<div class="col-md-4">
+					<mat-form-field>
+					  <input matInput [matDatepicker]="picker3" placeholder="Value binding" [value]="date.value">
+					  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+					  <mat-datepicker #picker3></mat-datepicker>
+					</mat-form-field>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>		
+<table class="table">
+	<thead>
+		<tr>
+			<th>Type de demande</th>
+			<th>Affectation</th>
+			<th>Traitée</th>
+			<th>Prénom - Nom</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let demandeInscription of demandesInscriptions" [hidden]="hide(demandeInscription)">
+			<td>{{demandeInscription.type_demande}}</td>
+			<td>
+				<span *ngIf="demandeInscription.agent==null">Non affecté</span>
+				<span *ngIf="demandeInscription.agent!=null">Affecté à {{demandeInscription.agent.firstName}} {{demandeInscription.agent.lastName}}</span>
+			</td>
+			<td>
+				<span *ngIf="demandeInscription.demande_traite==0">En cours</span>
+				<span *ngIf="demandeInscription.demande_traite==1">Traitée</span>
+			</td>
+			<td>
+				{{demandeInscription.client.firstName}} 
+				<div [innerHTML]="demandeInscription.client.lastName"></div>
+			</td>
+			<td>
+				<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandeInscription.id)"></i>
+			</td>						
+		</tr>
+	</tbody>
+</table>

@@ -1,20 +1,21 @@
 import { User } from '../models/users.modele';
 import { Subject } from 'rxjs';
+import { NewUserComponent } from '../new-user/new-user.component'
 
 export class UserService {
   private users: User[] = [{
-  	firstName: 'Vincent',
-  	lastName: 'Vallet',
-  	matricule: '01',
-  	email: 'vincent.vallet@me.com',
-  	telephone: '0660697060'
+    firstName: 'Vincent',
+    lastName: 'Vallet',
+    matricule: '01',
+    email: 'vincent.vallet@me.com',
+    telephone: '0660697060'
    },
    {
-  	firstName: 'Alexandre',
-  	lastName: 'Machin',
-  	matricule: '02',
-  	email: 'alexandre@gmail.com',
-  	telephone: '0601020304'
+    firstName: 'Alexandre',
+    lastName: 'Machin',
+    matricule: '02',
+    email: 'alexandre@gmail.com',
+    telephone: '0601020304'
    },
    {
     firstName: 'Kevin',
@@ -52,9 +53,12 @@ export class UserService {
       }
     );
     this.users.splice(userIndexToRemove, 1);
-  	this.emitUsers();
+    this.emitUsers();
+  }
+
+   changeUser(i: number){
+     return this.users[i];
   }
 
 }
-
 

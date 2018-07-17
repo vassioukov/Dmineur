@@ -1,67 +1,356 @@
 <mat-tab-group>
 	<mat-tab label="Inscription rapide">
-		<br>
-		<form #createClient="ngForm" (ngSubmit)="creationCompteClient()">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-6 ">
-				<div class="form-group">
-					<label for="prenom">Prénom</label>
-					<input id="prenom" type="text" placeholder="Entrez votre prénom" class="form-control" name="prenom" [(ngModel)]="user.firstName" #firstName="ngModel" >
+
+		<form [formGroup]="heroFormSimple" #formDir="ngForm" (ngSubmit)="creationCompteClientSimple()" class="formClient">
+
+			<div [hidden]="formDir.submitted">
+
+				<div class="cross-validation" [class.cross-validation-error]="heroFormSimple.errors?.identityRevealed && (heroFormSimple.touched || heroFormSimple.dirty)">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+
+								<label for="firstName">Prénom</label>
+								<input id="firstName" type="text" placeholder="Entrez votre prénom" class="form-control" formControlName="firstName" name="firstName" [(ngModel)]="user.firstName" required>
+							</div>
+							<div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="firstName.errors.required">
+									Champ Obligatoire
+								</div>
+
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="lastName">Nom</label>
+								<input id="lastName" type="text" placeholder="Entrez votre nom" class="form-control" name="lastName" formControlName="lastName"  [(ngModel)]="user.lastName" required>
+							</div>
+							<div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="lastName.errors.required">
+									Champ Obligatoire
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input id="email" type="mail" placeholder="Entrez votre email" class="form-control" name="email" formControlName="email"  [(ngModel)]="user.email" required >
+							</div>
+							<div *ngIf="email.invalid && (email.dirty || email.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="email.errors.required">
+									Champ Obligatoire
+								</div>
+
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="mobile">Numéro de téléphone</label>
+								<input id="mobile" type="text" placeholder="Entrez votre numero de téléphone" class="form-control" name="mobile" formControlName="mobile"  [(ngModel)]="user.mobile" required >
+							</div>
+							<div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="mobile.errors.required">
+									Champ Obligatoire
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="password">Mot de passe</label>
+								<input type="password" id="password" class="form-control" placeholder="Entrez votre mot de passe" 
+								formControlName="password" [(ngModel)]="user.password"   required   >
+							</div>
+							<div *ngIf="password.invalid && (password.dirty || password.touched)"
+								class="alert alert-danger text-center ">
+
+								<div *ngIf="password.errors.required">
+									Le mot de passe est obligatoire
+								</div>
+								<div *ngIf="password.errors.minlength">
+									Le mot de passe doit avoir au moins 4 caractères
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="passwordVerif">Confirmation du mot de passe</label>
+								<input type="password" id="passwordVerif" class="form-control" placeholder="Entrez à nouveau votre mot de passe" 
+								formControlName="passwordVerif" [(ngModel)]="user.passwordVerif"  required >
+							</div>
+							<div *ngIf="heroFormSimple.errors?.identityRevealed && (heroFormSimple.touched || heroFormSimple.dirty)" class="cross-validation-error-message alert alert-danger text-center">
+								Les mots de passes doivent être identiques
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-2">
+						<button type="submit" class="btn btn-primary"
+						[disabled]="heroFormSimple.invalid">Valider</button>
+					</div>
+					<div class="col-md-2">
+						<button type="button" class="btn btn-default" (click)="formDir.resetForm({})">Réinitialiser</button>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-6 form-group">
-				<label for="nom">Nom</label>
-				<input id="nom" type="text" placeholder="Entrez votre nom" class="form-control" name="nom"  [(ngModel)]="user.lastName"  #lastName="ngModel">
-			</div>
-		</div>
-		<div class="row">							 	
-			<div class="col-md-6 form-group">
-				<label for="email">Adresse Email</label>
-				<input id="email" type="mail" placeholder="Entrez votre email" class="form-control" name="email" [(ngModel)]="user.email"  #email="ngModel">
-			</div>
-			<div class="col-md-6 form-group">
-				<label>Numero telephone</label>
-				<input type="text" placeholder="Enter Phone Number Here.." class="form-control" name="tel" [(ngModel)]="user.mobile" #mobile="ngModel">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6 form-group">
-				<label for="password">Mot de passe</label>
-				<input id="password" type="password" placeholder="Entrez votre mot de passe" class="form-control" name="prenom" [(ngModel)]="user.password" #password="ngModel" (blur)="checkPass()">
-			</div>
-			<div class="col-md-6 form-group">
-				<label for="passwordVerif">Vérification mot de passe</label>
-				<input id="passwordVerif" type="password" placeholder="Entrez votre mot de passe à nouveau" class="form-control" name="passwordVerif"  [(ngModel)]="user.passwordVerif"  #passwordVerif="ngModel" (blur)="checkPass()">
-			</div>
-		</div>
-		<!--
-		<div class="form-group">
-			<label>Addresse</label>
-			<textarea placeholder="Entrez votre adresse" rows="3" class="form-control" name="adresse" [(ngModel)]="user.address.nomRue" #address="ngModel"></textarea>
-		</div>	
-		<div class="row">
-			<div class="col-md-4 form-group">
-				<label for="ville">Ville</label>
-				<input id="ville" type="text" placeholder="Entrez le nom de votre ville" class="form-control" name="ville" [(ngModel)]="user.address.ville" #ville="ngModel">
-			</div>	
-			<div class="col-md-4 form-group">
-				<label for="pays">Pays</label>
-				<input id="pays" type="text" placeholder="Entrez le nom de votre pays" class="form-control" name=pays [(ngModel)]="user.address.pays" #pays="ngModel">
-			</div>	
-			<div class="col-md-4 form-group">
-				<label for="cp">Code postal</label>
-				<input id="cp" type="text" placeholder="Entrez votre code postal" class="form-control" name="CP" [(ngModel)]="user.address.cp" #cp="ngModel">
-			</div>		
-		</div>
-		-->
-
-		<button  type="submit" [disabled]="user.password!=user.passwordVerif" class="btn btn-lg btn-info">Validation</button>
-	</div>
-</form> 
+		</form>
 	</mat-tab>
 	<mat-tab label="Inscription complète">
-		<h1>Some more tab content</h1>
-		<p>...</p>
+		<form [formGroup]="heroForm" #formDir="ngForm" (ngSubmit)="creationCompteClientComplet()" class="formClient">
+
+			<div [hidden]="formDir.submitted">
+
+				<div class="cross-validation" [class.cross-validation-error]="heroForm.errors?.identityRevealed && (heroForm.touched || heroForm.dirty)">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+
+								<label for="firstName">Prénom</label>
+								<input id="firstName" type="text" placeholder="Entrez votre prénom" class="form-control" formControlName="firstName" name="firstName" [(ngModel)]="user.firstName" required>
+								<div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+								class="alert alert-danger">
+
+									<div *ngIf="firstName.errors.required">
+										Champ Obligatoire
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="lastName">Nom</label>
+								<input id="lastName" type="text" placeholder="Entrez votre nom" class="form-control" name="lastName" formControlName="lastName"  [(ngModel)]="user.lastName" required>
+								<div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+								class="alert alert-danger">
+
+									<div *ngIf="lastName.errors.required">
+										Champ Obligatoire
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input id="email" type="mail" placeholder="Entrez votre email" class="form-control" name="email" formControlName="email"  [(ngModel)]="user.email" required >
+								<div *ngIf="email.invalid && (email.dirty || email.touched)"
+								class="alert alert-danger">
+
+									<div *ngIf="email.errors.required">
+										Champ Obligatoire
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="mobile">Numéro de téléphone</label>
+								<input id="mobile" type="text" placeholder="Entrez votre numero de téléphone" class="form-control" name="mobile" formControlName="mobile"  [(ngModel)]="user.mobile" required >
+								<div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)"
+								class="alert alert-danger">
+
+									<div *ngIf="mobile.errors.required">
+										Champ Obligatoire
+									</div>
+
+								</div>
+							</div> 
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+
+							<div class="form-group">
+								<label for="password">Mot de passe</label>
+								<input type="password" id="password" class="form-control" placeholder="Entrez votre mot de passe" 
+								formControlName="password" [(ngModel)]="user.password"   required   >
+
+								<div *ngIf="password.invalid && (password.dirty || password.touched)"
+								class="alert alert-danger">
+
+									<div *ngIf="password.errors.required">
+										le mot de passe est obligatoire
+									</div>
+									<div *ngIf="password.errors.minlength">
+										le mot de passe doit avoir au moins 4 caractères
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="passwordVerif">Confirmation du mot de passe</label>
+								<input type="password" id="passwordVerif" class="form-control" placeholder="Entrez à nouveau votre mot de passe" 
+								formControlName="passwordVerif" required >
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div *ngIf="heroForm.errors?.identityRevealed && (heroForm.touched || heroForm.dirty)" class="cross-validation-error-message alert alert-danger text-center" >
+								les mots de passes doivent être identique
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="pseudo">Votre pseudo</label>
+								<input type="Texte" id="pseudo" class="form-control" placeholder="Entrez votre pseudo" 
+								formControlName="pseudo" [(ngModel)]="user.address.pseudo"   required   >
+
+								<div *ngIf="pseudo.invalid && (pseudo.dirty || pseudo.touched)"
+								class="alert alert-danger">
+
+									<div *ngIf="pseudo.errors.required">
+										champ obligatoire
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="pseudo">Date de naissance</label>
+								<input type="Date" id="dateOfBirth" class="form-control" placeholder="Entrez votre date de naissance" 
+								formControlName="dateOfBirth" [(ngModel)]="user.address.dateOfBirth"   required   >
+
+								<div *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)"
+								class="alert alert-danger">
+
+									<div *ngIf="dateOfBirth.errors.required">
+										champ obligatoire
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="numRue">Numéro de la rue</label>
+								<input type="text" id="numRue" class="form-control" placeholder="Entrez le numero de votre rue" 
+								formControlName="numRue" [(ngModel)]="user.address.numRue"   required   >
+
+								<div *ngIf="numRue.invalid && (numRue.dirty || numRue.touched)"
+								class="alert alert-danger">
+
+									<div *ngIf="numRue.errors.required">
+										champ obligatoire
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="nomRue">Nom de la rue</label>
+								<input type="text" id="nomRue" class="form-control" placeholder="Entrez le nom de votre rue" 
+								formControlName="nomRue" [(ngModel)]="user.address.nomRue"   required   >
+
+								<div *ngIf="nomRue.invalid && (nomRue.dirty || nomRue.touched)"
+								class="alert alert-danger">
+
+									<div *ngIf="nomRue.errors.required">
+										champ obligatoire
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="cp">Code postal</label>
+								<input type="text" id="cp" class="form-control" placeholder="Entrez votre code postal" 
+								formControlName="cp" [(ngModel)]="user.address.cp"   required   >
+
+								<div *ngIf="cp.invalid && (cp.dirty || cp.touched)"
+								class="alert alert-danger">
+
+									<div *ngIf="cp.errors.required">
+										champ obligatoire
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="ville">Ville</label>
+								<input type="text" id="ville" class="form-control" placeholder="Entrez votre ville" 
+								formControlName="ville" [(ngModel)]="user.address.ville"   required   >
+
+								<div *ngIf="ville.invalid && (ville.dirty || ville.touched)"
+								class="alert alert-danger">
+
+									<div *ngIf="ville.errors.required">
+										champ obligatoire
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--
+					<div class="form-group">
+						<label for="file">Votre ficher :</label>
+						<input type="file" id="file" class="form-control" formControlName="file" [(ngModel)]="user.file" multiple="multiple" (change)="onFileChange($event)" required   >
+
+						<div *ngIf="file.invalid && (file.dirty || file.touched)"
+						class="alert alert-danger">
+
+							<div *ngIf="file.errors.required">
+								champ obligatoire
+							</div>
+
+						</div>
+					</div>
+				</div>
+				-->		
+
+					<div class="row">
+						<div class="col-md-2">
+							<button type="submit" class="btn btn-primary"
+							[disabled]="heroForm.invalid">Valider</button>
+						</div>
+						<div class="col-md-2">
+							<button type="button" class="btn btn-default"
+							(click)="formDir.resetForm({})">Réinitialiser</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
 	</mat-tab>
 </mat-tab-group>

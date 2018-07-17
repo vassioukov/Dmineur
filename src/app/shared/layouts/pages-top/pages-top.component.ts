@@ -36,12 +36,16 @@ export class PagesTopComponent implements OnInit {
     if(this.userService.isConnected){
       switch(this.userService.userConnected.profile){
         case "admin":
-          this.notificationSubscriber = IntervalObservable.create(60000).subscribe(n => this.getAdminNotifications());
+          this.notificationSubscriber = IntervalObservable.create(10000).subscribe(n => this.getAdminNotifications());
           this.initializationSubscriber.unsubscribe();
           break;
         case "agent":
+          this.notificationSubscriber = IntervalObservable.create(1000).subscribe(n => this.getAgentNotifications());
+          this.initializationSubscriber.unsubscribe();
           break;
         case "client":
+          this.notificationSubscriber = IntervalObservable.create(1000).subscribe(n => this.getClientNotifications());
+          this.initializationSubscriber.unsubscribe();
            break;
       }
     }
@@ -63,6 +67,30 @@ export class PagesTopComponent implements OnInit {
   //Récupère les notifications de l'administrateur
   getAdminNotifications(){
     this.userService.getAdminNotifications().subscribe(
+      res => {
+        this.notificationDemandeInscriptions = res;
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+
+  //Récupère les notifications d'un agent
+  getAgentNotifications(){
+    this.userService.getAgentNotifications().subscribe(
+      res => {
+        this.notificationDemandeInscriptions = res;
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+
+  //Récupère les notifications d'un client'
+  getClientNotifications(){
+    this.userService.getClientNotifications().subscribe(
       res => {
         this.notificationDemandeInscriptions = res;
       },

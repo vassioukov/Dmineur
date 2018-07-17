@@ -3,7 +3,11 @@ import { fakeAgent } from '../../shared/models/fake-session/fakeAgent';
 import { FAKEAGENTITEMS } from '../../shared/models/fake-session/fakeAgents';
 import { User } from './models/users.modele';
 import { Subscription } from 'rxjs';
-import { UserService } from './services/user.service';
+//import { UserService } from './services/user.service';
+import { Router } from '@angular/router';
+import { Agent } from '../../shared/models/utilisateur/agent';
+import { UserService } from '../../core-module/services/userService/user.service';
+
 
 @Component({
   selector: 'app-management-agents',
@@ -13,27 +17,62 @@ import { UserService } from './services/user.service';
 
 export class ManagementAgentsComponent implements OnInit, OnDestroy {
 
-	  agentList:fakeAgent[] = FAKEAGENTITEMS;
-    users: User[];
-    userSubscription: Subscription;
+  agents:Agent[];
+  print=false;
+  users: User[];
+  agentsSubscription: Subscription;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private router: Router) { }
 
   ngOnInit() {
-    this.userSubscription = this.userService.userSubject.subscribe(
-      (users: User[]) => {
-        this.users = users;
+    console.log("here");
+    this.userService.getAllAgents().subscribe(
+      res => {
+        this.agents = res;
+      }, err => {
+        console.error(err);
+      }
+    )
+    this.agentsSubscription = this.userService.agentsSubject.subscribe(
+      (agents: Agent[]) => {
+        this.agents = agents;
       }
     );
-    this.userService.emitUsers();
+   // this.userService.emitUsers();
   }
 
+
+
+
+
+
+
+
   ngOnDestroy() {
-    this.userSubscription.unsubscribe();
+    this.agentsSubscription.unsubscribe();
+  }
+
+  onDeleteConfirm(user: User) {
+      if(confirm('Etes-vous sûr de vouloir supprimer ce conseiller ?')) {
+        this.onDeleteUser(user);
+      } else {
+        return null;
+      }
   }
 
   onDeleteUser(user: User) {
-    this.userService.removeUser(user);
+   // this.userService.removeUser(user);
   }
 
+  onEditUser(i: number) {
+    if(!this.print){
+      this.toggle();
+    }
+    //this.userService.changeUser(i);
+    this.router.navigate(["./admin/managementAgents/new-user/"+i]);
+  }
+
+  toggle(){
+    this.print=!this.print;
+  }
 }

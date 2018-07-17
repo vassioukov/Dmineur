@@ -27,7 +27,6 @@ import { SharedModule } from './shared/shared.module';
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
 import localeEnExtra from '@angular/common/locales/extra/en';
-import { CheckValidationComponent } from './bank/check-validation/check-validation.component';
 
 registerLocaleData(localeEn, 'en-US', localeEnExtra);
 
@@ -54,8 +53,7 @@ registerLocaleData(localeEn, 'en-US', localeEnExtra);
   ],
   providers: [ { provide: LOCALE_ID, useValue: 'fr' } ],
   declarations: [
-    AppComponent,
-    CheckValidationComponent
+    AppComponent
   ],
   bootstrap: [AppComponent]
 })

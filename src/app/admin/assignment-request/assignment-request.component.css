@@ -26,3 +26,9 @@ i:hover.iStyleAsA {
 mat-form-field {
 	width: 140px;
 }
+
+@media (min-width: 768px) {
+  .right-filter {
+      right: -60px;
+  }
+}
