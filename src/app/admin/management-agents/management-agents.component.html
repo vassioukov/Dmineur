@@ -18,11 +18,11 @@
 						<div class="col-md-4">
 							<div *ngIf="!print">
 								<i _ngcontent-c1="" aria-hidden="true" class="fa fa-user-plus" title="add">&nbsp;</i>
-							<a routerLink="./new-agent"  (click)="toggle()">     Ajouter un agent</a>
+								<a routerLink="./new-agent"  (click)="toggle()">     Ajouter un agent</a>
 							</div>
 							<div *ngIf="print">
 								<i _ngcontent-c2="" class="fa fa-undo" aria-hidden="true" title="back" ></i>
-							<a routerLink="/admin/managementAgents"  (click)="toggle()">     Retour</a>
+								<a routerLink="/admin/managementAgents"  (click)="toggle()">     Retour</a>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -39,21 +39,22 @@
 						</div>
 						<ul class="list-group">
 							<li class="list-group-item" *ngFor="let agent of agents; let i = index">
-								{{agent.firstName}}  {{agent.lastName}}
-								<button class="btn btn-default pull-right" (click)="onDeleteConfirm(user)">
-									<span class="fa fa-trash" style="font-size:24px;color:red"></span></button>
-									<button class="btn btn-default pull-right" (click)="onEditAgent(agent.id)">
-										<span class="fa fa-pencil" style="font-size:24px;color:blue"></span>
-									</button>
-								</li>
-							</ul></th>
-						</tr>
-					</thead>
-					<tbody>
-						
-					</tbody>
-				</table>
-			</section>
-		</div>
+								<button class="btn btn-default pull-right" (click)="onDeleteConfirm(agent)">
+									<span class="fa fa-trash" style="font-size:24px;color:red"></span>
+								</button>
+								<button class="btn btn-default pull-right" (click)="onEditUser(agent.id)">
+									<span class="fa fa-pencil" style="font-size:24px;color:blue"></span>
+								</button>
+								<h2> {{ agent.firstName }} {{ agent.lastName }} </h2><h6> {{ agent.email }} - {{ agent.telephone }} </h6>
+							</li>
+						</ul></th>
+					</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+		</section>
 	</div>
+</div>
 

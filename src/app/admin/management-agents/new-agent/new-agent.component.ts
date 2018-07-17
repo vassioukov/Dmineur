@@ -103,7 +103,8 @@ export class NewAgentComponent implements OnInit {
 			formValue['address'],
 			formValue['passwordVerif'],
 			formValue['registrationNumber'],
-			formValue['dateStartContract']
+			formValue['dateStartContract'],
+			formValue['clients'],
 			);
 		if (this.id == null) {
 			this.userService.addAgent(newAgent).subscribe(
@@ -117,7 +118,7 @@ export class NewAgentComponent implements OnInit {
 			this.router.navigate(['/admin/managementAgents']);
 		}else{
 
-			this.userService.changeAgent(this.id, newAgent);
+			//this.userService.changeAgent(this.id, newAgent);
 			this.router.navigate(['/admin/managementAgents']);
 		}
 	}

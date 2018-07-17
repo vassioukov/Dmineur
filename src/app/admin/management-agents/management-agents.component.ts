@@ -46,7 +46,7 @@ export class ManagementAgentsComponent implements OnInit {
   }
 
   onDeleteAgent(agent: Agent) {
-    this.userService.removeAgent(agent);
+    //this.userService.removeAgent(agent);
   }
 
   onEditAgent(i: number) {

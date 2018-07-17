@@ -6,6 +6,12 @@ const routes: Routes = [
 	{
 		path : 'client',
 		component: ClientComponent,
+        children: [
+            { path: '', redirectTo: 'consult-compte', pathMatch: 'full' },
+            { path: 'consult-compte', loadChildren:'./consult-compte/consult-compte.module#ConsultCompteModule'},
+            { path: 'addAccount', loadChildren:'./add-compte/add-compte.module#AddCompteModule'},
+                       
+        ]
 	}
 ];
 

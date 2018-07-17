@@ -1,0 +1,18 @@
+<form (ngSubmit)="creationDemandeOuvertureCompte()" class="formClient">
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="TypeCompte">Type de compte</label>
+				<select [(ngModel)]="compte.remunerateur" name="remunerateur">
+					<option value=false>Non rémunérateur</option>
+					<option value=true>Rémunérateur</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-md-6">
+			
+			<button type="submit" class="btn btn-primary" >Demander</button>
+		</div>
+	</div>
+</form>
