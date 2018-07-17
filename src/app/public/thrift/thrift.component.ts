@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./thrift.component.css']
 })
 export class ThriftComponent implements OnInit {
+	imgEpargne: string = 'assets/images/epargne.png';
 
   constructor() { }
 
