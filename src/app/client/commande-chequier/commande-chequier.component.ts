@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../core-module/services/userService/user.service';
+import { Compte } from '../../shared/models/compte/compte';
 
 @Component({
   selector: 'app-commande-chequier',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommandeChequierComponent implements OnInit {
 
-  constructor() { }
+ compte:Compte = Compte.defaultCompte();
+  comptes: Compte[];
+  constructor(private userService : UserService) { }
 
   ngOnInit() {
+  	this.userService.getCompteClient().subscribe(
+  		res => {
+  			this.comptes= res;
+  		}, err => {
+  			console.error(err);
+  		}
+  	);
+  }
+  creationDemandeChequier(){
+  	this.userService.creationDemandeChequier(this.compte).subscribe(
+			res => {
+				console.log(res);
+			}, err => {
+				console.error(err);
+			}
+		);
   }
 
 }

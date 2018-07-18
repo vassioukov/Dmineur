@@ -9,9 +9,7 @@ import {UserService} from '../../core-module/services/userService/user.service';
 })
 export class ConsultCompteComponent implements OnInit {
 
-
   comptes: Compte[];
-  id;
 
   constructor(private userService : UserService) { }
 
@@ -24,6 +22,5 @@ export class ConsultCompteComponent implements OnInit {
   		}
   	);
   }
-  }
-
 }
+

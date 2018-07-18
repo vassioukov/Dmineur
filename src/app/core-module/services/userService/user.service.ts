@@ -425,5 +425,15 @@ export class UserService {
         })
       );
   }
+  creationDemandeChequier(compte):Observable<Compte[]>{
+     return this.http.get(demineurApiUrl+"/clients/"+this.userConnected.id+"/comptes", compte).pipe(
+        map((res:any) => {
+          return res;
+        }),
+        catchError<any,never>((err) => {
+          return err;
+        })
+    );
+  }
 
 }
