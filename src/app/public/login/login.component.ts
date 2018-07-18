@@ -9,12 +9,14 @@ import { Utilisateur } from '../../shared/models/utilisateur/utilisateur';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  user
+  user;
+  displayError:Boolean = false;
 
   constructor(public userService: UserService) { 
   }
 
   login(loginForm){
+    this.displayError = false;
     let user = Utilisateur.defaultUser();
     user.email = loginForm.value.email;
     user.password = loginForm.value.password;
@@ -32,6 +34,8 @@ export class LoginComponent {
         }
         this.userService.routing();
       }, err => {
+        console.log("ok");
+        this.displayError = true;
         console.error(err);
       }
     );

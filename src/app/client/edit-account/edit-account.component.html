@@ -1,0 +1,238 @@
+<form [formGroup]="heroForm" #formDir="ngForm" (ngSubmit)="updateClient()" class="formClient">
+
+
+			<div class="cross-validation" [class.cross-validation-error]="heroForm.errors?.identityRevealed && (heroForm.touched || heroForm.dirty)">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+
+							<label for="firstName">Prénom</label>
+							<input id="firstName" type="text" placeholder="Entrez votre prénom" class="form-control" formControlName="firstName" name="firstName" [(ngModel)]="client.firstName" required>
+							<div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="firstName.errors.required">
+									Champ Obligatoire
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="lastName">Nom</label>
+							<input id="lastName" type="text" placeholder="Entrez votre nom" class="form-control" name="lastName" formControlName="lastName"  [(ngModel)]="client.lastName" required>
+							<div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="lastName.errors.required">
+									Champ Obligatoire
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input id="email" type="mail" placeholder="Entrez votre email" class="form-control" name="email" formControlName="email"  [(ngModel)]="client.email" required >
+							<div *ngIf="email.invalid && (email.dirty || email.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="email.errors.required">
+									Champ Obligatoire
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="mobile">Numéro de téléphone</label>
+							<input id="mobile" type="text" placeholder="Entrez votre numero de téléphone" class="form-control" name="mobile" formControlName="mobile"  [(ngModel)]="client.mobile" required >
+							<div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="mobile.errors.required">
+									Champ Obligatoire
+								</div>
+
+							</div>
+						</div> 
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label for="password">Mot de passe</label>
+							<input type="password" id="password" class="form-control" placeholder="Entrez votre mot de passe" 
+							formControlName="password" [(ngModel)]="client.password"   required   >
+
+							<div *ngIf="password.invalid && (password.dirty || password.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="password.errors.required">
+									le mot de passe est obligatoire
+								</div>
+								<div *ngIf="password.errors.minlength">
+									le mot de passe doit avoir au moins 4 caractères
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="passwordVerif">Confirmation du mot de passe</label>
+							<input type="password" id="passwordVerif" class="form-control" placeholder="Entrez à nouveau votre mot de passe" 
+							formControlName="passwordVerif" required >
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div *ngIf="heroForm.errors?.identityRevealed && (heroForm.touched || heroForm.dirty)" class="cross-validation-error-message alert alert-danger text-center" >
+							les mots de passes doivent être identique
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="pseudo">Votre pseudo</label>
+							<input type="Texte" id="pseudo" class="form-control" placeholder="Entrez votre pseudo" 
+							formControlName="pseudo" [(ngModel)]="client.address.pseudo"   required   >
+
+							<div *ngIf="pseudo.invalid && (pseudo.dirty || pseudo.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="pseudo.errors.required">
+									champ obligatoire
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="pseudo">Date de naissance</label>
+							<input type="Date" id="dateOfBirth" class="form-control" placeholder="Entrez votre date de naissance" 
+							formControlName="dateOfBirth" [(ngModel)]="client.address.dateOfBirth"   required   >
+
+							<div *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="dateOfBirth.errors.required">
+									champ obligatoire
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="numRue">Numéro de la rue</label>
+							<input type="text" id="numRue" class="form-control" placeholder="Entrez le numero de votre rue" 
+							formControlName="numRue" [(ngModel)]="client.address.numRue"   required   >
+
+							<div *ngIf="numRue.invalid && (numRue.dirty || numRue.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="numRue.errors.required">
+									champ obligatoire
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="nomRue">Nom de la rue</label>
+							<input type="text" id="nomRue" class="form-control" placeholder="Entrez le nom de votre rue" 
+							formControlName="nomRue" [(ngModel)]="client.address.nomRue"   required   >
+
+							<div *ngIf="nomRue.invalid && (nomRue.dirty || nomRue.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="nomRue.errors.required">
+									champ obligatoire
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="cp">Code postal</label>
+							<input type="text" id="cp" class="form-control" placeholder="Entrez votre code postal" 
+							formControlName="cp" [(ngModel)]="client.address.cp"   required   >
+
+							<div *ngIf="cp.invalid && (cp.dirty || cp.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="cp.errors.required">
+									champ obligatoire
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="ville">Ville</label>
+							<input type="text" id="ville" class="form-control" placeholder="Entrez votre ville" 
+							formControlName="ville" [(ngModel)]="client.address.ville"   required   >
+
+							<div *ngIf="ville.invalid && (ville.dirty || ville.touched)"
+							class="alert alert-danger">
+
+								<div *ngIf="ville.errors.required">
+									champ obligatoire
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--
+				<div class="form-group">
+					<label for="file">Votre ficher :</label>
+					<input type="file" id="file" class="form-control" formControlName="file" [(ngModel)]="user.file" multiple="multiple" (change)="onFileChange($event)" required   >
+
+					<div *ngIf="file.invalid && (file.dirty || file.touched)"
+					class="alert alert-danger">
+
+						<div *ngIf="file.errors.required">
+							champ obligatoire
+						</div>
+
+					</div>
+				</div>
+			</div>
+			-->		
+
+				<div class="row">
+					<div class="col-md-2">
+						<button type="submit" class="btn btn-primary"
+						[disabled]="heroForm.invalid">Valider</button>
+					</div>
+					<div class="col-md-2">
+						<button type="button" class="btn btn-default"
+						(click)="formDir.resetForm({})">Réinitialiser</button>
+					</div>
+
+
+					------
+					A faire : Générer demande MAJ données
+					------
+				</div>
+			</div>
+		</form>
