@@ -1,28 +1,27 @@
-<section class="container">
-	<div class="row">
-		<div class="col-md-3 col-sm-6 col-xs-12">
-			Statut : <br>
-		</div>
-		<div class="col-md-9">
-			<label for="tousTraite" >Tous</label>
-			<input type="radio" id="tousTraite" [(ngModel)]="filter_demande_traite" value="all" name="filter_demande_traite"/>
-			<label for="enCours">En cours</label>
-			<input type="radio" id="enCours" [(ngModel)]="filter_demande_traite" value="enCours" name="filter_demande_traite"/>
-			<label for="traitee">Traitée</label>
-			<input type="radio" id="traitee" [(ngModel)]="filter_demande_traite" value="traitée" name="filter_demande_traite"/>
-		</div>
-		<div class="col-xs-4 col-md-4">
-			<div class="row">
-				<div class="col-md-3">
-					Tri : <br>
+<div class="row">
+	<div class="col-md-6">
+		<fieldset >
+			<legend style="width:auto; margin-bottom: 0px; font-size: 12px; font-weight: bold; color: #1f497d;">Filtrer par status d'affectation</legend>
+			<mat-radio-group class="example-radio-group" [(ngModel)]="filter_demande_traite" class="row">
+				<div class="col-md-4 col-xs-4">
+					<mat-radio-button class="example-radio-button" id="all" value="all" name="filter_demande_traite">
+						Tous
+					</mat-radio-button>
 				</div>
-				<div class="col-md-9">
-					<input type="date" name="creationDate">
+				<div class="col-md-4 col-xs-4">
+					<mat-radio-button class="example-radio-button" id="enCours" value="enCours" name="filter_demande_traite">
+						En cours
+					</mat-radio-button>
 				</div>
-			</div>
-		</div>
+				<div class="col-md-4 col-xs-4">
+					<mat-radio-button class="example-radio-button" id="traitee" value="traitée" name="filter_demande_traite">
+						Traitée
+					</mat-radio-button>	
+				</div>
+			</mat-radio-group>
+		</fieldset>
 	</div>
-</section>	
+</div>
 <table class="table">
 	<thead>
 		<tr>

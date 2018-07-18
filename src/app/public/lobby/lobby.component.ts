@@ -7,4 +7,9 @@ import { DeviseService } from '../../core-module/services/deviseService/devise.s
   styleUrls: ['./lobby.component.css'],
 })
 export class LobbyComponent {
+	imgprincipal: string = 'assets/images/logo/logo_496px.png';
+	imgcarte: string = 'assets/images/carete.jpg';
+	imgbanque : string ='assets/images/passez-a-la-banque-en-ligne1.jpg';
+	imgfond : string ='assets/images/fond-degrade.jpg';
+
 }

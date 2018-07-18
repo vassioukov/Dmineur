@@ -3,6 +3,7 @@ import { UserService } from '../../core-module/services/userService/user.service
 import { DemandeInscription } from '../../shared/models/demande/demandeInscription/demandeInscription';
 import { DemandeMAJDonnee } from '../../shared/models/demande/demandeClient/demandeMAJDonnee';
 import { Router } from '@angular/router';
+import { Client } from '../../shared/models/utilisateur/client';
 
 @Component({
   selector: 'app-management-clients-by-agent',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./management-clients-by-agent.component.css']
 })
 export class ManagementClientsByAgentComponent implements OnInit {
+  clients:Client[];
   filter_demande_traite="all";
   filter_demande_maj_traite="all";
 
@@ -32,6 +34,14 @@ export class ManagementClientsByAgentComponent implements OnInit {
         this.demandesMAJDonnees = res;
       },
       err => {
+        console.error(err);
+      }
+    );
+
+    this.userService.getAllClients().subscribe(
+      res => {
+        this.clients = res;
+      }, err => {
         console.error(err);
       }
     );

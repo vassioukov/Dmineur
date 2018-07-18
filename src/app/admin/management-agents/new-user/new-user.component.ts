@@ -2,7 +2,6 @@ import { Directive, Component, OnInit } from '@angular/core';
 import { UserService } from '../../../core-module/services/userService/user.service';
 
 import { Router } from '@angular/router';
-import { User } from '../models/users.modele';
 import { Agent } from '../../../shared/models/utilisateur/agent';
 import { Address } from '../../../shared/models/utilisateur/address';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';

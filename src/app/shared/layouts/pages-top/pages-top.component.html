@@ -1,4 +1,4 @@
-<div class="pages-top ">
+<div id="pages-top" class="pages-top ">
   <div class="avatar-wrap">
     <div class="avatar">
       <img src="{{avatarImgSrc}}" alt="avatar">
@@ -15,7 +15,7 @@
     <i class="fa fa-indent fa-fw" *ngIf="!sidebarToggle"></i>
   </div>
 
-  <div id="container" class="msg-tips-wrap " >
+  <div id="container" class="msg-tips-wrap " *ngIf="userService.userConnected.profile!='guest'">
     <div class="msg-entrance ring" (click)="toggle()" i18n-notifTitle title="Liste de notifications">
       <span class="fa fa-bell fa-fw"></span>
       <span class="badge" *ngIf="tip.ring && notificationDemandeInscriptions.length>0"></span>
@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<div id="under" [hidden]="!showNotifications" class="successfully-saved" >
+<div id="under" [hidden]="!showNotifications" class="successfully-saved" *ngIf="userService.userConnected.profile!='guest'">
   <mat-tab-group > 
     <mat-tab >
       <div class="demandeTitre" *mat-tab-label>

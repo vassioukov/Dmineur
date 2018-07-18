@@ -1,0 +1,43 @@
+#plop{
+	height: 220px;
+	width: 220px;
+	margin-left: 30px
+}
+
+#carte{
+height: 240px;
+	width: 340px;
+	margin-top :50px;
+	margin-left : 20px;
+	margin-right : 50px;
+
+}
+#paraf1{
+	max-width : 1000px;
+	margin-left: 30px
+}
+
+#paraf2{
+	margin-top :70px;
+	float:right;
+	max-width: 470px;
+}
+
+#accroche{
+	 margin-bottom: 40px;
+}
+
+#paraf3{
+	
+float:left;
+
+	margin-top:70px;
+	margin-bottom: 50px;
+}
+
+#banque{
+		height: 300px;
+	width:440px;
+	float:left;
+	margin-left: 30px;
+}

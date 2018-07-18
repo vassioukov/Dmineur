@@ -36,7 +36,7 @@ export let MENU_ITEM = [
     Routes client
     */
     {
-        path: 'viewAccount',
+        path: 'viewBankAccounts',
         title: 'Consulter comptes',
         icon: 'eye',
         profile:'client'
@@ -113,10 +113,12 @@ export let MENU_ITEM = [
         icon: 'folder-open',
         profile:'admin'
     },
+    /*
     {
         path: 'managementClients',
         title: 'Gestion des clients',
         icon: 'users',
         profile:'admin'
     },
+    */
 ];

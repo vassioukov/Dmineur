@@ -19,9 +19,8 @@ import { CurrencyConverterComponent } from './components/currency-converter/curr
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MatFormFieldModule, MatInputModule } from '@angular/material/';
+import { MatNativeDateModule, MatFormFieldModule, MatInputModule, MatDialogModule } from '@angular/material/';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
 
 @NgModule({
   imports: [
@@ -37,7 +36,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatNativeDateModule,
     MatFormFieldModule, 
     MatInputModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ],
   declarations: [
     CardComponent,
@@ -75,7 +75,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatNativeDateModule,
     MatFormFieldModule, 
     MatInputModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ]
 })
 export class SharedModule { }

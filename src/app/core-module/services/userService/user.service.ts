@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Session } from '../../../shared/models/fake-session/session';
 import { Utilisateur } from '../../../shared/models/utilisateur/utilisateur';
 import { Agent } from '../../../shared/models/utilisateur/agent';
 import { Client } from '../../../shared/models/utilisateur/client';
@@ -11,6 +10,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, of as observableOf, Subject } from 'rxjs';
+import { _throw } from 'rxjs/observable/throw';
 
 const port = ":8080";
 const projectPath = "/Dmineur_Back_End_v2"
@@ -24,6 +24,7 @@ export class UserService {
 	public userConnected:Utilisateur = Utilisateur.defaultUser();
 	public isConnected: boolean = false;
   agentsSubject = new Subject<Agent[]>();
+  hasTriedToDeleteSubject = new Subject<String>();
 
   //Emet la liste des agents à jour
   emitAgents() {
@@ -35,6 +36,17 @@ export class UserService {
       }
     )
   }
+
+  emitErrorHasTriedToDelete(type:String){
+    let msg:String;
+    switch(type){
+      case 'deleteAgent':
+        msg = 'Il est interdit de supprimer une agent qui est affecté à au moins un client. Veuillez affecter les clients à un autre agent pour continuer';
+        break;
+    }
+    this.hasTriedToDeleteSubject.next(msg);
+  }
+
 
 	public getUserConnected(){
 		return this.userConnected;
@@ -62,7 +74,7 @@ export class UserService {
 			    return this.isConnected;
 			}),
 			catchError<boolean,never>((err) => {
-				return err;
+				return _throw(err);
 			})
 		);
   	}
@@ -74,37 +86,63 @@ export class UserService {
   				return res;
   			}),
   			catchError<Utilisateur,never>((err) => {
-  				return err;
+          return _throw(err);
   			})
   		);
   	}
+
+    updateClient(client: Client){
+      return this.http.put(demineurApiUrl+"/clients/"+client.id, client).pipe(
+        map((res:Client) => {
+          return res;
+        }),
+        catchError<Client,never>((err) => {
+          return _throw(err);
+        })
+      );
+    }
 
     addAgent(agent: Agent) {
       
       //this.agents.push(agent);
       //this.emitAgents();
       
-      return this.http.post(demineurApiUrl+"/admin/agents/", agent).pipe(
+      return this.http.post(demineurApiUrl+"/admin/agents", agent).pipe(
         map((res:Agent) => {
           //Emit event to refresh an agents's list
           this.emitAgents();
           return res;
         }),
         catchError<Agent,never>((err) => {
-          return err;
+          return _throw(err);
         })
       );
     }
 
     updateAgent(agent: Agent){
-      return this.http.put(demineurApiUrl+"/admin/agents/", agent).pipe(
+      return this.http.put(demineurApiUrl+"/admin/agents", agent).pipe(
         map((res:Agent) => {
           //Emit event to refresh an agents's list
           this.emitAgents();
           return res;
         }),
         catchError<Agent,never>((err) => {
-          return err;
+          return _throw(err);
+        })
+      );
+    }
+
+    deleteAgent(agent: Agent){
+      return this.http.delete(demineurApiUrl+"/admin/agents/"+agent.id).pipe(
+        map((res:any) => {
+          console.log("res deleteAgent");
+          this.emitAgents();
+          return res;
+        }),
+        catchError<any,never>((err) => {
+          console.log("err deleteAgent");
+          this.emitErrorHasTriedToDelete('deleteAgent');
+          return _throw(err);
         })
       );
     }
@@ -116,7 +154,20 @@ export class UserService {
           return res;
         }),
         catchError<Agent,never>((err) => {
-          return err;
+          return _throw(err);
+        })
+        );
+    }
+
+    getClient(id : number){
+      console.log(id);
+      return this.http.get(demineurApiUrl+"/clients/"+id).pipe(
+        map((res:Client) => {
+          console.log(res);
+          return res;
+        }),
+        catchError<Client,never>((err) => {
+          return _throw(err);
         })
         );
     }
@@ -158,7 +209,7 @@ export class UserService {
   				return res;
   			}),
   			catchError<DemandeInscription[],never>((err) => {
-  				return err;
+          return _throw(err);
   			})
   		);
 	}
@@ -170,7 +221,7 @@ export class UserService {
           return res;
         }),
         catchError<DemandeInscription,never>((err) => {
-          return err;
+          return _throw(err);
         })
       );
   }
@@ -182,7 +233,7 @@ export class UserService {
           return res;
         }),
         catchError<DemandeInscription,never>((err) => {
-          return err;
+          return _throw(err);
         })
       );
   }
@@ -194,7 +245,7 @@ export class UserService {
   				return res;
   			}),
   			catchError<Agent[],never>((err) => {
-  				return err;
+          return _throw(err);
   			})
   		);
 	}
@@ -206,7 +257,7 @@ export class UserService {
   				return res;
   			}),
   			catchError<Client[],never>((err) => {
-  				return err;
+          return _throw(err);
   			})
   		);
 	}
@@ -218,7 +269,7 @@ export class UserService {
   				return res;
   			}),
   			catchError<boolean,never>((err) => {
-  				return err;
+          return _throw(err);
   			})
   		);
 	}
@@ -230,7 +281,7 @@ export class UserService {
           return res;
         }),
         catchError<DemandeInscription[],never>((err) => {
-          return err;
+          return _throw(err);
         })
     );
   }
@@ -242,7 +293,7 @@ export class UserService {
           return res;
         }),
         catchError<DemandeOuvertureCompte[],never>((err) => {
-          return err;
+          return _throw(err);
         })
     );
   }
@@ -258,7 +309,7 @@ export class UserService {
           return res;
         }),
         catchError<DemandeMAJDonnee[],never>((err) => {
-          return err;
+          return _throw(err);;
         })
     );
   }
@@ -277,7 +328,7 @@ export class UserService {
           return res;
         }),
         catchError<DemandeInscription,never>((err) => {
-          return err;
+          return _throw(err);;
         })
     );
   }
@@ -297,7 +348,7 @@ export class UserService {
           return res;
         }),
         catchError<DemandeMAJDonnee[],never>((err) => {
-          return err;
+          return _throw(err);;
         })
     );
   }
@@ -313,7 +364,7 @@ export class UserService {
           return res;
         }),
         catchError<DemandeOuvertureCompte,never>((err) => {
-          return err;
+          return _throw(err);;
         })
     );
   }
@@ -329,7 +380,7 @@ export class UserService {
           return res;
         }),
         catchError<DemandeChequier,never>((err) => {
-          return err;
+          return _throw(err);;
         })
     );
   }
@@ -345,7 +396,7 @@ export class UserService {
           return res;
         }),
         catchError<DemandeMAJDonnee,never>((err) => {
-          return err;
+          return _throw(err);;
         })
     );
   }
@@ -359,7 +410,7 @@ export class UserService {
           return res;
         }),
         catchError<any,never>((err) => {
-          return err;
+          return _throw(err);;
         })
     );
   }
@@ -371,7 +422,7 @@ export class UserService {
           return res;
         }),
         catchError<any,never>((err) => {
-          return err;
+          return _throw(err);;
         })
     );
   }
@@ -383,7 +434,7 @@ export class UserService {
           return res;
         }),
         catchError<any,never>((err) => {
-          return err;
+          return _throw(err);;
         })
     );
   }
@@ -394,7 +445,7 @@ export class UserService {
           return res;
         }),
         catchError<any,never>((err) => {
-          return err;
+          return _throw(err);;
         })
     );
   }
@@ -405,7 +456,7 @@ export class UserService {
           return res;
         }),
         catchError<any,never>((err) => {
-          return err;
+          return _throw(err);;
         })
     );
   }

@@ -53,7 +53,7 @@ registerLocaleData(localeEn, 'en-US', localeEnExtra);
   ],
   providers: [ { provide: LOCALE_ID, useValue: 'fr' } ],
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   bootstrap: [AppComponent]
 })

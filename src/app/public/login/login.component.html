@@ -18,5 +18,6 @@
       <button class="btn btn-lg btn-primary" type="submit" [disabled]="!loginForm.form.valid">Connexion</button>
       <br><br>
     </div>
+    <alert type="warning" *ngIf="displayError">Votre email ou mot de passe est incorrect</alert>
   </div>
 </form>

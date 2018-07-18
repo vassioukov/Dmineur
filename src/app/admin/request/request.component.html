@@ -13,16 +13,62 @@ Email du client : {{request.client.email}}
 Prénom : {{request.client.firstName}}
 <br>
 Nom : {{request.client.lastName}}
+
+Agent actuel : {{request.client.agent.firstName}}
 <br>
-....
+<br>
 
-....
 
-<select class="form-control" id="agents"
-        required
-        [(ngModel)]="request.agent" name="agentSelected"
-        #agentAffected="ngModel">
-  <option *ngFor="let agent of agents" [ngValue]="agent">{{agent.email}} | {{agent.firstName}} {{agent.lastName}} </option>
-</select>
 
-<button (click)="affect()" class="btn btn-primary">Affecter</button>
+<h3 class="text-center"></h3>
+<div class="row">
+	<div class="col-md-6 col-xs-12">
+		 <span *ngIf="request.type_demande=='demandeInscription'">
+		 	Demande d'inscription
+		 </span>
+	</div>
+	<div class="col-md-6 col-xs-12">
+		 <span *ngIf="request.demande_traite=='0'">
+		 	En cours
+		 </span>
+		 <span *ngIf="request.demande_traite=='1'">
+		 	Traitée
+		 </span>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6 col-xs-12">
+		
+	</div>
+	<div class="col-md-6 col-xs-12">
+		
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6 col-xs-12">
+		
+	</div>
+	<div class="col-md-6 col-xs-12">
+		
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4 col-xs-10">
+				
+		<label for="agents">Affectation du client</label>
+		<select class="form-control" id="agents"
+		        required
+		        [(ngModel)]="request.agent" name="agentSelected"
+		        #agentAffected="ngModel">
+		  <option *ngFor="let agent of agents" [ngValue]="agent">{{agent.email}} | {{agent.firstName}} {{agent.lastName}} </option>
+		</select>
+
+	</div>
+	<div class="col-md-2">
+		<button (click)="affect()" class="btn btn-primary">Affecter</button>
+		
+	</div>
+</div>
