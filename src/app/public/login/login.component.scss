@@ -48,19 +48,18 @@
         width: 100%;
     }
 }
-
 #fond {
 background-image:url('/assets/images/fond-degrade.jpg');
- /* On met en place le fond d'écran */
+ /* On met en place le fond d'écran /
 
- max-height :600px;
- min-width: 300px;
+ max-height :500px;
+ min-width: 100px;
  max-width : 600px;
- /* On indique un redimensionnement proportionnel */
- width: 90%;
- height: auto;
- /* L'image est positionnée en haut à gauche */
- position: fixed;
-margin-top : 10vh;
+ / On indique un redimensionnement proportionnel */
+ width:90%;
 
+
+ position: relative;
+margin-top : 30vh;
+margin-left :-20px;
 }
