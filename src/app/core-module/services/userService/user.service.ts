@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Utilisateur } from '../../../shared/models/utilisateur/utilisateur';
 import { Agent } from '../../../shared/models/utilisateur/agent';
 import { Client } from '../../../shared/models/utilisateur/client';
+import { Compte } from '../../../shared/models/compte/compte';
 import { DemandeInscription } from '../../../shared/models/demande/demandeInscription/demandeInscription';
 import { DemandeOuvertureCompte } from '../../../shared/models/demande/demandeClient/demandeOuvertureCompte';
 import { DemandeChequier } from '../../../shared/models/demande/demandeClient/demandeChequier';
@@ -17,12 +18,12 @@ const projectPath = "/Dmineur_Back_End_v2"
 const demineurApiUrl = "http://localhost"+port+projectPath;
 
 @Injectable({
-	providedIn : 'root'
+  providedIn : 'root'
 })
 export class UserService {
-	//Default user = Guest
-	public userConnected:Utilisateur = Utilisateur.defaultUser();
-	public isConnected: boolean = false;
+  //Default user = Guest
+  public userConnected:Utilisateur = Utilisateur.defaultUser();
+  public isConnected: boolean = false;
   agentsSubject = new Subject<Agent[]>();
   hasTriedToDeleteSubject = new Subject<String>();
 
@@ -187,32 +188,32 @@ export class UserService {
             alert("Something went wrong in login.component.ts");
             break;
         }
-  	}
-	
+    }
+  
 
-	/**
-	* Log out the user then tell all the subscribers about the new status
-	*/
-	logout() : void {
-	  	localStorage.removeItem('Dmineur');
-	  	sessionStorage.removeItem('Dmineur');
-		this.userConnected  = Utilisateur.defaultUser();
-		this.isConnected = false;
-	  	this.router.navigate(['/public']);
-	}
+  /**
+  * Log out the user then tell all the subscribers about the new status
+  */
+  logout() : void {
+      localStorage.removeItem('Dmineur');
+      sessionStorage.removeItem('Dmineur');
+    this.userConnected  = Utilisateur.defaultUser();
+    this.isConnected = false;
+      this.router.navigate(['/public']);
+  }
 
   //Admin : Renvoi toutes les demandes d'inscription
   getAllDemandesInscriptions():Observable<DemandeInscription[]>{
   //Méthode utilisé par un admin
-		return this.http.get(demineurApiUrl+"/admin/demandesInscriptions").pipe(
-  			map((res:DemandeInscription[]) => {
-  				return res;
-  			}),
-  			catchError<DemandeInscription[],never>((err) => {
+    return this.http.get(demineurApiUrl+"/admin/demandesInscriptions").pipe(
+        map((res:DemandeInscription[]) => {
+          return res;
+        }),
+        catchError<DemandeInscription[],never>((err) => {
           return _throw(err);
-  			})
-  		);
-	}
+        })
+      );
+  }
 
   //Admin : Renvoi une demande d'inscription
   getDemandeInscription(demande_id):Observable<DemandeInscription>{
@@ -461,4 +462,46 @@ export class UserService {
     );
   }
 
+  getCompteClient():Observable<Compte[]>{
+      return this.http.get(demineurApiUrl+"/clients/"+this.userConnected.id+"/comptes").pipe(
+        map((res:Compte[]) => {
+          return res;
+        }),
+        catchError<Compte[],never>((err) => {
+          return err;
+        })
+      );
+  }  
+  creationDemandeChequier(compte):Observable<Compte[]>{
+       return this.http.get(demineurApiUrl+"/clients/"+this.userConnected.id+"/comptes", compte).pipe(
+          map((res:any) => {
+            return res;
+          }),
+          catchError<any,never>((err) => {
+            return err;
+          })
+      );
+  }
+
+  getClientsOfAnAgent():Observable<Client[]>{
+       return this.http.get(demineurApiUrl+"/agents/"+this.userConnected.id+"/clients").pipe(
+          map((res:any) => {
+            return res;
+          }),
+          catchError<any,never>((err) => {
+            return err;
+          })
+      );
+  }
+
+  creationDemandeOuvertureCompte(compte):any{
+     return this.http.post(demineurApiUrl+"/clients/"+this.userConnected.id+"/comptes", compte).pipe(
+        map((res:any) => {
+          return res;
+        }),
+        catchError<any,never>((err) => {
+          return err;
+        })
+    ); 
+  }
 }

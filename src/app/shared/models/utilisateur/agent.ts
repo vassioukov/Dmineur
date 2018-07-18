@@ -59,7 +59,7 @@ export class Agent extends Utilisateur {
         address:Address.defaultAddress(),
         passwordVerif:"",
         registrationNumber:"00000",
-        dateStartContract:new Date().toUTCString(),
+        dateStartContract:new Date(),
         clients:[]
       }
     );

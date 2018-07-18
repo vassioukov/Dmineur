@@ -13,6 +13,7 @@ const routes: Routes = [
             { path: 'managementAgents', loadChildren:'./management-agents/management-agents.module#ManagementAgentsModule'},
             { path: 'managementClients', loadChildren:'./management-clients/management-clients.module#ManagementClientsByAdminModule'},
             { path: 'request/:id', loadChildren:'./request/request.module#RequestModule'},
+           
         ]
     }
 ];

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../core-module/services/userService/user.service';
 import { DemandeInscription } from '../../shared/models/demande/demandeInscription/demandeInscription';
 import { Agent } from '../../shared/models/utilisateur/agent';
@@ -14,7 +14,8 @@ export class RequestComponent implements OnInit {
   user:Client=Client.defaultClient();
   request = DemandeInscription.defaultDemandeInscription();
   agents = new Array<Agent>();
-  constructor(private route:ActivatedRoute, private userService:UserService) { }
+  constructor(private route:ActivatedRoute, private userService:UserService,
+    private router:Router) { }
 
   ngOnInit() {
     this.userService.getAllAgents().subscribe(
@@ -43,8 +44,10 @@ export class RequestComponent implements OnInit {
   }
 
   affect(){
+    this.request.demande_traite = true;
     this.userService.setAgentToRequestInscription(this.request).subscribe(
       res => {
+        this.router.navigate(['admin/assignmentRequest']);
         console.log(res);
       }, err => {
         console.log(err);

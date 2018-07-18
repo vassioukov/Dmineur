@@ -24,7 +24,7 @@
         border-top: 1px solid $border-color;
         color: $fonts-color;
         overflow-y:scroll;
-        height: 80vh;
+        height: 84vh;
     }
 }
 ::-webkit-scrollbar {
@@ -41,5 +41,4 @@
      height: auto;
      /* L'image est positionnée en haut à gauche */
      position: fixed;
-
 }

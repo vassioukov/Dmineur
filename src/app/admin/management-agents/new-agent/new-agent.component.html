@@ -1,0 +1,37 @@
+<div class="col-sm-12 col-sm-offset-2">
+  <form [formGroup]="agentForm" (ngSubmit)="onSubmitForm()">
+    <div class="form-group">
+
+      <i aria-hidden="true" class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" title="Le prénom est obligatoire"></i>
+      <label for="firstName">&nbsp; Prénom :</label>
+      <input placeholder="Son prénom" id="firstName" class="form-control" formControlName="firstName">
+    </div>
+
+   <div class="form-group">
+      <i aria-hidden="true" class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" title="Le nom est obligatoire"></i>
+      <label for="lastName">&nbsp; Nom :</label>
+      <input placeholder="Son nom" id="lastName" class="form-control" formControlName="lastName">
+    </div>
+
+    <div class="form-group">
+      <i aria-hidden="true" class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" title="Le matricule est obligatoire"></i>
+      <label for="registrationNumber">&nbsp; Matricule :</label>
+      <input placeholder="Son n° de matricule" id="registrationNumber" class="form-control" formControlName="registrationNumber">
+    </div>
+
+    <div class="form-group">
+      <i aria-hidden="true" class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" title="L'adresse email sous forme x@x est obligatoire"></i>
+      <label for="email">&nbsp; Adresse e-mail :</label>
+      <input placeholder="Son adresse" id="email" class="form-control" formControlName="email">
+    </div>
+
+    <div class="form-group">
+      <i aria-hidden="true" class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" title="Le téléphone est obligatoire avec uniquement des chiffres"></i>
+      <label for="mobile">&nbsp; Téléphone :</label>
+      <input placeholder="Son téléphone" id="mobile" class="form-control" formControlName="mobile">
+    </div>
+    
+    <button type="submit" class="btn btn-primary" >Soumettre</button>
+  </form>
+</div>
+    <br>

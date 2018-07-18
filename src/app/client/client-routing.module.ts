@@ -8,9 +8,12 @@ const routes: Routes = [
 		component: ClientComponent,
         children: [
             { path: '', redirectTo: 'viewBankAccounts', pathMatch: 'full' },
-            { path: 'viewBankAccounts', loadChildren:'./view-bank-accounts/view-bank-accounts.module#ViewBankAccountsModule'},
             { path: 'editAccount', loadChildren:'./edit-account/edit-account.module#EditAccountModule'},
-            { path: 'askCheck', loadChildren:'./ask-check/ask-check.module#AskCheckModule'},
+            { path: 'viewBankAccounts', loadChildren:'./consult-compte/consult-compte.module#ConsultCompteModule'},
+            { path: 'addAccount', loadChildren:'./add-compte/add-compte.module#AddCompteModule'},
+            { path: 'askCheck', loadChildren:'./commande-chequier/commande-chequier.module#CommandeChequierModule'},
+            { path: 'editAccount', loadChildren:'./edit-account/edit-account.module#EditAccountModule'},
+            { path: 'request/:id', loadChildren:'./request-by-client/request-by-client.module#RequestByClientModule'},
         ]
 	}
 ];

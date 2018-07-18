@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { Pipe, PipeTransform } from '@angular/core';
 
+
 @Component({
   selector: 'app-assignment-request',
   templateUrl: './assignment-request.component.html',
@@ -112,11 +113,12 @@ export class AssignmentRequestComponent implements OnInit {
   		err => {
   			console.error(err);
   		}
-  	)
+      )
   }
 
   goToDemande(demande_id){
-  	this.router.navigate(['/admin/request/'+demande_id]);
+    this.router.navigate(['/admin/request/'+demande_id]);
   }
 
 }
+

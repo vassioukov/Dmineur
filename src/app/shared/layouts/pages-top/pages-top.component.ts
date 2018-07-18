@@ -21,6 +21,7 @@ export class PagesTopComponent implements OnInit {
   initializationSubscriber;
   notificationSubscriber=null;
   notificationDemandeInscriptions=new Array();
+
   imgdmineur : string ='assets/images/dmineur.jpg'
 
   constructor(private _globalService: GlobalService, private userService: UserService, private router:Router) { 
@@ -28,8 +29,9 @@ export class PagesTopComponent implements OnInit {
   }
 
   ngOnInit(){
-      this.initializationSubscriber = IntervalObservable.create(1000).subscribe(n => this.startRetrieveAdminNotifications());
-
+    if(this.userService.isConnected){  
+      this.initializationSubscriber = IntervalObservable.create(10000).subscribe(n => this.startRetrieveAdminNotifications());
+    }
   }
 
   //Initialise un interval de récupération
@@ -37,15 +39,15 @@ export class PagesTopComponent implements OnInit {
     if(this.userService.isConnected){
       switch(this.userService.userConnected.profile){
         case "admin":
-          this.notificationSubscriber = IntervalObservable.create(10000).subscribe(n => this.getAdminNotifications());
+          this.notificationSubscriber = IntervalObservable.create(5000).subscribe(n => this.getAdminNotifications());
           this.initializationSubscriber.unsubscribe();
           break;
         case "agent":
-          this.notificationSubscriber = IntervalObservable.create(1000).subscribe(n => this.getAgentNotifications());
+          this.notificationSubscriber = IntervalObservable.create(5000).subscribe(n => this.getAgentNotifications());
           this.initializationSubscriber.unsubscribe();
           break;
         case "client":
-          this.notificationSubscriber = IntervalObservable.create(1000).subscribe(n => this.getClientNotifications());
+          this.notificationSubscriber = IntervalObservable.create(5000).subscribe(n => this.getClientNotifications());
           this.initializationSubscriber.unsubscribe();
            break;
       }
@@ -55,7 +57,18 @@ export class PagesTopComponent implements OnInit {
   //Redirige vers une demande
   goToDemande(type_demande,index){
     //Pouvoir envoyer "MAJ" ou "inscription"
-    this.router.navigate(['/admin/request/'+this.notificationDemandeInscriptions[index].id], {fragment:type_demande});
+    switch(this.userService.userConnected.profile){
+      case 'client':
+        this.router.navigate(['/client/request/'+this.notificationDemandeInscriptions[index].id], {fragment:type_demande});
+        break;
+      case 'agent':
+        this.router.navigate(['/agent/request/'+this.notificationDemandeInscriptions[index].id], {fragment:type_demande});
+        break;
+      case 'admin':
+        this.router.navigate(['/admin/request/'+this.notificationDemandeInscriptions[index].id], {fragment:type_demande});
+        break;
+
+    }
   }
 
   ngOnDestroy(){
@@ -133,6 +146,4 @@ export class PagesTopComponent implements OnInit {
 
     //this._globalService._sidebarToggleState(!this.sidebarToggle);
   }
-
-
 }

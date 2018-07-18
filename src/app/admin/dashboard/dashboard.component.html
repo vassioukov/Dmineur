@@ -6,9 +6,8 @@
 					<div class="row">
 						<div class="col-xs-6 col-md-4">
 							<a routerLink="/admin/assignmentRequest" routerLinkActive="active">
-							<img src="assets/images/demandes.png" class="icon" />
-							Demande
-							</a>
+								<img src="assets/images/demandes.png" class="icon" />
+							Demande</a>
 						</div>
 						<div class="col-xs-6 col-md-4">
 							<a routerLink="/admin/managementClients" routerLinkActive="active">
@@ -34,11 +33,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let Agent of fakeAgents">
-						<td>{{fakeAgent.prenom}}</td>
-						<td>
-							
-						</td>
+					<tr *ngFor="let Agent of agents">
+						<td>{{Agent.firstName}}  {{Agent.lastName}}</td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>

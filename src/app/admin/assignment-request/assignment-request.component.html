@@ -76,6 +76,44 @@
 			</div>
 		</div>
 		
+=======
+				</section>				
+			</nav>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Type de demande</th>
+						<th>Affectation</th>
+						<th>Traitée</th>
+						<th>Prénom - Nom</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let demandesInscriptions of demandesInscriptions">
+						<td>{{demandesInscriptions.type_demande}} </td>
+						<td></td>
+					<tr *ngFor="let demandeInscription of demandesInscriptions" [hidden]="hide(demandeInscription)">
+						<td>{{demandeInscription.type_demande}}</td>
+						<td>
+							<span *ngIf="demandeInscription.agent==null">Non affecté</span>
+							<span *ngIf="demandeInscription.agent!=null">Affecté à {{demandeInscription.agent.firstName}} {{demandeInscription.agent.lastName}}</span>
+						</td>
+						<td>
+							<span *ngIf="demandeInscription.demande_traite==0">En cours</span>
+							<span *ngIf="demandeInscription.demande_traite==1">Traitée</span>
+						</td>
+						<td>
+							{{demandeInscription.client.firstName}} 
+							{{demandeInscription.client.lastName}}
+						</td>
+						<td>
+							<i class="iStyleAsA fa fa-edit" (click)="goToDemande(demandeInscription.id)"></i>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+>>>>>>> 2a61e2c67ab4d3885d76d28d53e4969803cd9d7a
 	</div>
 	-->	
 </section>		

@@ -34,14 +34,14 @@
 }
 
 #fond {
-background-image:url('/assets/images/fond-degrade.jpg');
- /* On met en place le fond d'écran */
- min-height: 100%;
- min-width: 1024px;
- /* On indique un redimensionnement proportionnel */
- width: 100%;
- height: auto;
- /* L'image est positionnée en haut à gauche */
- position: fixed;
+    background-image:url('/assets/images/fond-degrade.jpg');
+     /* On met en place le fond d'écran */
+     min-height: 100%;
+     min-width: 1024px;
+     /* On indique un redimensionnement proportionnel */
+     width: 100%;
+     height: auto;
+     /* L'image est positionnée en haut à gauche */
+     position: fixed;
 
 }

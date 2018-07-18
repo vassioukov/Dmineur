@@ -1,17 +1,17 @@
 <h3 class="text-center"><span *ngIf="request.type_demande=='demandeInscription'" >Demande d'inscription</span></h3>
-<form  class="formClient">
+<form  class="formClient" >
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
 
 				<label for="firstName">Prénom</label>
-				<input id="firstName" type="text" placeholder="Entrez votre prénom" class="form-control" name="firstName" [(ngModel)]="user.firstName" required>
+				<input id="firstName" type="text" placeholder="Entrez votre prénom" class="form-control" name="firstName" [(ngModel)]="user.firstName" required disabled>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-group">
 				<label for="lastName">Nom</label>
-				<input id="lastName" type="text" placeholder="Entrez votre nom" class="form-control" name="lastName"  [(ngModel)]="user.lastName" required>
+				<input id="lastName" type="text" placeholder="Entrez votre nom" class="form-control" name="lastName"  [(ngModel)]="user.lastName" required disabled>
 			</div>
 		</div>
 	</div>
@@ -19,13 +19,13 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input id="email" type="mail" placeholder="Entrez votre email" class="form-control" name="email"  [(ngModel)]="user.email" required >
+				<input id="email" type="mail" placeholder="Entrez votre email" class="form-control" name="email"  [(ngModel)]="user.email" required disabled>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-group">
 				<label for="mobile">Numéro de téléphone</label>
-				<input id="mobile" type="text" placeholder="Entrez votre numero de téléphone" class="form-control" name="mobile"   [(ngModel)]="user.mobile" required >
+				<input id="mobile" type="text" placeholder="Entrez votre numero de téléphone" class="form-control" name="mobile"   [(ngModel)]="user.mobile" required disabled>
 			</div> 
 		</div>
 	</div>
@@ -34,7 +34,7 @@
 			<div class="form-group">
 				<label for="pseudo">Votre pseudo</label>
 				<input type="Texte" id="pseudo" class="form-control" placeholder="Entrez votre pseudo" 
-				 [(ngModel)]="user.address.pseudo"  name="pseudo" required   >
+				 [(ngModel)]="user.address.pseudo"  name="pseudo" required  disabled >
 
 			</div>
 		</div>
@@ -42,7 +42,7 @@
 			<div class="form-group">
 				<label for="dateOfBirth">Date de naissance</label>
 				<input type="Date" id="dateOfBirth" class="form-control" placeholder="Entrez votre date de naissance" name="dateOfBirth"
-				 [(ngModel)]="user.dateOfBirth"   required   >
+				 [(ngModel)]="user.dateOfBirth"   required  disabled >
 			</div>
 		</div>
 	</div>
@@ -52,14 +52,14 @@
 			<div class="form-group">
 				<label for="numRue">Numéro de la rue</label>
 				<input type="text" id="numRue" class="form-control" placeholder="Entrez le numero de votre rue" 
-				 [(ngModel)]="user.address.numRue" name="numRue"  required   >
+				 [(ngModel)]="user.address.numRue" name="numRue"  required disabled  >
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-group">
 				<label for="nomRue">Nom de la rue</label>
 				<input type="text" id="nomRue" class="form-control" placeholder="Entrez le nom de votre rue" 
-				 [(ngModel)]="user.address.nomRue" name="nomRue"  required   >
+				 [(ngModel)]="user.address.nomRue" name="nomRue"  required  disabled >
 
 			</div>
 		</div>
@@ -70,26 +70,19 @@
 			<div class="form-group">
 				<label for="cp">Code postal</label>
 				<input type="text" id="cp" class="form-control" placeholder="Entrez votre code postal" 
-				 [(ngModel)]="user.address.cp" name="cp"  required   >
+				 [(ngModel)]="user.address.cp" name="cp"  required  disabled >
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="form-group">
 				<label for="ville">Ville</label>
 				<input type="text" id="ville" class="form-control" placeholder="Entrez votre ville" 
-				 [(ngModel)]="user.address.ville" name="ville"  required   >
+				 [(ngModel)]="user.address.ville" name="ville"  required  disabled >
 
 			</div>
 		</div>
 	</div>
 </form>
-
-
-
-
-
-
-
 
 <div class="row">
 	<div class="col-md-10 col-xs-10">
@@ -104,7 +97,7 @@
 
 	</div>
 	<div class="col-md-2">
-		<button (click)="affect()" class="btn btn-primary">Affecter</button>
+		<button (click)="affect()" class="btn btn-primary" style="    margin-top: 30px;">Affecter</button>
 		
 	</div>
 </div>

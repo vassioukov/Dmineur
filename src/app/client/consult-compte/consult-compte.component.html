@@ -1,0 +1,22 @@
+<section>
+	<app-currency-converter></app-currency-converter>
+	<br>
+	<br>
+</section>
+<section class="main">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Numero de compte</th>
+				<th>Solde</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let compte of comptes">
+				<td>{{compte.rib}}</td>
+				<td>{{compte.solde}}</td>
+			</tr>
+		</tbody>
+	</table>
+</section>	

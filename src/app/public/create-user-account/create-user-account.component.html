@@ -108,7 +108,7 @@
 						[disabled]="heroFormSimple.invalid">Valider</button>
 					</div>
 					<div class="col-md-2">
-						<button type="button" class="btn btn-default" (click)="formDir.resetForm({})">Réinitialiser</button>
+						<button type="button" class="btn btn-danger" (click)="formDir.resetForm({})">Réinitialiser</button>
 					</div>
 				</div>
 		</form>
@@ -321,14 +321,11 @@
 					<div class="form-group">
 						<label for="file">Votre ficher :</label>
 						<input type="file" id="file" class="form-control" formControlName="file" [(ngModel)]="user.file" multiple="multiple" (change)="onFileChange($event)" required   >
-
 						<div *ngIf="file.invalid && (file.dirty || file.touched)"
 						class="alert alert-danger">
-
 							<div *ngIf="file.errors.required">
 								champ obligatoire
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -340,7 +337,7 @@
 							[disabled]="heroForm.invalid">Valider</button>
 						</div>
 						<div class="col-md-2">
-							<button type="button" class="btn btn-default"
+							<button type="button" class="btn btn-danger"
 							(click)="formDir.resetForm({})">Réinitialiser</button>
 						</div>
 					</div>

@@ -4,6 +4,7 @@ import { UserService} from '../../core-module/services/userService/user.service'
 import { Router } from '@angular/router';
 import { FormControl, Validators, AbstractControl, FormGroup, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
 import { identityRevealedValidator } from './identity-revealed.directive';
+import { Address } from '../../shared/models/utilisateur/address';
 
 @Component({
   selector: 'app-edit-account',
@@ -36,9 +37,10 @@ export class EditAccountComponent implements OnInit {
 		this.userService.getClient(userConnected.id).subscribe(
 			res => {
 				this.client = res;
-
-				console.log(this.client.dateOfBirth);
-
+				console.log(this.client.address==null);
+				if(this.client.address==null){
+					this.client.address = Address.defaultAddress();
+				}
 			}, err => {
 				console.error(err);
 			}
@@ -78,6 +80,8 @@ export class EditAccountComponent implements OnInit {
 				Validators.required]),
 			'email' : new FormControl(this.client.email , [
 				Validators.required]),
+			'pseudo' : new FormControl(this.client.pseudo , [
+				Validators.required]),
 			'mobile' : new FormControl(this.client.mobile , [
 				Validators.required]),
 			'numRue' : new FormControl(this.client.address.numRue , [
@@ -90,9 +94,9 @@ export class EditAccountComponent implements OnInit {
 				Validators.required]),
 			'dateOfBirth' : new FormControl(this.client.dateOfBirth , [
 				Validators.required]),
+			/*
 			'file' : new FormControl(this.client.passwordVerif),
-			'pseudo' : new FormControl(this.client.pseudo , [
-				Validators.required]),
+			*/
 		}, { validators: identityRevealedValidator });
 	}
 

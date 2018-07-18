@@ -5,15 +5,13 @@ import { Router } from '@angular/router';
 import { Agent } from '../../shared/models/utilisateur/agent';
 import { UserService } from '../../core-module/services/userService/user.service';
 
-
 @Component({
   selector: 'app-management-agents',
   templateUrl: './management-agents.component.html',
   styleUrls: ['./management-agents.component.css']
 })
 
-export class ManagementAgentsComponent implements OnInit, OnDestroy {
-
+export class ManagementAgentsComponent implements OnInit {
   agents:Agent[];
   print=false;
   agentsSubscription: Subscription;

@@ -38,7 +38,7 @@ export class ManagementClientsByAgentComponent implements OnInit {
       }
     );
 
-    this.userService.getAllClients().subscribe(
+    this.userService.getClientsOfAnAgent().subscribe(
       res => {
         this.clients = res;
       }, err => {
