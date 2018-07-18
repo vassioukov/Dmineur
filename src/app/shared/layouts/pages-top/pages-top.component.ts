@@ -21,15 +21,14 @@ export class PagesTopComponent implements OnInit {
   initializationSubscriber;
   notificationSubscriber=null;
   notificationDemandeInscriptions=new Array();
+  imgdmineur : string ='assets/images/dmineur.jpg'
 
   constructor(private _globalService: GlobalService, private userService: UserService, private router:Router) { 
 
   }
 
   ngOnInit(){
-    if(this.userService.isConnected){  
-      this.initializationSubscriber = IntervalObservable.create(10000).subscribe(n => this.startRetrieveAdminNotifications());
-    }
+      this.initializationSubscriber = IntervalObservable.create(1000).subscribe(n => this.startRetrieveAdminNotifications());
 
   }
 
@@ -42,11 +41,11 @@ export class PagesTopComponent implements OnInit {
           this.initializationSubscriber.unsubscribe();
           break;
         case "agent":
-          this.notificationSubscriber = IntervalObservable.create(10000).subscribe(n => this.getAgentNotifications());
+          this.notificationSubscriber = IntervalObservable.create(1000).subscribe(n => this.getAgentNotifications());
           this.initializationSubscriber.unsubscribe();
           break;
         case "client":
-          this.notificationSubscriber = IntervalObservable.create(10000).subscribe(n => this.getClientNotifications());
+          this.notificationSubscriber = IntervalObservable.create(1000).subscribe(n => this.getClientNotifications());
           this.initializationSubscriber.unsubscribe();
            break;
       }

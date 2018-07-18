@@ -1,6 +1,6 @@
 <form [formGroup]="userForm" #formDir="ngForm" (ngSubmit)="submit()" style="margin-top: 20px;overflow: hidden;" >
 
-  <div [hidden]="formDir.submitted">
+
 
     <div class="cross-validation" [class.cross-validation-error]="userForm.errors?.identityRevealed && (userForm.touched || userForm.dirty)">
       <div class="row">
@@ -160,5 +160,4 @@
         <button type="button" class="btn btn-default" (click)="formDir.resetForm({})">Réinitialiser</button>
       </div>
     </div>
-  </div>
 </form>

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../core-module/services/userService/user.service';
 import { DemandeInscription } from '../../shared/models/demande/demandeInscription/demandeInscription';
 import { Agent } from '../../shared/models/utilisateur/agent';
+import { Client } from '../../shared/models/utilisateur/client';
 
 @Component({
   selector: 'app-request',
@@ -10,6 +11,7 @@ import { Agent } from '../../shared/models/utilisateur/agent';
   styleUrls: ['./request.component.css']
 })
 export class RequestComponent implements OnInit {
+  user:Client=Client.defaultClient();
   request = DemandeInscription.defaultDemandeInscription();
   agents = new Array<Agent>();
   constructor(private route:ActivatedRoute, private userService:UserService) { }
@@ -29,7 +31,8 @@ export class RequestComponent implements OnInit {
   			this.userService.getDemandeInscription(queryParams['id']).subscribe(
   				res => {
             this.request = res;
-            console.log(this.request);
+            this.user = this.request.client;
+            console.log(this.user);
   				},
   				err => {
   					console.error(err);

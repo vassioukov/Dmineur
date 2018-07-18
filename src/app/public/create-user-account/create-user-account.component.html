@@ -3,8 +3,6 @@
 
 		<form [formGroup]="heroFormSimple" #formDir="ngForm" (ngSubmit)="creationCompteClientSimple()" class="formClient">
 
-			<div [hidden]="formDir.submitted">
-
 				<div class="cross-validation" [class.cross-validation-error]="heroFormSimple.errors?.identityRevealed && (heroFormSimple.touched || heroFormSimple.dirty)">
 					<div class="row">
 						<div class="col-md-6">
@@ -113,13 +111,10 @@
 						<button type="button" class="btn btn-default" (click)="formDir.resetForm({})">Réinitialiser</button>
 					</div>
 				</div>
-			</div>
 		</form>
 	</mat-tab>
 	<mat-tab label="Inscription complète">
 		<form [formGroup]="heroForm" #formDir="ngForm" (ngSubmit)="creationCompteClientComplet()" class="formClient">
-
-			<div [hidden]="formDir.submitted">
 
 				<div class="cross-validation" [class.cross-validation-error]="heroForm.errors?.identityRevealed && (heroForm.touched || heroForm.dirty)">
 					<div class="row">
@@ -222,7 +217,7 @@
 							<div class="form-group">
 								<label for="pseudo">Votre pseudo</label>
 								<input type="Texte" id="pseudo" class="form-control" placeholder="Entrez votre pseudo" 
-								formControlName="pseudo" [(ngModel)]="user.address.pseudo"   required   >
+								formControlName="pseudo" [(ngModel)]="user.pseudo"   required   >
 
 								<div *ngIf="pseudo.invalid && (pseudo.dirty || pseudo.touched)"
 								class="alert alert-danger">
@@ -350,7 +345,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
 		</form>
 	</mat-tab>
 </mat-tab-group>

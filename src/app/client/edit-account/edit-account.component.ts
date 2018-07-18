@@ -33,10 +33,12 @@ export class EditAccountComponent implements OnInit {
 
 	ngOnInit() {
 		let userConnected = this.userService.getUserConnected();
-		console.log(userConnected);
 		this.userService.getClient(userConnected.id).subscribe(
 			res => {
 				this.client = res;
+
+				console.log(this.client.dateOfBirth);
+
 			}, err => {
 				console.error(err);
 			}

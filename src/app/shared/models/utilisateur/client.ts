@@ -51,7 +51,7 @@ export class Client extends Utilisateur {
         pseudo:"",
         firstName:"", 
         lastName:"", 
-        dateOfBirth:new Date(), 
+        dateOfBirth:new Date().toUTCString(), 
         mobile:"", 
         profile:Utilisateur.profile_client, 
         address:Address.defaultAddress(),

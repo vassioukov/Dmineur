@@ -80,8 +80,8 @@ export class UserService {
   	}
 
     //Création d'un utilisateur
-  	createClient(form):Observable<Utilisateur>{
-  		return this.http.post(demineurApiUrl+"/clients",JSON.stringify(form)).pipe(
+  	createClient(client):Observable<Utilisateur>{
+  		return this.http.post(demineurApiUrl+"/clients",client).pipe(
   			map((res:Utilisateur) => {
   				return res;
   			}),

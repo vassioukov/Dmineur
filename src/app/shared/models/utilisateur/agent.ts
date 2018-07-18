@@ -53,13 +53,13 @@ export class Agent extends Utilisateur {
         pseudo:"",
         firstName:"", 
         lastName:"", 
-        dateOfBirth:new Date(), 
+        dateOfBirth:new Date().toUTCString(), 
         mobile:"", 
         profile:Utilisateur.profile_agent, 
         address:Address.defaultAddress(),
         passwordVerif:"",
         registrationNumber:"00000",
-        dateStartContract:new Date(),
+        dateStartContract:new Date().toUTCString(),
         clients:[]
       }
     );

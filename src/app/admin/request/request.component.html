@@ -1,64 +1,100 @@
+<h3 class="text-center"><span *ngIf="request.type_demande=='demandeInscription'" >Demande d'inscription</span></h3>
+<form  class="formClient">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+
+				<label for="firstName">Prénom</label>
+				<input id="firstName" type="text" placeholder="Entrez votre prénom" class="form-control" name="firstName" [(ngModel)]="user.firstName" required>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="lastName">Nom</label>
+				<input id="lastName" type="text" placeholder="Entrez votre nom" class="form-control" name="lastName"  [(ngModel)]="user.lastName" required>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input id="email" type="mail" placeholder="Entrez votre email" class="form-control" name="email"  [(ngModel)]="user.email" required >
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="mobile">Numéro de téléphone</label>
+				<input id="mobile" type="text" placeholder="Entrez votre numero de téléphone" class="form-control" name="mobile"   [(ngModel)]="user.mobile" required >
+			</div> 
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="pseudo">Votre pseudo</label>
+				<input type="Texte" id="pseudo" class="form-control" placeholder="Entrez votre pseudo" 
+				 [(ngModel)]="user.address.pseudo"  name="pseudo" required   >
+
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="dateOfBirth">Date de naissance</label>
+				<input type="Date" id="dateOfBirth" class="form-control" placeholder="Entrez votre date de naissance" name="dateOfBirth"
+				 [(ngModel)]="user.dateOfBirth"   required   >
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="numRue">Numéro de la rue</label>
+				<input type="text" id="numRue" class="form-control" placeholder="Entrez le numero de votre rue" 
+				 [(ngModel)]="user.address.numRue" name="numRue"  required   >
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="nomRue">Nom de la rue</label>
+				<input type="text" id="nomRue" class="form-control" placeholder="Entrez le nom de votre rue" 
+				 [(ngModel)]="user.address.nomRue" name="nomRue"  required   >
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="cp">Code postal</label>
+				<input type="text" id="cp" class="form-control" placeholder="Entrez votre code postal" 
+				 [(ngModel)]="user.address.cp" name="cp"  required   >
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="ville">Ville</label>
+				<input type="text" id="ville" class="form-control" placeholder="Entrez votre ville" 
+				 [(ngModel)]="user.address.ville" name="ville"  required   >
+
+			</div>
+		</div>
+	</div>
+</form>
 
 
-Type de demande : {{request.type_demande}}
-<br>
-Fiche d'inscription : 
-<br>
- - Nombre d'enfants : {{request.ficheInscription.numberOfChildren}}
-<br>
- - Situation : {{request.ficheInscription.maritalStatus}}
-<br>
-Email du client : {{request.client.email}}
-<br>
-Prénom : {{request.client.firstName}}
-<br>
-Nom : {{request.client.lastName}}
-
-Agent actuel : {{request.client.agent.firstName}}
-<br>
-<br>
 
 
 
-<h3 class="text-center"></h3>
+
+
+
 <div class="row">
-	<div class="col-md-6 col-xs-12">
-		 <span *ngIf="request.type_demande=='demandeInscription'">
-		 	Demande d'inscription
-		 </span>
-	</div>
-	<div class="col-md-6 col-xs-12">
-		 <span *ngIf="request.demande_traite=='0'">
-		 	En cours
-		 </span>
-		 <span *ngIf="request.demande_traite=='1'">
-		 	Traitée
-		 </span>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-6 col-xs-12">
-		
-	</div>
-	<div class="col-md-6 col-xs-12">
-		
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-6 col-xs-12">
-		
-	</div>
-	<div class="col-md-6 col-xs-12">
-		
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-4 col-xs-10">
+	<div class="col-md-10 col-xs-10">
 				
-		<label for="agents">Affectation du client</label>
+		<label for="agents">Choix du conseiller</label>
 		<select class="form-control" id="agents"
 		        required
 		        [(ngModel)]="request.agent" name="agentSelected"

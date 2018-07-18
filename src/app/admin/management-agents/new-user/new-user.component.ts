@@ -26,7 +26,7 @@ export class NewUserComponent implements OnInit {
 
   ngOnInit() {
     
-      
+      console.log(this.agent);
     this.userForm = new FormGroup({
       'firstName' : new FormControl(this.agent.firstName , [
         Validators.required]),

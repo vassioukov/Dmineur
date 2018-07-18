@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./presenting.component.scss']
 })
 export class PresentingComponent implements OnInit {
-
+imgpresentation: string = 'assets/images/presentation.png';
+imggif: string = 'assets/images/money.gif';
   constructor() { }
 
   ngOnInit() {
