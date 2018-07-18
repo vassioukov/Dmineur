@@ -27,7 +27,13 @@ export class PagesTopComponent implements OnInit {
   }
 
   ngOnInit(){
+<<<<<<< HEAD
       this.initializationSubscriber = IntervalObservable.create(10000).subscribe(n => this.startRetrieveAdminNotifications());
+=======
+    if(this.userService.isConnected){  
+      this.initializationSubscriber = IntervalObservable.create(10000).subscribe(n => this.startRetrieveAdminNotifications());
+    }
+>>>>>>> 75a9a54095bbeb4b2c91c73e4571947261f4fdc1
 
   }
 
