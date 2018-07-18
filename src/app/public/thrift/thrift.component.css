@@ -1,0 +1,22 @@
+#carteInfinite{
+height: 200px;
+	width: 300px;
+	margin-left: 100px;
+}
+#cartePrenium{
+	height: 200px;
+	width: 300px;
+	margin-left: 100px;
+
+}
+#securise{
+	float:left;
+	margin-right: 20px ;
+}
+
+#param{
+	float:left;
+	margin-right: 20px ;
+	margin-bottom: 20px;
+
+}

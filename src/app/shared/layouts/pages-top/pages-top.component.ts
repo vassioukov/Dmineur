@@ -21,6 +21,7 @@ export class PagesTopComponent implements OnInit {
   initializationSubscriber;
   notificationSubscriber=null;
   notificationDemandeInscriptions=new Array();
+  imgdmineur : string ='assets/images/dmineur.jpg'
 
   constructor(private _globalService: GlobalService, private userService: UserService, private router:Router) { 
 
