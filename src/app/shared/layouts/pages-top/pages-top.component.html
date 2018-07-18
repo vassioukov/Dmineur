@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 <div class="pages-top ">
-=======
-<div id="pages-top" class="pages-top ">
->>>>>>> 75a9a54095bbeb4b2c91c73e4571947261f4fdc1
-=======
-<div id="pages-top" class="pages-top ">
->>>>>>> 75a9a54095bbeb4b2c91c73e4571947261f4fdc1
   <div class="avatar-wrap">
     <div class="avatar">
       <img src="{{avatarImgSrc}}" alt="avatar">
@@ -22,16 +14,7 @@
     <i class="fa fa-dedent fa-fw" *ngIf="sidebarToggle"></i>
     <i class="fa fa-indent fa-fw" *ngIf="!sidebarToggle"></i>
   </div>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-  <div id="container" class="msg-tips-wrap " >
-=======
   <div id="container" class="msg-tips-wrap " *ngIf="userService.userConnected.profile!='guest'">
->>>>>>> 75a9a54095bbeb4b2c91c73e4571947261f4fdc1
-=======
-  <div id="container" class="msg-tips-wrap " *ngIf="userService.userConnected.profile!='guest'">
->>>>>>> 75a9a54095bbeb4b2c91c73e4571947261f4fdc1
     <div class="msg-entrance ring" (click)="toggle()" i18n-notifTitle title="Liste de notifications">
       <span class="fa fa-bell fa-fw"></span>
       <span class="badge" *ngIf="tip.ring && notificationDemandeInscriptions.length>0"></span>
@@ -41,16 +24,7 @@
     </div>
   </div>
 </div>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<div id="under" [hidden]="!showNotifications" class="successfully-saved" >
-=======
 <div id="under" [hidden]="!showNotifications" class="successfully-saved" *ngIf="userService.userConnected.profile!='guest'">
->>>>>>> 75a9a54095bbeb4b2c91c73e4571947261f4fdc1
-=======
-<div id="under" [hidden]="!showNotifications" class="successfully-saved" *ngIf="userService.userConnected.profile!='guest'">
->>>>>>> 75a9a54095bbeb4b2c91c73e4571947261f4fdc1
   <mat-tab-group > 
     <mat-tab >
       <div class="demandeTitre" *mat-tab-label>

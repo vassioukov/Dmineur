@@ -7,10 +7,11 @@ const routes: Routes = [
 		path : 'client',
 		component: ClientComponent,
         children: [
-            { path: '', redirectTo: 'viewAccount', pathMatch: 'full' },
-            { path: 'viewAccount', loadChildren:'./consult-compte/consult-compte.module#ConsultCompteModule'},
+            { path: '', redirectTo: 'viewBankAccounts', pathMatch: 'full' },
+            { path: 'viewBankAccounts', loadChildren:'./consult-compte/consult-compte.module#ConsultCompteModule'},
             { path: 'addAccount', loadChildren:'./add-compte/add-compte.module#AddCompteModule'},
-            { path: 'askCheck', loadChildren:'./commande-chequier/commande-chequier.module#CommandeChequierModule'}          
+            { path: 'askCheck', loadChildren:'./commande-chequier/commande-chequier.module#CommandeChequierModule'},
+            { path: 'editAccount', loadChildren:'./edit-account/edit-account.module#EditAccountModule'},     
         ]
 	}
 ];
